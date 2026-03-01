@@ -1,0 +1,65 @@
+schema_version = 1
+
+[modules.math_core]
+display_name = "Math"
+paths = ["C:/Users/dunnm/Downloads/Math"]
+enabled = true
+stage = "active"
+priority = 10
+aliases = ["math", "algebra", "calculus", "linear algebra", "statistics", "svd"]
+
+[modules.physics_core]
+display_name = "Physics"
+paths = ["C:/Users/dunnm/Downloads/Physics"]
+enabled = true
+stage = "active"
+priority = 20
+aliases = ["physics", "mechanics", "electromagnetism", "thermodynamics", "quantum"]
+
+[modules.imaging_core]
+display_name = "Imaging"
+paths = ["C:/Users/dunnm/Downloads/Imaging"]
+enabled = true
+stage = "active"
+priority = 30
+aliases = ["imaging", "image analysis", "computer vision", "segmentation", "wavelet"]
+
+[modules.cs_core]
+display_name = "Computer Science"
+paths = ["C:/Users/dunnm/Downloads/Computer Science"]
+enabled = true
+stage = "active"
+priority = 40
+aliases = ["computer science", "algorithm", "data structure", "operating systems", "networking"]
+
+[modules.biology_core]
+display_name = "Biology"
+paths = ["C:/Users/dunnm/Downloads/Biology"]
+enabled = true
+stage = "active"
+priority = 50
+aliases = ["biology", "microbiology", "virology", "cell", "genetics"]
+
+[modules.bioinformatics_core]
+display_name = "Bioinformatics"
+paths = ["C:/Users/dunnm/Downloads/Bioinformatics"]
+enabled = true
+stage = "active"
+priority = 60
+aliases = ["bioinformatics", "genomics", "sequence", "alignment", "omics"]
+
+[modules.chemistry_core]
+display_name = "Chemistry"
+paths = ["C:/Users/dunnm/Downloads/Chemistry"]
+enabled = true
+stage = "active"
+priority = 70
+aliases = ["chemistry", "organic", "inorganic", "analytical", "reaction"]
+
+[modules.microscopy_core]
+display_name = "Microscopy"
+paths = ["C:/Users/dunnm/Downloads/Microscopy"]
+enabled = true
+stage = "active"
+priority = 80
+aliases = ["microscopy", "microscope", "fluorescence", "confocal"]

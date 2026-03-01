@@ -1,0 +1,17 @@
+schema_version = 1
+
+[modules.math_core]
+display_name = "Math"
+paths = ["C:/Users/dunnm/Downloads/Math"]
+enabled = true
+stage = "active"
+priority = 10
+aliases = ["math", "svd", "calculus"]
+
+[modules.microscopy_core]
+display_name = "Microscopy"
+paths = ["C:/Users/dunnm/Downloads/Microscopy"]
+enabled = true
+stage = "active"
+priority = 20
+aliases = ["microscopy", "confocal", "fluorescence"]

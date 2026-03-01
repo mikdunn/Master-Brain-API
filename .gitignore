@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Virtual environments
+.venv/
+venv/
+
+# Local secrets
+.env
+
+# Local runtime artifacts
+data/*.pkl
+data/*_checkpoint.json
+data/*_quarantine.json

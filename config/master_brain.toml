@@ -1,0 +1,67 @@
+schema_version = 1
+
+[modules.math_brain]
+display_name = "Math Brain"
+paths = [
+  "C:/Users/dunnm/Downloads/Master Brain/0_Math_Brain",
+  "C:/Users/dunnm/Downloads/Master Brain/Math Brain",
+]
+enabled = true
+stage = "active"
+priority = 10
+aliases = ["math", "proof", "calculus", "linear algebra"]
+
+[modules.physics_brain]
+display_name = "Physics Brain"
+paths = [
+  "C:/Users/dunnm/Downloads/Master Brain/1_Physics_Brain",
+  "C:/Users/dunnm/Downloads/Master Brain/Physics Brain",
+]
+enabled = true
+stage = "active"
+priority = 20
+aliases = ["physics", "mechanics", "electromagnetism", "quantum"]
+
+[modules.engineering_brain]
+display_name = "Engineering Brain"
+paths = [
+  "C:/Users/dunnm/Downloads/Master Brain/2_Engineering_Brain",
+  "C:/Users/dunnm/Downloads/Master Brain/Engineering Brain",
+]
+enabled = true
+stage = "active"
+priority = 30
+aliases = ["engineering", "design", "control", "thermofluids"]
+
+[modules.science_brain]
+display_name = "Science Brain"
+paths = [
+  "C:/Users/dunnm/Downloads/Master Brain/3_Science_Brain",
+  "C:/Users/dunnm/Downloads/Master Brain/Science Brain",
+]
+enabled = true
+stage = "active"
+priority = 40
+aliases = ["biology", "chemistry", "geology", "environment", "life science"]
+
+[modules.business_brain]
+display_name = "Business Brain"
+paths = [
+  "C:/Users/dunnm/Downloads/Master Brain/4_Business_Brain",
+  "C:/Users/dunnm/Downloads/Master Brain/Business Brain",
+]
+enabled = true
+stage = "active"
+priority = 50
+aliases = ["business", "finance", "economics", "accounting", "econometrics"]
+
+[modules.cs_brain]
+display_name = "Computer Science Brain"
+paths = [
+  "C:/Users/dunnm/Downloads/Master Brain/5_Computer_Science_Brain",
+  "C:/Users/dunnm/Downloads/Master Brain/Computer Science Brain",
+]
+enabled = true
+stage = "active"
+priority = 60
+aliases = ["computer science", "algorithms", "ml", "deep learning", "systems"]

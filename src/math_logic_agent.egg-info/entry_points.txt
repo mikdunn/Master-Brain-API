@@ -1,0 +1,2 @@
+[console_scripts]
+mla = math_logic_agent.cli:app

@@ -1,0 +1,4 @@
+{"query":"What is SVD?", "expected_mode":"explanation", "expected_terms":["singular value decomposition","svd"]}
+{"query":"solve x^2-4=0 for x", "expected_mode":"symbolic", "expected_terms":["solve","equation"]}
+{"query":"implement pseudoinverse in python", "expected_mode":"coding", "expected_terms":["pseudoinverse","least squares"]}
+{"query":"create an exam question about eigenvalues", "expected_mode":"exam", "expected_terms":["eigenvalue","eigenvector"]}

@@ -1,0 +1,124 @@
+from __future__ import annotations
+
+from dataclasses import asdict
+from pathlib import Path
+from threading import Lock
+from typing import Any
+
+from fastapi import Depends, FastAPI, Header, HTTPException
+from pydantic import BaseModel, Field
+
+from .config import Settings
+from .indexing import IndexStore
+from .orchestrator import answer_query
+
+app = FastAPI(title="Master Brain Bridge API", version="1.0.0")
+_settings = Settings.from_env()
+_cache_lock = Lock()
+_cache: dict[str, tuple[int, IndexStore]] = {}
+
+
+class QueryRequest(BaseModel):
+    question: str = Field(..., min_length=1)
+    k: int = Field(6, ge=1, le=30)
+    index_path: str | None = None
+    cloud_rerank: bool = False
+
+
+class QueryResponse(BaseModel):
+    answer: str
+    mode: str
+    confidence: float
+    confidence_label: str
+    selected_modules: list[str]
+    context: list[str]
+
+
+class FilesResponse(BaseModel):
+    index_path: str
+    indexed_file_count: int
+    indexed_files: list[str]
+
+
+def _resolve_index_path(index_path: str | None) -> Path:
+    p = Path(index_path or _settings.bridge_default_index_path)
+    if not p.exists():
+        raise HTTPException(status_code=404, detail=f"Index not found: {p}")
+    return p
+
+
+def _require_api_key(x_api_key: str | None = Header(default=None)) -> None:
+    required = _settings.bridge_api_key
+    if not required:
+        return
+    if x_api_key != required:
+        raise HTTPException(status_code=401, detail="Invalid API key")
+
+
+def _load_index(index_path: Path, cloud_rerank: bool) -> IndexStore:
+    key = str(index_path.resolve())
+    mtime = index_path.stat().st_mtime_ns
+    with _cache_lock:
+        cached = _cache.get(key)
+        if cached and cached[0] == mtime:
+            return cached[1]
+        store = IndexStore.load(index_path, cloud_rerank=cloud_rerank)
+        _cache[key] = (mtime, store)
+        return store
+
+
+@app.get("/health")
+def health() -> dict[str, Any]:
+    return {
+        "status": "ok",
+        "bridge_host": _settings.bridge_host,
+        "bridge_port": _settings.bridge_port,
+        "api_key_required": bool(_settings.bridge_api_key),
+        "default_index": _settings.bridge_default_index_path,
+    }
+
+
+@app.post("/v1/query", response_model=QueryResponse)
+def query(payload: QueryRequest, _: None = Depends(_require_api_key)) -> QueryResponse:
+    index_path = _resolve_index_path(payload.index_path)
+    store = _load_index(index_path=index_path, cloud_rerank=payload.cloud_rerank)
+    response = answer_query(index=store, query=payload.question, k=payload.k)
+    return QueryResponse(
+        answer=response.answer,
+        mode=response.mode,
+        confidence=response.confidence,
+        confidence_label=response.confidence_label,
+        selected_modules=response.selected_modules,
+        context=response.context,
+    )
+
+
+@app.post("/v1/copilot-context")
+def copilot_context(payload: QueryRequest, _: None = Depends(_require_api_key)) -> dict[str, Any]:
+    index_path = _resolve_index_path(payload.index_path)
+    store = _load_index(index_path=index_path, cloud_rerank=payload.cloud_rerank)
+    response = answer_query(index=store, query=payload.question, k=payload.k)
+    return {
+        "mode": response.mode,
+        "confidence": response.confidence,
+        "confidence_label": response.confidence_label,
+        "selected_modules": response.selected_modules,
+        "prompt": response.prompt_template,
+    }
+
+
+@app.get("/v1/indexed-files", response_model=FilesResponse)
+def indexed_files(index_path: str | None = None, _: None = Depends(_require_api_key)) -> FilesResponse:
+    p = _resolve_index_path(index_path)
+    import pickle
+
+    with p.open("rb") as f:
+        data = pickle.load(f)
+    manifest: dict[str, str] = data.get("file_manifest", {})
+    files = sorted(str(k) for k in manifest.keys())
+    return FilesResponse(index_path=str(p), indexed_file_count=len(files), indexed_files=files)
+
+
+@app.get("/v1/config")
+def bridge_config(_: None = Depends(_require_api_key)) -> dict[str, Any]:
+    return asdict(_settings)
