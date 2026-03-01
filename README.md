@@ -80,6 +80,9 @@ Use this to bridge Master Brain context into Copilot/ChatGPT-style workflows.
 - Indexed file listing endpoint:
   - `GET http://127.0.0.1:8787/v1/indexed-files?project_root=<your-project>`
   - optional header alternative: `x-project-root: <your-project>`
+- Dropbox connectivity endpoint:
+  - `GET http://127.0.0.1:8787/v1/dropbox-health`
+  - header: `x-api-key: <key>`
 
 Windows service scripts:
 

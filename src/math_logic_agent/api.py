@@ -75,11 +75,25 @@ def _resolve_index_path(index_path: str | None, project_root: str | None = None)
     raise HTTPException(status_code=404, detail=f"Index not found. Tried: {looked}")
 
 
-def _require_api_key(x_api_key: str | None = Header(default=None)) -> None:
+def _require_api_key(
+    x_api_key: str | None = Header(default=None),
+    authorization: str | None = Header(default=None),
+) -> None:
     required = _settings.bridge_api_key
     if not required:
         return
-    if x_api_key != required:
+
+    provided = (x_api_key or "").strip()
+    auth_value = (authorization or "").strip()
+
+    bearer = ""
+    if auth_value.lower().startswith("bearer "):
+        bearer = auth_value[7:].strip()
+
+    if provided.lower().startswith("bearer "):
+        provided = provided[7:].strip()
+
+    if required not in {provided, bearer}:
         raise HTTPException(status_code=401, detail="Invalid API key")
 
 
@@ -166,3 +180,60 @@ def indexed_files(
 @app.get("/v1/config")
 def bridge_config(_: None = Depends(_require_api_key)) -> dict[str, Any]:
     return asdict(_settings)
+
+
+@app.get("/v1/dropbox-health")
+def dropbox_health(_: None = Depends(_require_api_key)) -> dict[str, Any]:
+    token = (os.getenv("DROPBOX_ACCESS_TOKEN") or "").strip()
+    if not token:
+        return {
+            "connected": False,
+            "reason": "DROPBOX_ACCESS_TOKEN not set",
+        }
+
+    import json
+    from urllib import error as urllib_error
+    from urllib import request as urllib_request
+
+    req = urllib_request.Request(
+        url="https://api.dropboxapi.com/2/users/get_current_account",
+        data=b"null",
+        method="POST",
+        headers={
+            "Authorization": f"Bearer {token}",
+            "Content-Type": "application/json",
+        },
+    )
+
+    try:
+        with urllib_request.urlopen(req, timeout=10) as resp:
+            status_code = int(resp.status)
+            body_text = resp.read().decode("utf-8", errors="replace")
+    except urllib_error.HTTPError as exc:
+        status_code = int(exc.code)
+        body_text = exc.read().decode("utf-8", errors="replace")
+    except urllib_error.URLError as exc:
+        return {
+            "connected": False,
+            "reason": f"request_error:{type(exc).__name__}",
+        }
+
+    if status_code == 200:
+        data = json.loads(body_text)
+        return {
+            "connected": True,
+            "account_id": data.get("account_id"),
+            "name": (data.get("name") or {}).get("display_name"),
+            "email": data.get("email"),
+        }
+
+    try:
+        err: Any = json.loads(body_text)
+    except Exception:
+        err = body_text[:300]
+
+    return {
+        "connected": False,
+        "status_code": status_code,
+        "error": err,
+    }

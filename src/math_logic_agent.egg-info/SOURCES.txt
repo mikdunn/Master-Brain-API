@@ -23,6 +23,8 @@ src/math_logic_agent.egg-info/dependency_links.txt
 src/math_logic_agent.egg-info/entry_points.txt
 src/math_logic_agent.egg-info/requires.txt
 src/math_logic_agent.egg-info/top_level.txt
+tests/test_api_auth.py
+tests/test_api_path_resolution.py
 tests/test_benchmark.py
 tests/test_build_from_modules.py
 tests/test_chunking.py
@@ -36,4 +38,5 @@ tests/test_orchestrator.py
 tests/test_prompt_templates.py
 tests/test_resilience_indexing.py
 tests/test_retrieval_theorem_aware.py
+tests/test_settings_bridge_key.py
 tests/test_symbolic.py

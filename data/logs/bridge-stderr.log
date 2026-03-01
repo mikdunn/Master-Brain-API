@@ -1,0 +1,51 @@
+C:\Users\dunnm\Downloads\Master-Brain-API\.venv\Scripts\python.exe: No module named uvicorn
+C:\Users\dunnm\Downloads\Master-Brain-API\.venv\Scripts\python.exe: No module named uvicorn
+C:\Users\dunnm\Downloads\Master-Brain-API\.venv\Scripts\python.exe: No module named uvicorn
+C:\Users\dunnm\Downloads\Master-Brain-API\.venv\Scripts\python.exe: No module named uvicorn
+C:\Users\dunnm\Downloads\Master-Brain-API\.venv\Scripts\python.exe: No module named uvicorn
+C:\Users\dunnm\Downloads\Master-Brain-API\.venv\Scripts\python.exe: No module named uvicorn
+No usable Python runtime found. Expected interpreter with uvicorn + math_logic_agent installed. Run 
+scripts/install-masterbrain-service.ps1 to bootstrap dependencies.
+At C:\Users\dunnm\Downloads\Master-Brain-API\scripts\run-masterbrain-api.ps1:36 char:2
++     throw "No usable Python runtime found. Expected interpreter with  ...
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : OperationStopped: (No usable Pytho...p dependencies.:String) [], RuntimeException
+    + FullyQualifiedErrorId : No usable Python runtime found. Expected interpreter with uvicorn + math_logic_agent ins 
+   talled. Run scripts/install-masterbrain-service.ps1 to bootstrap dependencies.
+ 
+INFO:     Started server process [78804]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8787 (Press CTRL+C to quit)
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [78804]
+INFO:     Started server process [113616]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8787 (Press CTRL+C to quit)
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [113616]
+INFO:     Started server process [79360]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8787 (Press CTRL+C to quit)
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [79360]
+INFO:     Started server process [28240]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8787 (Press CTRL+C to quit)
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [28240]
+INFO:     Started server process [9088]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8787 (Press CTRL+C to quit)
