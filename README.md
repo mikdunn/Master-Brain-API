@@ -25,10 +25,10 @@ A hybrid local+cloud math logic sidecar for VS Code Copilot workflows.
 4. Build index from your folders
 5. Ask queries through the CLI
 
-## Example paths from your machine
+## Example project paths
 
-- `c:\Users\dunnm\Downloads\Math`
-- `c:\Users\dunnm\Downloads\SVD stuffs`
+- `<your-project>/Math`
+- `<your-project>/SVD_stuffs`
 
 ## CLI flow
 
@@ -58,8 +58,8 @@ By default, module mappings live in `config/modules.toml`, where each module ID 
 
 ## Master Brain flow
 
-- `mla init-master-structure --master-root "C:/Users/dunnm/Downloads/Master Brain" --module-config config/master_brain.toml`
-- `mla build-master-brain --master-root "C:/Users/dunnm/Downloads/Master Brain" --module-config config/master_brain.toml --index-path data/master_brain_index.pkl --incremental --quarantine-path data/master_brain_quarantine.json --checkpoint-path data/master_brain_checkpoint.json --checkpoint-every 200 --respect-quarantine`
+- `mla init-master-structure --master-root "<your-project>/Master Brain" --module-config config/master_brain.toml`
+- `mla build-master-brain --master-root "<your-project>/Master Brain" --module-config config/master_brain.toml --index-path data/master_brain_index.pkl --incremental --quarantine-path data/master_brain_quarantine.json --checkpoint-path data/master_brain_checkpoint.json --checkpoint-every 200 --respect-quarantine`
 - `mla ask "Connect optimization, control theory, and econometrics" --index-path data/master_brain_index.pkl`
 
 ## Bridge API + Windows background service
@@ -72,19 +72,29 @@ Use this to bridge Master Brain context into Copilot/ChatGPT-style workflows.
   - `GET http://127.0.0.1:8787/health`
 - Query endpoint:
   - `POST http://127.0.0.1:8787/v1/query`
-  - body: `{"question":"Explain SVD for denoising","k":6}`
+  - body: `{"question":"Explain SVD for denoising","k":6,"project_root":"<your-project>"}`
+  - optional header alternative: `x-project-root: <your-project>`
   - header (if `BRIDGE_API_KEY` set): `x-api-key: <key>`
 - Copilot context endpoint:
   - `POST http://127.0.0.1:8787/v1/copilot-context`
 - Indexed file listing endpoint:
-  - `GET http://127.0.0.1:8787/v1/indexed-files`
+  - `GET http://127.0.0.1:8787/v1/indexed-files?project_root=<your-project>`
+  - optional header alternative: `x-project-root: <your-project>`
 
 Windows service scripts:
 
 - Install + start service:
   - `powershell -ExecutionPolicy Bypass -File scripts/install-masterbrain-service.ps1`
+- Stop service (without uninstall):
+  - `powershell -ExecutionPolicy Bypass -File scripts/stop-masterbrain-service.ps1`
 - Uninstall service:
   - `powershell -ExecutionPolicy Bypass -File scripts/uninstall-masterbrain-service.ps1`
+
+Service behavior:
+
+- Starts automatically at Windows startup.
+- Restarts automatically if the API process exits unexpectedly.
+- Continues running until you explicitly stop or uninstall the service.
 
 Bridge environment variables (`.env`):
 
@@ -93,6 +103,10 @@ Bridge environment variables (`.env`):
 - `BRIDGE_HOST` (default `127.0.0.1`)
 - `BRIDGE_PORT` (default `8787`)
 - `BRIDGE_DEFAULT_INDEX_PATH` (default `data/master_brain_index.pkl`)
+- `BRIDGE_WORKSPACE_ROOT` (optional base folder used when resolving relative index paths)
+- `MASTER_BRAIN_ROOT` (optional default root for `init-master-structure`/`build-master-brain`)
+
+If `BRIDGE_API_KEY` is missing/placeholder, the API enforces a built-in fallback key: `master-brain-bridge-local`.
 
 ## Optional OCR support
 

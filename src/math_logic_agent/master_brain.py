@@ -1,10 +1,18 @@
 from __future__ import annotations
 
+import os
 from dataclasses import dataclass
 from pathlib import Path
 
 
-DEFAULT_MASTER_BRAIN_ROOT = Path(r"C:\Users\dunnm\Downloads\Master Brain")
+def get_default_master_brain_root() -> Path:
+    env_root = (os.getenv("MASTER_BRAIN_ROOT") or "").strip()
+    if env_root:
+        return Path(env_root).expanduser()
+    return Path.cwd() / "Master Brain"
+
+
+DEFAULT_MASTER_BRAIN_ROOT = get_default_master_brain_root()
 
 _MASTER_BRAIN_RELATIVE_DIRS: tuple[str, ...] = (
     "0_Math_Brain",
@@ -158,6 +166,7 @@ display_name = "Physics Brain"
 paths = [
   "{(r / '1_Physics_Brain').as_posix()}",
   "{(r / 'Physics Brain').as_posix()}",
+  "{(r / 'Science Brain/Physics').as_posix()}",
 ]
 enabled = true
 stage = "active"

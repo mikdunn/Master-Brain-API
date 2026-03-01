@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import asdict
+import os
 from pathlib import Path
 from threading import Lock
 from typing import Any
@@ -22,6 +23,7 @@ class QueryRequest(BaseModel):
     question: str = Field(..., min_length=1)
     k: int = Field(6, ge=1, le=30)
     index_path: str | None = None
+    project_root: str | None = None
     cloud_rerank: bool = False
 
 
@@ -40,11 +42,37 @@ class FilesResponse(BaseModel):
     indexed_files: list[str]
 
 
-def _resolve_index_path(index_path: str | None) -> Path:
-    p = Path(index_path or _settings.bridge_default_index_path)
-    if not p.exists():
-        raise HTTPException(status_code=404, detail=f"Index not found: {p}")
-    return p
+def _resolve_index_path(index_path: str | None, project_root: str | None = None) -> Path:
+    raw_path = (index_path or _settings.bridge_default_index_path).strip()
+    path = Path(raw_path)
+
+    candidate_roots: list[Path] = []
+    if project_root:
+        candidate_roots.append(Path(project_root).expanduser())
+
+    env_workspace_root = (os.getenv("BRIDGE_WORKSPACE_ROOT") or "").strip()
+    if env_workspace_root:
+        candidate_roots.append(Path(env_workspace_root).expanduser())
+
+    candidate_roots.append(Path.cwd())
+
+    if path.is_absolute():
+        candidates = [path]
+    else:
+        seen: set[Path] = set()
+        candidates = []
+        for root in candidate_roots:
+            c = root / path
+            if c not in seen:
+                seen.add(c)
+                candidates.append(c)
+
+    for candidate in candidates:
+        if candidate.exists():
+            return candidate
+
+    looked = ", ".join(str(c) for c in candidates)
+    raise HTTPException(status_code=404, detail=f"Index not found. Tried: {looked}")
 
 
 def _require_api_key(x_api_key: str | None = Header(default=None)) -> None:
@@ -75,12 +103,18 @@ def health() -> dict[str, Any]:
         "bridge_port": _settings.bridge_port,
         "api_key_required": bool(_settings.bridge_api_key),
         "default_index": _settings.bridge_default_index_path,
+        "cwd": str(Path.cwd()),
     }
 
 
 @app.post("/v1/query", response_model=QueryResponse)
-def query(payload: QueryRequest, _: None = Depends(_require_api_key)) -> QueryResponse:
-    index_path = _resolve_index_path(payload.index_path)
+def query(
+    payload: QueryRequest,
+    _: None = Depends(_require_api_key),
+    x_project_root: str | None = Header(default=None, alias="x-project-root"),
+) -> QueryResponse:
+    project_root = payload.project_root or x_project_root
+    index_path = _resolve_index_path(payload.index_path, project_root)
     store = _load_index(index_path=index_path, cloud_rerank=payload.cloud_rerank)
     response = answer_query(index=store, query=payload.question, k=payload.k)
     return QueryResponse(
@@ -94,8 +128,13 @@ def query(payload: QueryRequest, _: None = Depends(_require_api_key)) -> QueryRe
 
 
 @app.post("/v1/copilot-context")
-def copilot_context(payload: QueryRequest, _: None = Depends(_require_api_key)) -> dict[str, Any]:
-    index_path = _resolve_index_path(payload.index_path)
+def copilot_context(
+    payload: QueryRequest,
+    _: None = Depends(_require_api_key),
+    x_project_root: str | None = Header(default=None, alias="x-project-root"),
+) -> dict[str, Any]:
+    project_root = payload.project_root or x_project_root
+    index_path = _resolve_index_path(payload.index_path, project_root)
     store = _load_index(index_path=index_path, cloud_rerank=payload.cloud_rerank)
     response = answer_query(index=store, query=payload.question, k=payload.k)
     return {
@@ -108,8 +147,13 @@ def copilot_context(payload: QueryRequest, _: None = Depends(_require_api_key)) 
 
 
 @app.get("/v1/indexed-files", response_model=FilesResponse)
-def indexed_files(index_path: str | None = None, _: None = Depends(_require_api_key)) -> FilesResponse:
-    p = _resolve_index_path(index_path)
+def indexed_files(
+    index_path: str | None = None,
+    project_root: str | None = None,
+    _: None = Depends(_require_api_key),
+    x_project_root: str | None = Header(default=None, alias="x-project-root"),
+) -> FilesResponse:
+    p = _resolve_index_path(index_path, project_root or x_project_root)
     import pickle
 
     with p.open("rb") as f:

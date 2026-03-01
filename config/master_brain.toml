@@ -16,6 +16,7 @@ display_name = "Physics Brain"
 paths = [
   "C:/Users/dunnm/Downloads/Master Brain/1_Physics_Brain",
   "C:/Users/dunnm/Downloads/Master Brain/Physics Brain",
+  "C:/Users/dunnm/Downloads/Master Brain/Science Brain/Physics",
 ]
 enabled = true
 stage = "active"

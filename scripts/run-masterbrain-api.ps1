@@ -1,7 +1,21 @@
 $ErrorActionPreference = "Stop"
 
-Set-Location "C:\Users\dunnm\Downloads\math-logic-agent"
+$scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+$projectRoot = (Resolve-Path (Join-Path $scriptDir "..")).Path
+Set-Location $projectRoot
 
-$python = "C:\Users\dunnm\Downloads\math-logic-agent\.venv\Scripts\python.exe"
+$venvPython = Join-Path $projectRoot ".venv\Scripts\python.exe"
+if (Test-Path $venvPython) {
+	$python = $venvPython
+} else {
+	$pythonCmd = Get-Command python -ErrorAction SilentlyContinue
+	if (-not $pythonCmd) {
+		throw "Python executable not found. Install Python or create .venv at $projectRoot\.venv"
+	}
+	$python = $pythonCmd.Source
+}
 
-& $python -m uvicorn math_logic_agent.api:app --host 127.0.0.1 --port 8787
+$hostValue = if ($env:BRIDGE_HOST) { $env:BRIDGE_HOST } else { "127.0.0.1" }
+$portValue = if ($env:BRIDGE_PORT) { $env:BRIDGE_PORT } else { "8787" }
+
+& $python -m uvicorn math_logic_agent.api:app --host $hostValue --port $portValue

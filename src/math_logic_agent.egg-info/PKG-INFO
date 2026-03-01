@@ -112,6 +112,7 @@ Windows service scripts:
 
 Bridge environment variables (`.env`):
 
+- `PERPLEXITY_API_KEY` (optional, for Perplexity-backed features)
 - `BRIDGE_API_KEY` (recommended for any non-local use)
 - `BRIDGE_HOST` (default `127.0.0.1`)
 - `BRIDGE_PORT` (default `8787`)

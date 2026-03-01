@@ -11,6 +11,9 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
+HARDCODED_BRIDGE_API_KEY = "master-brain-bridge-local"
+
+
 @dataclass(frozen=True, slots=True)
 class Settings:
     openai_api_key: str | None
@@ -41,7 +44,12 @@ class Settings:
 
         bridge_key = (os.getenv("BRIDGE_API_KEY") or "").strip()
         if not bridge_key or bridge_key.lower() in {"changeme", "your_bridge_api_key_here", "none"}:
-            bridge_key = None
+            bridge_key = HARDCODED_BRIDGE_API_KEY
+
+        workspace_root = (os.getenv("BRIDGE_WORKSPACE_ROOT") or "").strip()
+        default_index = (os.getenv("BRIDGE_DEFAULT_INDEX_PATH") or "data/master_brain_index.pkl").strip()
+        if workspace_root and default_index and not Path(default_index).is_absolute():
+            default_index = str((Path(workspace_root).expanduser() / default_index).as_posix())
 
         bridge_host = (os.getenv("BRIDGE_HOST") or "127.0.0.1").strip() or "127.0.0.1"
         try:
@@ -57,7 +65,7 @@ class Settings:
             bridge_api_key=bridge_key,
             bridge_host=bridge_host,
             bridge_port=bridge_port,
-            bridge_default_index_path=(os.getenv("BRIDGE_DEFAULT_INDEX_PATH") or "data/master_brain_index.pkl").strip(),
+            bridge_default_index_path=default_index,
         )
 
 

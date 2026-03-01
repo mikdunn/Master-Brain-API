@@ -13,6 +13,5 @@ if (-not $existingService) {
     exit 0
 }
 
-nssm stop $serviceName confirm
-nssm remove $serviceName confirm
-Write-Host "Service '$serviceName' removed."
+nssm stop $serviceName
+Write-Host "Service '$serviceName' stopped."
