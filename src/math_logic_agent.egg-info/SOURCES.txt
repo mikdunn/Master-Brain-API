@@ -10,6 +10,7 @@ src/math_logic_agent/embeddings.py
 src/math_logic_agent/extraction.py
 src/math_logic_agent/indexing.py
 src/math_logic_agent/ingest.py
+src/math_logic_agent/inheritance.py
 src/math_logic_agent/master_brain.py
 src/math_logic_agent/models.py
 src/math_logic_agent/orchestrator.py
@@ -31,6 +32,7 @@ tests/test_chunking.py
 tests/test_confidence.py
 tests/test_extraction.py
 tests/test_incremental_index.py
+tests/test_inheritance_expansion.py
 tests/test_master_brain_scaffold.py
 tests/test_module_registry.py
 tests/test_module_routing.py
@@ -40,3 +42,4 @@ tests/test_resilience_indexing.py
 tests/test_retrieval_theorem_aware.py
 tests/test_settings_bridge_key.py
 tests/test_symbolic.py
+tests/test_tensor_retrieval_and_routing.py

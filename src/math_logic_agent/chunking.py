@@ -27,10 +27,22 @@ def detect_tags(text: str) -> list[str]:
         tags.append("eigen")
     if re.search(r"\bgradient|derivative|integral\b", lower):
         tags.append("calculus")
+
+    # Tensor / multilinear algebra.
+    tensor_re = (
+        r"\btensor(s)?\b|\bmultilinear\b|\bkronecker\b|\bkhatri[-\s]?rao\b|"
+        r"\bouter product\b|\bcp decomposition\b|\btucker\b|\btensor train\b"
+    )
+    if re.search(tensor_re, lower):
+        tags.append("tensor")
     return sorted(set(tags))
 
 
-def split_text(text: str, max_chars: int = 1200, overlap: int = 150) -> list[str]:
+def split_text(
+    text: str,
+    max_chars: int = 1200,
+    overlap: int = 150,
+) -> list[str]:
     normalized = re.sub(r"\s+", " ", text).strip()
     if not normalized:
         return []
@@ -51,7 +63,8 @@ def split_text(text: str, max_chars: int = 1200, overlap: int = 150) -> list[str
 
 
 def _chunk_id(source: str, page: int | None, idx: int, text: str) -> str:
-    digest = hashlib.sha1(text.encode("utf-8", errors="ignore")).hexdigest()[:12]
+    raw = text.encode("utf-8", errors="ignore")
+    digest = hashlib.sha1(raw).hexdigest()[:12]
     page_part = page if page is not None else "na"
     return f"{source}::{page_part}::{idx}::{digest}"
 

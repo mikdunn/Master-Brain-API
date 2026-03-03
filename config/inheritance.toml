@@ -1,0 +1,51 @@
+schema_version = 1
+
+# Module-level knowledge inheritance (directed prerequisites).
+# Interpretation: A -> B means “A is a prerequisite for B”.
+# Stored as: B.prereqs = [A, ...]
+
+[modules]
+
+# --- Master Brain modules (from config/master_brain.toml)
+[modules.math_brain]
+prereqs = []
+
+[modules.cs_brain]
+prereqs = ["math_brain"]
+
+[modules.physics_brain]
+prereqs = ["math_brain", "cs_brain"]
+
+[modules.engineering_brain]
+prereqs = ["physics_brain", "math_brain", "cs_brain"]
+
+[modules.science_brain]
+prereqs = ["math_brain", "physics_brain", "cs_brain"]
+
+[modules.business_brain]
+prereqs = ["math_brain", "cs_brain"]
+
+# --- Core modules used in unit tests / non-master configs
+[modules.math_core]
+prereqs = []
+
+[modules.cs_core]
+prereqs = ["math_core"]
+
+[modules.physics_core]
+prereqs = ["math_core", "cs_core"]
+
+[modules.chemistry_core]
+prereqs = ["physics_core", "math_core"]
+
+[modules.biology_core]
+prereqs = ["chemistry_core", "physics_core", "math_core"]
+
+[modules.bioinformatics_core]
+prereqs = ["biology_core", "cs_core", "math_core"]
+
+[modules.imaging_core]
+prereqs = ["physics_core", "math_core", "cs_core"]
+
+[modules.microscopy_core]
+prereqs = ["physics_core", "chemistry_core"]

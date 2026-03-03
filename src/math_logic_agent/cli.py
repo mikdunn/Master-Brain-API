@@ -1,3 +1,5 @@
+# flake8: noqa
+
 from __future__ import annotations
 
 import time
@@ -363,6 +365,10 @@ def list_modules(
 @app.command("build-brain")
 def build_brain(
     module_config: str = typer.Option("config/modules.toml", help="Path to module registry TOML."),
+    inheritance_config: str = typer.Option(
+        "config/inheritance.toml",
+        help="Path to module inheritance (prerequisite) graph TOML.",
+    ),
     index_path: str = typer.Option("data/brain_index.pkl", help="Path to save serialized multi-module index."),
     max_chars: int = typer.Option(1200, help="Chunk size in characters."),
     overlap: int = typer.Option(150, help="Chunk overlap in characters."),
@@ -393,6 +399,7 @@ def build_brain(
             store, summary = IndexStore.build_from_modules(
                 module_config_path=module_config,
                 index_path=index_path,
+                inheritance_config_path=inheritance_config,
                 max_chars=max_chars,
                 overlap=overlap,
                 incremental=incremental,
@@ -409,6 +416,7 @@ def build_brain(
         store, summary = IndexStore.build_from_modules(
             module_config_path=module_config,
             index_path=index_path,
+            inheritance_config_path=inheritance_config,
             max_chars=max_chars,
             overlap=overlap,
             incremental=incremental,
@@ -462,6 +470,10 @@ def init_master_structure(
 def build_master_brain(
     master_root: str = typer.Option(str(DEFAULT_MASTER_BRAIN_ROOT), help="Root folder for the Master Brain corpus."),
     module_config: str = typer.Option("config/master_brain.toml", help="Path to module registry TOML."),
+    inheritance_config: str = typer.Option(
+        "config/inheritance.toml",
+        help="Path to module inheritance (prerequisite) graph TOML.",
+    ),
     index_path: str = typer.Option("data/master_brain_index.pkl", help="Path to save serialized Master Brain index."),
     max_chars: int = typer.Option(1200, help="Chunk size in characters."),
     overlap: int = typer.Option(150, help="Chunk overlap in characters."),
@@ -496,6 +508,7 @@ def build_master_brain(
             store, summary = IndexStore.build_from_modules(
                 module_config_path=module_config,
                 index_path=index_path,
+                inheritance_config_path=inheritance_config,
                 max_chars=max_chars,
                 overlap=overlap,
                 incremental=incremental,
@@ -512,6 +525,7 @@ def build_master_brain(
         store, summary = IndexStore.build_from_modules(
             module_config_path=module_config,
             index_path=index_path,
+            inheritance_config_path=inheritance_config,
             max_chars=max_chars,
             overlap=overlap,
             incremental=incremental,
