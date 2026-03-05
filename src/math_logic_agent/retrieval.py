@@ -13,6 +13,11 @@ QUERY_ALIASES: dict[str, str] = {
     "svd": "singular value decomposition",
     "pca": "principal component analysis",
     "pinv": "pseudoinverse",
+
+    # Tensor / multilinear algebra shorthands.
+    "cp": "cp decomposition",
+    "tt": "tensor train",
+    "tucker": "tucker decomposition",
 }
 
 
@@ -38,6 +43,18 @@ DOMAIN_HINTS: dict[str, tuple[str, ...]] = {
     "svd": ("svd", "singular value", "sigma"),
     "eigen": ("eigen", "eigenvalue", "eigenvector"),
     "calculus": ("derivative", "integral", "gradient", "hessian"),
+
+    "tensor": (
+        "tensor",
+        "tensors",
+        "multilinear",
+        "kronecker",
+        "khatri-rao",
+        "outer product",
+        "cp decomposition",
+        "tucker",
+        "tensor train",
+    ),
 }
 
 
@@ -65,7 +82,11 @@ def _tag_boost(features: set[str], chunk: DocumentChunk) -> float:
 
 
 class HybridRetriever:
-    def __init__(self, chunks: list[DocumentChunk], embedder: OpenAIEmbedder | None = None) -> None:
+    def __init__(
+        self,
+        chunks: list[DocumentChunk],
+        embedder: OpenAIEmbedder | None = None,
+    ) -> None:
         if not chunks:
             raise ValueError("Cannot initialize retriever with empty chunks.")
         self.chunks = chunks
@@ -75,7 +96,11 @@ class HybridRetriever:
         self.lexical = TfidfVectorizer(ngram_range=(1, 2), min_df=1)
         self.lexical_matrix = self.lexical.fit_transform(corpus)
 
-        self.semantic = TfidfVectorizer(analyzer="char_wb", ngram_range=(3, 5), min_df=1)
+        self.semantic = TfidfVectorizer(
+            analyzer="char_wb",
+            ngram_range=(3, 5),
+            min_df=1,
+        )
         self.semantic_matrix = self.semantic.fit_transform(corpus)
 
     def _rerank_with_embeddings(
@@ -106,7 +131,12 @@ class HybridRetriever:
         order = np.argsort(-blend)
         return idxs[order]
 
-    def search(self, query: str, k: int = 6, allowed_modules: set[str] | None = None) -> list[RetrievedChunk]:
+    def search(
+        self,
+        query: str,
+        k: int = 6,
+        allowed_modules: set[str] | None = None,
+    ) -> list[RetrievedChunk]:
         if not query.strip():
             return []
 
@@ -126,12 +156,18 @@ class HybridRetriever:
 
         combo = 0.6 * lex_scores + 0.4 * sem_scores
         if features:
-            boosts = np.asarray([_tag_boost(features, c) for c in self.chunks], dtype=float)
+            boosts = np.asarray(
+                [_tag_boost(features, c) for c in self.chunks],
+                dtype=float,
+            )
             combo = np.clip(combo + boosts, 0.0, 1.5)
 
         if allowed_modules:
             mask = np.asarray(
-                [1.0 if (c.module_id in allowed_modules) else 0.0 for c in self.chunks],
+                [
+                    1.0 if (c.module_id in allowed_modules) else 0.0
+                    for c in self.chunks
+                ],
                 dtype=float,
             )
             combo = combo * mask
@@ -146,7 +182,13 @@ class HybridRetriever:
             if score <= 0:
                 continue
             channel = "hybrid+r" if self.embedder is not None else "hybrid"
-            out.append(RetrievedChunk(chunk=self.chunks[int(idx)], score=score, channel=channel))
+            out.append(
+                RetrievedChunk(
+                    chunk=self.chunks[int(idx)],
+                    score=score,
+                    channel=channel,
+                )
+            )
         if out:
             return out
 
@@ -155,5 +197,11 @@ class HybridRetriever:
 
         # Low-signal fallback: return top candidates even when scores are flat.
         for idx in idxs:
-            out.append(RetrievedChunk(chunk=self.chunks[int(idx)], score=float(combo[idx]), channel="fallback"))
+            out.append(
+                RetrievedChunk(
+                    chunk=self.chunks[int(idx)],
+                    score=float(combo[idx]),
+                    channel="fallback",
+                )
+            )
         return out

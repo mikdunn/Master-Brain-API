@@ -22,3 +22,19 @@ def test_chunk_documents_generates_ids_and_tags() -> None:
     assert chunks[0].chunk_id
     assert "theorem" in chunks[0].tags
     assert "svd" in chunks[0].tags
+
+
+def test_chunk_documents_tags_tensor() -> None:
+    docs = [
+        RawDocument(
+            text=(
+                "We study tensor decomposition via CP and Tucker models "
+                "(multilinear algebra)."
+            ),
+            source="tensor_notes.pdf",
+            page=1,
+        )
+    ]
+    chunks = chunk_documents(docs)
+    assert len(chunks) == 1
+    assert "tensor" in chunks[0].tags

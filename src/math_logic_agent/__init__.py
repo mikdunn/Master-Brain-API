@@ -8,6 +8,7 @@ __all__ = [
     "benchmark",
     "embeddings",
     "extraction",
+    "inheritance",
     "indexing",
     "prompt_templates",
     "retrieval",

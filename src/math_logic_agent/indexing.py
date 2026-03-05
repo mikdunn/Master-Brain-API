@@ -9,7 +9,12 @@ from typing import Any
 from .chunking import chunk_documents
 from .config import ModuleRegistry, Settings, load_module_registry
 from .embeddings import OpenAIEmbedder
-from .ingest import discover_documents, file_signature, ingest_path_safe_with_timeout
+from .inheritance import load_inheritance_config
+from .ingest import (
+    discover_documents,
+    file_signature,
+    ingest_path_safe_with_timeout,
+)
 from .models import DocumentChunk
 from .resilience import QuarantineStore, write_checkpoint
 from .retrieval import HybridRetriever
@@ -29,13 +34,26 @@ class BuildSummary:
 
 
 class IndexStore:
-    def __init__(self, chunks: list[DocumentChunk], file_manifest: dict[str, str] | None = None, cloud_rerank: bool = True) -> None:
+    def __init__(
+        self,
+        chunks: list[DocumentChunk],
+        file_manifest: dict[str, str] | None = None,
+        cloud_rerank: bool = True,
+        module_aliases: dict[str, list[str]] | None = None,
+        module_inheritance: dict[str, list[str]] | None = None,
+    ) -> None:
         self.chunks = chunks
         self.file_manifest = file_manifest or {}
+        self.module_aliases = module_aliases or {}
+        self.module_inheritance = module_inheritance or {}
 
         settings = Settings.from_env()
         embedder = None
-        if cloud_rerank and settings.cloud_rerank_enabled and settings.openai_api_key:
+        if (
+            cloud_rerank
+            and settings.cloud_rerank_enabled
+            and settings.openai_api_key
+        ):
             embedder = OpenAIEmbedder(settings=settings)
         self.retriever = HybridRetriever(chunks, embedder=embedder)
 
@@ -43,7 +61,15 @@ class IndexStore:
         p = Path(path)
         p.parent.mkdir(parents=True, exist_ok=True)
         with p.open("wb") as f:
-            pickle.dump({"chunks": self.chunks, "file_manifest": self.file_manifest}, f)
+            pickle.dump(
+                {
+                    "chunks": self.chunks,
+                    "file_manifest": self.file_manifest,
+                    "module_aliases": self.module_aliases,
+                    "module_inheritance": self.module_inheritance,
+                },
+                f,
+            )
 
     @classmethod
     def load(cls, path: str | Path, cloud_rerank: bool = True) -> "IndexStore":
@@ -52,18 +78,40 @@ class IndexStore:
             data = pickle.load(f)
         chunks = data["chunks"]
         file_manifest = data.get("file_manifest", {})
-        return cls(chunks=chunks, file_manifest=file_manifest, cloud_rerank=cloud_rerank)
+        module_aliases = data.get("module_aliases", {})
+        module_inheritance = data.get("module_inheritance", {})
+        return cls(
+            chunks=chunks,
+            file_manifest=file_manifest,
+            cloud_rerank=cloud_rerank,
+            module_aliases=module_aliases,
+            module_inheritance=module_inheritance,
+        )
 
     @staticmethod
     def _manifest_key(module_id: str, path: Path) -> str:
         return f"{module_id}::{path}"
 
     @staticmethod
-    def _save_payload(path: str | Path, chunks: list[DocumentChunk], file_manifest: dict[str, str]) -> None:
+    def _save_payload(
+        path: str | Path,
+        chunks: list[DocumentChunk],
+        file_manifest: dict[str, str],
+        module_aliases: dict[str, list[str]] | None = None,
+        module_inheritance: dict[str, list[str]] | None = None,
+    ) -> None:
         p = Path(path)
         p.parent.mkdir(parents=True, exist_ok=True)
         with p.open("wb") as f:
-            pickle.dump({"chunks": chunks, "file_manifest": file_manifest}, f)
+            pickle.dump(
+                {
+                    "chunks": chunks,
+                    "file_manifest": file_manifest,
+                    "module_aliases": module_aliases or {},
+                    "module_inheritance": module_inheritance or {},
+                },
+                f,
+            )
 
     @classmethod
     def _ingest_changed_paths(
@@ -88,7 +136,14 @@ class IndexStore:
             if respect_quarantine and quarantine.is_quarantined(key):
                 quarantined += 1
                 if progress_callback is not None:
-                    progress_callback({"event": "file_processed", "module_id": module_id, "path": str(p), "status": "quarantined"})
+                    progress_callback(
+                        {
+                            "event": "file_processed",
+                            "module_id": module_id,
+                            "path": str(p),
+                            "status": "quarantined",
+                        }
+                    )
                 continue
             docs, err = ingest_path_safe_with_timeout(
                 p,
@@ -98,15 +153,40 @@ class IndexStore:
             )
             if err is not None:
                 failed += 1
-                quarantine.record_failure(file_key=key, path=str(p), module_id=module_id, reason=err)
+                quarantine.record_failure(
+                    file_key=key,
+                    path=str(p),
+                    module_id=module_id,
+                    reason=err,
+                )
                 if progress_callback is not None:
-                    progress_callback({"event": "file_processed", "module_id": module_id, "path": str(p), "status": "failed"})
+                    progress_callback(
+                        {
+                            "event": "file_processed",
+                            "module_id": module_id,
+                            "path": str(p),
+                            "status": "failed",
+                        }
+                    )
                 continue
             docs_total += len(docs)
             if docs:
-                chunks.extend(chunk_documents(docs, max_chars=max_chars, overlap=overlap))
+                chunks.extend(
+                    chunk_documents(
+                        docs,
+                        max_chars=max_chars,
+                        overlap=overlap,
+                    )
+                )
             if progress_callback is not None:
-                progress_callback({"event": "file_processed", "module_id": module_id, "path": str(p), "status": "processed"})
+                progress_callback(
+                    {
+                        "event": "file_processed",
+                        "module_id": module_id,
+                        "path": str(p),
+                        "status": "processed",
+                    }
+                )
         return chunks, docs_total, failed, quarantined
 
     @classmethod
@@ -140,13 +220,22 @@ class IndexStore:
 
         files = discover_documents(input_root)
         module_id = Path(input_root).name.lower().replace(" ", "_")
-        current_manifest = {cls._manifest_key(module_id, p): file_signature(p) for p in files}
+        current_manifest = {
+            cls._manifest_key(module_id, p): file_signature(p)
+            for p in files
+        }
 
-        changed_paths = [p for p in files if old_manifest.get(cls._manifest_key(module_id, p)) != current_manifest[cls._manifest_key(module_id, p)]]
+        changed_paths = [
+            p
+            for p in files
+            if old_manifest.get(cls._manifest_key(module_id, p))
+            != current_manifest[cls._manifest_key(module_id, p)]
+        ]
         reused_paths = [
             p
             for p in files
-            if old_manifest.get(cls._manifest_key(module_id, p)) == current_manifest[cls._manifest_key(module_id, p)]
+            if old_manifest.get(cls._manifest_key(module_id, p))
+            == current_manifest[cls._manifest_key(module_id, p)]
             and str(p) in old_by_source
         ]
         if progress_callback is not None:
@@ -161,7 +250,12 @@ class IndexStore:
                 }
             )
 
-        new_chunks, docs_ingested, failed_files, quarantined_files = cls._ingest_changed_paths(
+        (
+            new_chunks,
+            docs_ingested,
+            failed_files,
+            quarantined_files,
+        ) = cls._ingest_changed_paths(
             module_id=module_id,
             changed_paths=changed_paths,
             enable_ocr_fallback=ocr_fallback,
@@ -178,7 +272,11 @@ class IndexStore:
             kept_chunks.extend(old_by_source[str(p)])
 
         chunks = kept_chunks + new_chunks
-        store = cls(chunks=chunks, file_manifest=current_manifest, cloud_rerank=cloud_rerank)
+        store = cls(
+            chunks=chunks,
+            file_manifest=current_manifest,
+            cloud_rerank=cloud_rerank,
+        )
         quarantine.save()
         checkpoint_writes = 0
         if checkpoint_path is not None:
@@ -232,6 +330,7 @@ class IndexStore:
         cls,
         module_config_path: str | Path,
         index_path: str | Path,
+        inheritance_config_path: str | Path = "config/inheritance.toml",
         max_chars: int = 1200,
         overlap: int = 150,
         incremental: bool = True,
@@ -245,6 +344,21 @@ class IndexStore:
         progress_callback: Callable[[dict[str, Any]], None] | None = None,
     ) -> tuple["IndexStore", BuildSummary]:
         registry: ModuleRegistry = load_module_registry(module_config_path)
+
+        # Persist these into the index so query-time routing can use
+        # aliases for Master Brain module IDs (e.g., math_brain, cs_brain).
+        module_aliases: dict[str, list[str]] = {
+            m.module_id: list(m.aliases)
+            for m in registry.enabled_modules
+            if m.aliases
+        }
+
+        inheritance_cfg = load_inheritance_config(inheritance_config_path)
+        module_inheritance: dict[str, list[str]] = {
+            k: list(v)
+            for k, v in inheritance_cfg.prereqs.items()
+            if v
+        }
         existing: IndexStore | None = None
         index_file = Path(index_path)
         if incremental and index_file.exists():
@@ -273,7 +387,12 @@ class IndexStore:
         for module in registry.enabled_modules:
             modules_built += 1
             if progress_callback is not None:
-                progress_callback({"event": "module_started", "module_id": module.module_id})
+                progress_callback(
+                    {
+                        "event": "module_started",
+                        "module_id": module.module_id,
+                    }
+                )
             for root in module.paths:
                 if not root.exists():
                     continue
@@ -287,12 +406,14 @@ class IndexStore:
                 changed_paths = [
                     p
                     for p in files
-                    if old_manifest.get(cls._manifest_key(module.module_id, p)) != current_manifest[cls._manifest_key(module.module_id, p)]
+                    if old_manifest.get(cls._manifest_key(module.module_id, p))
+                    != current_manifest[cls._manifest_key(module.module_id, p)]
                 ]
                 reused_paths = [
                     p
                     for p in files
-                    if old_manifest.get(cls._manifest_key(module.module_id, p)) == current_manifest[cls._manifest_key(module.module_id, p)]
+                    if old_manifest.get(cls._manifest_key(module.module_id, p))
+                    == current_manifest[cls._manifest_key(module.module_id, p)]
                     and str(p) in old_by_source
                 ]
 
@@ -310,7 +431,12 @@ class IndexStore:
                         }
                     )
 
-                new_chunks, docs_count, failed_count, quarantined_count = cls._ingest_changed_paths(
+                (
+                    new_chunks,
+                    docs_count,
+                    failed_count,
+                    quarantined_count,
+                ) = cls._ingest_changed_paths(
                     module_id=module.module_id,
                     changed_paths=changed_paths,
                     enable_ocr_fallback=ocr_fallback,
@@ -330,9 +456,19 @@ class IndexStore:
                 for p in reused_paths:
                     all_kept_chunks.extend(old_by_source[str(p)])
 
-                if checkpoint_path is not None and processed_changed > 0 and processed_changed % max(checkpoint_every, 1) == 0:
+                if (
+                    checkpoint_path is not None
+                    and processed_changed > 0
+                    and processed_changed % max(checkpoint_every, 1) == 0
+                ):
                     partial_chunks = all_kept_chunks + all_new_chunks
-                    cls._save_payload(index_path, partial_chunks, current_manifest)
+                    cls._save_payload(
+                        index_path,
+                        partial_chunks,
+                        current_manifest,
+                        module_aliases=module_aliases,
+                        module_inheritance=module_inheritance,
+                    )
                     write_checkpoint(
                         checkpoint_path,
                         {
@@ -355,10 +491,21 @@ class IndexStore:
                             }
                         )
             if progress_callback is not None:
-                progress_callback({"event": "module_completed", "module_id": module.module_id})
+                progress_callback(
+                    {
+                        "event": "module_completed",
+                        "module_id": module.module_id,
+                    }
+                )
 
         chunks = all_kept_chunks + all_new_chunks
-        store = cls(chunks=chunks, file_manifest=current_manifest, cloud_rerank=cloud_rerank)
+        store = cls(
+            chunks=chunks,
+            file_manifest=current_manifest,
+            cloud_rerank=cloud_rerank,
+            module_aliases=module_aliases,
+            module_inheritance=module_inheritance,
+        )
         quarantine.save()
         if checkpoint_path is not None:
             write_checkpoint(
