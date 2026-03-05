@@ -13,6 +13,13 @@ def test_scaffold_master_brain_structure_creates_template_dirs(tmp_path: Path) -
     assert summary.total_directories > 50
     assert summary.created_directories == summary.total_directories
     assert summary.existing_directories == 0
+    assert (tmp_path / "6_Humanities_Brain").exists()
+    assert (tmp_path / "6_Humanities_Brain" / "Philosophy").exists()
+    assert (tmp_path / "6_Humanities_Brain" / "History").exists()
+    assert (tmp_path / "6_Humanities_Brain" / "Literature").exists()
+    assert (tmp_path / "6_Humanities_Brain" / "Linguistics").exists()
+    assert (tmp_path / "6_Humanities_Brain" / "Arts").exists()
+    assert (tmp_path / "6_Humanities_Brain" / "Religion").exists()
 
     summary2 = scaffold_master_brain_structure(tmp_path)
     assert summary2.created_directories == 0
@@ -26,7 +33,7 @@ def test_render_and_load_master_registry(tmp_path: Path) -> None:
 
     reg = load_module_registry(cfg)
     assert reg.schema_version == 1
-    assert len(reg.modules) == 6
+    assert len(reg.modules) == 7
     ids = {m.module_id for m in reg.modules}
     assert ids == {
         "math_brain",
@@ -35,6 +42,7 @@ def test_render_and_load_master_registry(tmp_path: Path) -> None:
         "science_brain",
         "business_brain",
         "cs_brain",
+        "humanities_brain",
     }
 
 

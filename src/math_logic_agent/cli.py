@@ -473,7 +473,10 @@ def build_master_brain(
     checkpoint_every: int = typer.Option(200, help="Write checkpoint after this many changed files."),
     respect_quarantine: bool = typer.Option(True, help="Skip known-problem files already quarantined."),
     refresh_config: bool = typer.Option(True, help="Regenerate config from master_root before build."),
-    show_progress: bool = typer.Option(True, help="Show a live progress bar while building."),
+    show_progress: bool = typer.Option(
+        False,
+        help="Show a live progress bar while building.",
+    ),
     no_progress_timeout_seconds: int = typer.Option(90, help="No-progress timeout per file in seconds (0 disables). Slow files with progress are allowed."),
 ) -> None:
     if refresh_config:

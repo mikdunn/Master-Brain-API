@@ -113,6 +113,13 @@ _MASTER_BRAIN_RELATIVE_DIRS: tuple[str, ...] = (
     "5_Computer_Science_Brain/Reinforcement_Learning",
     "5_Computer_Science_Brain/Probabilistic_Modeling",
     "5_Computer_Science_Brain/Scientific_Computing",
+    "6_Humanities_Brain",
+    "6_Humanities_Brain/Philosophy",
+    "6_Humanities_Brain/History",
+    "6_Humanities_Brain/Literature",
+    "6_Humanities_Brain/Linguistics",
+    "6_Humanities_Brain/Arts",
+    "6_Humanities_Brain/Religion",
 )
 
 
@@ -216,6 +223,25 @@ enabled = true
 stage = "active"
 priority = 60
 aliases = ["computer science", "algorithms", "ml", "deep learning", "systems"]
+
+[modules.humanities_brain]
+display_name = "Humanities Brain"
+paths = [
+  "{(r / '6_Humanities_Brain').as_posix()}",
+  "{(r / 'Humanities Brain').as_posix()}",
+]
+enabled = true
+stage = "active"
+priority = 70
+aliases = [
+  "humanities",
+  "philosophy",
+  "history",
+  "literature",
+  "linguistics",
+  "arts",
+  "religion",
+]
 """
 
 

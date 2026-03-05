@@ -1,68 +1,361 @@
 schema_version = 1
 
-[modules.math_brain]
-display_name = "Math Brain"
-paths = [
-  "C:/Users/dunnm/Downloads/Master Brain/0_Math_Brain",
-  "C:/Users/dunnm/Downloads/Master Brain/Math Brain",
-]
+[modules.math_algebra]
+display_name = "Math / Algebra"
+paths = ["C:/Users/dunnm/Dropbox/Apps/Master Brain/0_Math_Brain/Algebra"]
 enabled = true
 stage = "active"
 priority = 10
-aliases = ["math", "proof", "calculus", "linear algebra"]
+aliases = ["algebra", "abstract algebra", "group", "ring", "field", "polynomial", "equation"]
 
-[modules.physics_brain]
-display_name = "Physics Brain"
-paths = [
-  "C:/Users/dunnm/Downloads/Master Brain/1_Physics_Brain",
-  "C:/Users/dunnm/Downloads/Master Brain/Physics Brain",
-  "C:/Users/dunnm/Downloads/Master Brain/Science Brain/Physics",
-]
+[modules.math_calculus]
+display_name = "Math / Calculus"
+paths = ["C:/Users/dunnm/Dropbox/Apps/Master Brain/0_Math_Brain/Calculus"]
 enabled = true
 stage = "active"
 priority = 20
-aliases = ["physics", "mechanics", "electromagnetism", "quantum"]
+aliases = ["calculus", "derivative", "integral", "multivariable", "limits", "chain rule", "integration"]
 
-[modules.engineering_brain]
-display_name = "Engineering Brain"
-paths = [
-  "C:/Users/dunnm/Downloads/Master Brain/2_Engineering_Brain",
-  "C:/Users/dunnm/Downloads/Master Brain/Engineering Brain",
-]
+[modules.math_linear_algebra]
+display_name = "Math / Linear Algebra"
+paths = ["C:/Users/dunnm/Dropbox/Apps/Master Brain/0_Math_Brain/Linear_Algebra"]
 enabled = true
 stage = "active"
 priority = 30
-aliases = ["engineering", "design", "control", "thermofluids"]
+aliases = ["linear algebra", "matrix", "vector", "eigenvalue", "eigenvector", "svd", "singular value decomposition", "tensor", "multilinear algebra", "dimensionality reduction", "principal component analysis", "decomposition"]
 
-[modules.science_brain]
-display_name = "Science Brain"
-paths = [
-  "C:/Users/dunnm/Downloads/Master Brain/3_Science_Brain",
-  "C:/Users/dunnm/Downloads/Master Brain/Science Brain",
-]
+[modules.math_differential_equations]
+display_name = "Math / Differential Equations"
+paths = ["C:/Users/dunnm/Dropbox/Apps/Master Brain/0_Math_Brain/Differential_Equations"]
 enabled = true
 stage = "active"
 priority = 40
-aliases = ["biology", "chemistry", "geology", "environment", "life science"]
+aliases = ["differential equations", "ode", "pde", "initial value problem", "boundary value", "laplace transform", "dynamical systems", "stability", "phase portrait"]
 
-[modules.business_brain]
-display_name = "Business Brain"
-paths = [
-  "C:/Users/dunnm/Downloads/Master Brain/4_Business_Brain",
-  "C:/Users/dunnm/Downloads/Master Brain/Business Brain",
-]
+[modules.math_probability_stochastic]
+display_name = "Math / Probability and Stochastic"
+paths = ["C:/Users/dunnm/Dropbox/Apps/Master Brain/0_Math_Brain/Probability_and_Stochastic_Processes"]
 enabled = true
 stage = "active"
 priority = 50
-aliases = ["business", "finance", "economics", "accounting", "econometrics"]
+aliases = ["probability", "statistics", "stochastic", "random variable", "markov", "bayes", "distribution", "stochastic process", "monte carlo", "bayesian inference", "uncertainty quantification"]
 
-[modules.cs_brain]
-display_name = "Computer Science Brain"
-paths = [
-  "C:/Users/dunnm/Downloads/Master Brain/5_Computer_Science_Brain",
-  "C:/Users/dunnm/Downloads/Master Brain/Computer Science Brain",
-]
+[modules.math_optimization]
+display_name = "Math / Optimization"
+paths = ["C:/Users/dunnm/Dropbox/Apps/Master Brain/0_Math_Brain/Optimization"]
 enabled = true
 stage = "active"
 priority = 60
-aliases = ["computer science", "algorithms", "ml", "deep learning", "systems"]
+aliases = ["optimization", "linear programming", "convex", "gradient descent", "lagrangian", "constraint", "inverse problem", "optimal control", "parameter estimation", "regularization"]
+
+[modules.math_numerical_methods]
+display_name = "Math / Numerical Methods"
+paths = ["C:/Users/dunnm/Dropbox/Apps/Master Brain/0_Math_Brain/Numerical_Methods"]
+enabled = true
+stage = "active"
+priority = 70
+aliases = ["numerical methods", "numerical analysis", "finite difference", "interpolation", "approximation", "solver", "simulation", "finite element", "finite volume", "inverse problems", "pde solver"]
+
+[modules.math_logic_proofs]
+display_name = "Math / Logic and Proofs"
+paths = ["C:/Users/dunnm/Dropbox/Apps/Master Brain/0_Math_Brain/Logic_and_Proofs"]
+enabled = true
+stage = "active"
+priority = 80
+aliases = ["logic", "proof", "proposition", "theorem", "lemma", "induction", "set theory"]
+
+[modules.physics_classical_mechanics]
+display_name = "Physics / Classical Mechanics"
+paths = ["C:/Users/dunnm/Dropbox/Apps/Master Brain/1_Physics_Brain/Classical_Mechanics"]
+enabled = true
+stage = "active"
+priority = 90
+aliases = ["classical mechanics", "mechanics", "newton", "force", "motion", "kinematics", "dynamics"]
+
+[modules.physics_thermo_stat_mech]
+display_name = "Physics / Thermodynamics and Statistical Mechanics"
+paths = ["C:/Users/dunnm/Dropbox/Apps/Master Brain/1_Physics_Brain/Thermodynamics_and_Statistical_Mechanics"]
+enabled = true
+stage = "active"
+priority = 100
+aliases = ["thermodynamics", "statistical mechanics", "entropy", "heat", "temperature", "partition function", "molecular", "molecule", "kinetic theory", "stat mech"]
+
+[modules.physics_electromagnetism]
+display_name = "Physics / Electromagnetism"
+paths = ["C:/Users/dunnm/Dropbox/Apps/Master Brain/1_Physics_Brain/Electromagnetism"]
+enabled = true
+stage = "active"
+priority = 110
+aliases = ["electromagnetism", "maxwell", "electric field", "magnetic field", "circuits", "em waves"]
+
+[modules.physics_quantum]
+display_name = "Physics / Quantum Physics"
+paths = ["C:/Users/dunnm/Dropbox/Apps/Master Brain/1_Physics_Brain/Quantum_Physics"]
+enabled = true
+stage = "active"
+priority = 120
+aliases = ["quantum", "quantum mechanics", "wavefunction", "schrodinger", "operator", "uncertainty", "quantum chemistry", "molecular orbital", "spectroscopy"]
+
+[modules.physics_optics]
+display_name = "Physics / Optics"
+paths = ["C:/Users/dunnm/Dropbox/Apps/Master Brain/1_Physics_Brain/Optics"]
+enabled = true
+stage = "active"
+priority = 130
+aliases = ["optics", "light", "lens", "interference", "diffraction", "polarization", "photonics", "imaging", "microscopy", "inverse problem", "reconstruction"]
+
+[modules.physics_fluid_dynamics]
+display_name = "Physics / Fluid Dynamics"
+paths = ["C:/Users/dunnm/Dropbox/Apps/Master Brain/1_Physics_Brain/Fluid_Dynamics"]
+enabled = true
+stage = "active"
+priority = 140
+aliases = ["fluid dynamics", "flow", "navier stokes", "turbulence", "laminar", "hydrodynamics", "computational fluid dynamics", "cfd", "simulation", "transport"]
+
+[modules.physics_continuum_mechanics]
+display_name = "Physics / Continuum Mechanics"
+paths = ["C:/Users/dunnm/Dropbox/Apps/Master Brain/1_Physics_Brain/Continuum_Mechanics"]
+enabled = true
+stage = "active"
+priority = 150
+aliases = ["continuum mechanics", "stress", "strain", "constitutive", "elasticity", "material model", "materials science", "biomechanics", "multiphysics"]
+
+[modules.eng_mechanical]
+display_name = "Engineering / Mechanical"
+paths = ["C:/Users/dunnm/Dropbox/Apps/Master Brain/2_Engineering_Brain/Mechanical_Engineering"]
+enabled = true
+stage = "active"
+priority = 160
+aliases = ["mechanical engineering", "statics", "dynamics", "thermofluids", "machine design", "mechanics"]
+
+[modules.eng_electrical]
+display_name = "Engineering / Electrical"
+paths = ["C:/Users/dunnm/Dropbox/Apps/Master Brain/2_Engineering_Brain/Electrical_Engineering"]
+enabled = true
+stage = "active"
+priority = 170
+aliases = ["electrical engineering", "circuits", "signals", "control", "electromagnetics", "power systems", "signal processing", "state space", "control systems", "estimation"]
+
+[modules.eng_chemical]
+display_name = "Engineering / Chemical"
+paths = ["C:/Users/dunnm/Dropbox/Apps/Master Brain/2_Engineering_Brain/Chemical_Engineering"]
+enabled = true
+stage = "active"
+priority = 180
+aliases = ["chemical engineering", "transport", "reaction engineering", "process modeling", "separations", "thermodynamics", "process simulation", "reactor modeling", "molecular", "molecule", "transport phenomena"]
+
+[modules.eng_biomedical]
+display_name = "Engineering / Biomedical"
+paths = ["C:/Users/dunnm/Dropbox/Apps/Master Brain/2_Engineering_Brain/Biomedical_Engineering"]
+enabled = true
+stage = "active"
+priority = 190
+aliases = ["biomedical engineering", "biomechanics", "biomaterials", "medical imaging", "bioinstrumentation", "medical device", "microscopy", "image analysis", "molecular imaging", "biostatistics"]
+
+[modules.science_biology]
+display_name = "Science / Biology"
+paths = ["C:/Users/dunnm/Dropbox/Apps/Master Brain/3_Science_Brain/Biology"]
+enabled = true
+stage = "active"
+priority = 200
+aliases = ["biology", "genetics", "genomics", "molecular biology", "ecology", "microbiology", "physiology", "molecular", "molecule", "systems biology", "bioinformatics", "biostatistics"]
+
+[modules.science_chemistry]
+display_name = "Science / Chemistry"
+paths = ["C:/Users/dunnm/Dropbox/Apps/Master Brain/3_Science_Brain/Chemistry"]
+enabled = true
+stage = "active"
+priority = 210
+aliases = ["chemistry", "organic chemistry", "physical chemistry", "analytical chemistry", "biochemistry", "reaction", "molecular", "molecule", "quantum chemistry", "spectroscopy", "materials chemistry"]
+
+[modules.science_earth_env]
+display_name = "Science / Earth and Environmental Sciences"
+paths = ["C:/Users/dunnm/Dropbox/Apps/Master Brain/3_Science_Brain/Earth_and_Environmental_Sciences"]
+enabled = true
+stage = "active"
+priority = 220
+aliases = ["geology", "geophysics", "geochemistry", "environmental science", "climate science", "earth science"]
+
+[modules.science_physics_of_life]
+display_name = "Science / Physics of Life"
+paths = ["C:/Users/dunnm/Dropbox/Apps/Master Brain/3_Science_Brain/Physics_of_Life"]
+enabled = true
+stage = "active"
+priority = 230
+aliases = ["physics of life", "cellular biophysics", "molecular biophysics", "physical biology", "biophysics", "molecular", "molecule", "mechanobiology", "systems biology", "imaging"]
+
+[modules.business_accounting]
+display_name = "Business / Accounting"
+paths = ["C:/Users/dunnm/Dropbox/Apps/Master Brain/4_Business_Brain/Accounting"]
+enabled = true
+stage = "active"
+priority = 240
+aliases = ["accounting", "financial statements", "bookkeeping", "audit", "cost accounting", "gaap"]
+
+[modules.business_finance]
+display_name = "Business / Finance"
+paths = ["C:/Users/dunnm/Dropbox/Apps/Master Brain/4_Business_Brain/Finance"]
+enabled = true
+stage = "active"
+priority = 250
+aliases = ["finance", "corporate finance", "asset pricing", "derivatives", "portfolio theory", "valuation"]
+
+[modules.business_economics]
+display_name = "Business / Economics"
+paths = ["C:/Users/dunnm/Dropbox/Apps/Master Brain/4_Business_Brain/Economics"]
+enabled = true
+stage = "active"
+priority = 260
+aliases = ["economics", "microeconomics", "macroeconomics", "game theory", "industrial organization", "market"]
+
+[modules.business_econometrics]
+display_name = "Business / Econometrics"
+paths = ["C:/Users/dunnm/Dropbox/Apps/Master Brain/4_Business_Brain/Econometrics"]
+enabled = true
+stage = "active"
+priority = 270
+aliases = ["econometrics", "statistical inference", "time series", "causal inference", "regression", "forecasting", "causal modeling", "bayesian inference", "uncertainty quantification"]
+
+[modules.business_fintech]
+display_name = "Business / Fintech"
+paths = ["C:/Users/dunnm/Dropbox/Apps/Master Brain/4_Business_Brain/Fintech"]
+enabled = true
+stage = "active"
+priority = 280
+aliases = ["fintech", "payments", "digital banking", "blockchain", "crypto", "algorithmic trading"]
+
+[modules.business_technical_analysis]
+display_name = "Business / Technical Analysis"
+paths = ["C:/Users/dunnm/Dropbox/Apps/Master Brain/4_Business_Brain/Technical_Analysis"]
+enabled = true
+stage = "active"
+priority = 290
+aliases = ["technical analysis", "candlestick", "chart pattern", "indicators", "rsi", "moving average"]
+
+[modules.cs_algorithms]
+display_name = "CS / Algorithms"
+paths = ["C:/Users/dunnm/Dropbox/Apps/Master Brain/5_Computer_Science_Brain/Algorithms"]
+enabled = true
+stage = "active"
+priority = 300
+aliases = ["algorithms", "algorithm", "complexity", "big o", "dynamic programming", "greedy", "graph algorithm"]
+
+[modules.cs_data_structures]
+display_name = "CS / Data Structures"
+paths = ["C:/Users/dunnm/Dropbox/Apps/Master Brain/5_Computer_Science_Brain/Data_Structures"]
+enabled = true
+stage = "active"
+priority = 310
+aliases = ["data structures", "array", "tree", "graph", "hash table", "heap", "linked list"]
+
+[modules.cs_operating_systems]
+display_name = "CS / Operating Systems"
+paths = ["C:/Users/dunnm/Dropbox/Apps/Master Brain/5_Computer_Science_Brain/Operating_Systems"]
+enabled = true
+stage = "active"
+priority = 320
+aliases = ["operating systems", "os", "process", "thread", "memory management", "scheduling", "concurrency"]
+
+[modules.cs_compilers]
+display_name = "CS / Compilers"
+paths = ["C:/Users/dunnm/Dropbox/Apps/Master Brain/5_Computer_Science_Brain/Compilers"]
+enabled = true
+stage = "active"
+priority = 330
+aliases = ["compiler", "compilers", "parsing", "lexer", "syntax tree", "code generation", "optimization pass"]
+
+[modules.cs_distributed_systems]
+display_name = "CS / Distributed Systems"
+paths = ["C:/Users/dunnm/Dropbox/Apps/Master Brain/5_Computer_Science_Brain/Distributed_Systems"]
+enabled = true
+stage = "active"
+priority = 340
+aliases = ["distributed systems", "distributed", "consensus", "raft", "paxos", "replication", "fault tolerance"]
+
+[modules.cs_machine_learning]
+display_name = "CS / Machine Learning"
+paths = ["C:/Users/dunnm/Dropbox/Apps/Master Brain/5_Computer_Science_Brain/Machine_Learning"]
+enabled = true
+stage = "active"
+priority = 350
+aliases = ["machine learning", "ml", "classification", "regression", "feature engineering", "model training", "prediction", "inference", "representation learning", "feature selection"]
+
+[modules.cs_deep_learning]
+display_name = "CS / Deep Learning"
+paths = ["C:/Users/dunnm/Dropbox/Apps/Master Brain/5_Computer_Science_Brain/Deep_Learning"]
+enabled = true
+stage = "active"
+priority = 360
+aliases = ["deep learning", "neural network", "cnn", "rnn", "transformer", "backpropagation", "gpu", "computer vision", "image analysis", "multimodal", "representation learning"]
+
+[modules.cs_reinforcement_learning]
+display_name = "CS / Reinforcement Learning"
+paths = ["C:/Users/dunnm/Dropbox/Apps/Master Brain/5_Computer_Science_Brain/Reinforcement_Learning"]
+enabled = true
+stage = "active"
+priority = 370
+aliases = ["reinforcement learning", "rl", "policy", "q learning", "reward", "markov decision process"]
+
+[modules.cs_probabilistic_modeling]
+display_name = "CS / Probabilistic Modeling"
+paths = ["C:/Users/dunnm/Dropbox/Apps/Master Brain/5_Computer_Science_Brain/Probabilistic_Modeling"]
+enabled = true
+stage = "active"
+priority = 380
+aliases = ["probabilistic modeling", "bayesian", "graphical model", "inference", "likelihood", "posterior", "stochastic modeling", "uncertainty quantification", "bayesian inference", "graphical models"]
+
+[modules.cs_scientific_computing]
+display_name = "CS / Scientific Computing"
+paths = ["C:/Users/dunnm/Dropbox/Apps/Master Brain/5_Computer_Science_Brain/Scientific_Computing"]
+enabled = true
+stage = "active"
+priority = 390
+aliases = ["scientific computing", "numerical computing", "hpc", "simulation", "parallel computing", "numpy", "python", "computational modeling", "inverse problem", "finite element", "pde solver"]
+
+[modules.humanities_philosophy]
+display_name = "Humanities / Philosophy"
+paths = ["C:/Users/dunnm/Dropbox/Apps/Master Brain/Humanities Brain/Philosophy"]
+enabled = true
+stage = "active"
+priority = 400
+aliases = ["philosophy", "ethics", "metaphysics", "epistemology", "logic", "philosopher"]
+
+[modules.humanities_history]
+display_name = "Humanities / History"
+paths = ["C:/Users/dunnm/Dropbox/Apps/Master Brain/Humanities Brain/History"]
+enabled = true
+stage = "active"
+priority = 410
+aliases = ["history", "historical", "civilization", "timeline", "world history", "historiography"]
+
+[modules.humanities_literature]
+display_name = "Humanities / Literature"
+paths = ["C:/Users/dunnm/Dropbox/Apps/Master Brain/Humanities Brain/Literature"]
+enabled = true
+stage = "active"
+priority = 420
+aliases = ["literature", "novel", "poetry", "literary analysis", "author", "narrative"]
+
+[modules.humanities_linguistics]
+display_name = "Humanities / Linguistics"
+paths = ["C:/Users/dunnm/Dropbox/Apps/Master Brain/Humanities Brain/Communication, Writing, Professional Development"]
+enabled = true
+stage = "active"
+priority = 430
+aliases = ["linguistics", "language", "syntax", "semantics", "phonology", "writing", "communication"]
+
+[modules.humanities_arts]
+display_name = "Humanities / Arts"
+paths = ["C:/Users/dunnm/Dropbox/Apps/Master Brain/Humanities Brain/Art, Music, and Culture"]
+enabled = true
+stage = "active"
+priority = 440
+aliases = ["arts", "art", "music", "culture", "aesthetics", "creative"]
+
+[modules.humanities_religion]
+display_name = "Humanities / Religion"
+paths = ["C:/Users/dunnm/Dropbox/Apps/Master Brain/Humanities Brain/Religion"]
+enabled = true
+stage = "active"
+priority = 450
+aliases = ["religion", "theology", "faith", "scripture", "spiritual", "religious studies"]

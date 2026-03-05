@@ -2,7 +2,9 @@ from __future__ import annotations
 
 import re
 from dataclasses import dataclass
+from pathlib import Path
 
+from .config import load_module_registry
 from .indexing import IndexStore
 from .models import RetrievedChunk
 from .prompt_templates import build_prompt_template
@@ -31,6 +33,61 @@ MODULE_ALIASES: dict[str, tuple[str, ...]] = {
     "cs_core": ("computer science", "algorithm", "data structure", "complexity", "programming"),
 }
 
+ROUTING_MODULE_CONFIG_PATHS: tuple[str, ...] = (
+    "config/master_brain.toml",
+    "config/modules.toml",
+)
+
+
+def _normalized_aliases(values: tuple[str, ...] | list[str]) -> set[str]:
+    return {v.strip().lower() for v in values if v and v.strip()}
+
+
+def _module_id_fallback_aliases(module_id: str) -> set[str]:
+    base = module_id.lower().replace("_", " ")
+    aliases = {base, module_id.lower()}
+    for suffix in (" core", " brain"):
+        if base.endswith(suffix):
+            aliases.add(base.removesuffix(suffix).strip())
+    return {a for a in aliases if a}
+
+
+def _registry_aliases(available: list[str]) -> dict[str, set[str]]:
+    available_set = set(available)
+    out: dict[str, set[str]] = {m: set() for m in available}
+    for raw_path in ROUTING_MODULE_CONFIG_PATHS:
+        path = Path(raw_path)
+        if not path.exists():
+            continue
+        try:
+            reg = load_module_registry(path)
+        except (FileNotFoundError, ValueError):
+            continue
+
+        for module in reg.enabled_modules:
+            if module.module_id not in available_set:
+                continue
+            out[module.module_id].update(
+                _normalized_aliases(list(module.aliases))
+            )
+            if module.display_name:
+                out[module.module_id].add(module.display_name.strip().lower())
+    return out
+
+
+def _alias_map(available: list[str]) -> dict[str, set[str]]:
+    aliases: dict[str, set[str]] = {}
+    reg_aliases = _registry_aliases(available)
+    for module_id in available:
+        merged = set()
+        merged.update(
+            _normalized_aliases(list(MODULE_ALIASES.get(module_id, ())))
+        )
+        merged.update(reg_aliases.get(module_id, set()))
+        merged.update(_module_id_fallback_aliases(module_id))
+        aliases[module_id] = merged
+    return aliases
+
 
 def route_modules(index: IndexStore, query: str) -> list[str]:
     available = sorted({c.module_id for c in index.chunks if c.module_id})
@@ -38,9 +95,10 @@ def route_modules(index: IndexStore, query: str) -> list[str]:
         return []
 
     q = query.lower()
+    aliases = _alias_map(available)
     ranked: list[tuple[str, int]] = []
     for module_id in available:
-        hints = MODULE_ALIASES.get(module_id, ())
+        hints = aliases.get(module_id, set())
         score = sum(1 for h in hints if h in q)
         ranked.append((module_id, score))
 
@@ -49,7 +107,19 @@ def route_modules(index: IndexStore, query: str) -> list[str]:
         return [m for m, s in ranked[:3] if s > 0]
 
     # fallback: prefer broad modules most likely to answer unknown queries
-    priority = ["math_core", "cs_core", "physics_core", "imaging_core"]
+    priority = [
+        "math_core",
+        "cs_core",
+        "physics_core",
+        "imaging_core",
+        "math_brain",
+        "cs_brain",
+        "physics_brain",
+        "science_brain",
+        "engineering_brain",
+        "business_brain",
+        "humanities_brain",
+    ]
     fallback = [m for m in priority if m in available]
     if fallback:
         return fallback[:2]
