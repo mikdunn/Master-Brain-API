@@ -1,0 +1,2600 @@
+schema_version = 1
+
+[modules.math_brain]
+display_name = "Math Brain"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Math Brain",
+]
+enabled = true
+stage = "active"
+priority = 10
+aliases = [
+  "spectral domain",
+  "face",
+  "filter bank",
+  "adjacency",
+  "adjacency matrix",
+  "motor",
+  "math brain",
+  "math",
+  "proof",
+  "calculus",
+  "linear algebra",
+  "spectral domain notes",
+]
+
+[modules.math_brain_applied_math_papers]
+display_name = "Math Brain / Applied Math Papers"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Math Brain/Applied Math Papers",
+]
+enabled = true
+stage = "active"
+priority = 20
+aliases = [
+  "spectral domain",
+  "convex optimization",
+  "face",
+  "filter bank",
+  "adjacency",
+  "adjacency matrix",
+  "applied math papers",
+  "math brain",
+  "math",
+  "proof",
+  "calculus",
+  "linear algebra",
+]
+
+[modules.math_brain_math]
+display_name = "Math Brain / Math"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Math Brain/Math",
+]
+enabled = true
+stage = "active"
+priority = 21
+aliases = [
+  "extbf",
+  "games",
+  "extbf lecture",
+  "rationalizability",
+  "inequalities",
+  "dominance",
+  "math",
+  "math brain",
+  "proof",
+  "calculus",
+  "linear algebra",
+  "extbf notes",
+]
+
+[modules.math_brain_math_abstract_algebra]
+display_name = "Math Brain / Math / Abstract Algebra"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Math Brain/Math/Abstract Algebra",
+]
+enabled = true
+stage = "active"
+priority = 22
+aliases = [
+  "cyclic groups",
+  "subgroups",
+  "computer exercises",
+  "equivalence relations",
+  "integers",
+  "7th ed",
+  "math brain",
+  "math",
+  "proof",
+  "calculus",
+  "linear algebra",
+  "cyclic groups notes",
+]
+
+[modules.math_brain_math_calculus_1_2_multivariable]
+display_name = "Math Brain / Math / Calculus (1,2, & Multivariable)"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Math Brain/Math/Calculus (1,2, & Multivariable)",
+]
+enabled = true
+stage = "active"
+priority = 23
+aliases = [
+  "exercise set",
+  "applied project",
+  "horizon",
+  "horizon module",
+  "rates change",
+  "supplementary exercises",
+  "math brain",
+  "math",
+  "proof",
+  "calculus",
+  "linear algebra",
+  "exercise set notes",
+]
+
+[modules.math_brain_math_elementary_linear_algebra_with_applications_10e]
+display_name = "Math Brain / Math / Elementary Linear Algebra with Applications 10e"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Math Brain/Math/Elementary Linear Algebra with Applications 10e",
+]
+enabled = true
+stage = "active"
+priority = 24
+aliases = [
+  "anton",
+  "anton ela10",
+  "anton ela10 ssm",
+  "ela10",
+  "ela10 ssm",
+  "elementary linear",
+  "math brain",
+  "math",
+  "proof",
+  "calculus",
+  "linear algebra",
+  "anton notes",
+]
+
+[modules.math_brain_math_modeling]
+display_name = "Math Brain / Math / Modeling"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Math Brain/Math/Modeling",
+]
+enabled = true
+stage = "active"
+priority = 25
+aliases = [
+  "mechanic",
+  "topological field theory",
+  "quantum mechanic",
+  "standard model",
+  "supersymmetric",
+  "topological field",
+  "math brain",
+  "math",
+  "proof",
+  "calculus",
+  "linear algebra",
+  "mechanic notes",
+]
+
+[modules.math_brain_math_schaum_s_outline_of_advanced_calculus_third_edition_mantesh]
+display_name = "Math Brain / Math / Schaum_s Outline of Advanced Calculus, Third Edition-MANTESH"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Math Brain/Math/Schaum_s Outline of Advanced Calculus, Third Edition-MANTESH",
+]
+enabled = true
+stage = "active"
+priority = 26
+aliases = [
+  "real numbers",
+  "number system",
+  "representation real",
+  "representation real numbers",
+  "intervals",
+  "absolute value",
+  "math brain",
+  "math",
+  "proof",
+  "calculus",
+  "linear algebra",
+  "real numbers notes",
+]
+
+[modules.math_brain_math_stats]
+display_name = "Math Brain / Math / Stats"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Math Brain/Math/Stats",
+]
+enabled = true
+stage = "active"
+priority = 27
+aliases = [
+  "probability distributions",
+  "problems exercises",
+  "self-test",
+  "self-test problems",
+  "self-test problems exercises",
+  "theoretical exercises",
+  "math brain",
+  "math",
+  "proof",
+  "calculus",
+  "linear algebra",
+  "probability distributions notes",
+]
+
+[modules.math_brain_math_stochastic_modeling]
+display_name = "Math Brain / Math / Stochastic Modeling"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Math Brain/Math/Stochastic Modeling",
+]
+enabled = true
+stage = "active"
+priority = 28
+aliases = [
+  "queue",
+  "1 queue",
+  "g- -1",
+  "g- -1 queue",
+  "issues extensions",
+  "m- -g",
+  "math brain",
+  "math",
+  "proof",
+  "calculus",
+  "linear algebra",
+  "queue notes",
+]
+
+[modules.math_brain_math_tensors]
+display_name = "Math Brain / Math / Tensors"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Math Brain/Math/Tensors",
+]
+enabled = true
+stage = "active"
+priority = 29
+aliases = [
+  "tensor fields",
+  "tensor",
+  "tensors",
+  "constant tensors",
+  "constant tensors constant",
+  "curvature tensor",
+  "math brain",
+  "math",
+  "proof",
+  "calculus",
+  "linear algebra",
+  "tensor fields notes",
+]
+
+[modules.math_brain_svd_stuffs]
+display_name = "Math Brain / SVD stuffs"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Math Brain/SVD stuffs",
+]
+enabled = true
+stage = "active"
+priority = 30
+aliases = [
+  "centrality",
+  "golub",
+  "netflix",
+  "netflix prize",
+  "singular value",
+  "actor",
+  "svd stuffs",
+  "math brain",
+  "math",
+  "proof",
+  "calculus",
+  "linear algebra",
+]
+
+[modules.physics_brain]
+display_name = "Physics Brain"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Physics",
+]
+enabled = true
+stage = "active"
+priority = 31
+aliases = [
+  "copy",
+  "electrodynamics",
+  "statistical physics",
+  "hamiltonian",
+  "quantum",
+  "fields physics",
+  "physics brain",
+  "physics",
+  "mechanics",
+  "electromagnetism",
+  "copy notes",
+  "copy study notes",
+]
+
+[modules.physics_brain_biophysics]
+display_name = "Physics Brain / Biophysics"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Physics/Biophysics",
+]
+enabled = true
+stage = "active"
+priority = 41
+aliases = [
+  "statistical physics",
+  "fields physics",
+  "hydrodynamics",
+  "magnetic field",
+  "other fields physics",
+  "quantum coherence",
+  "biophysics",
+  "physics brain",
+  "physics",
+  "mechanics",
+  "electromagnetism",
+  "quantum",
+]
+
+[modules.physics_brain_computational_physics]
+display_name = "Physics Brain / Computational Physics"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Physics/Computational Physics",
+]
+enabled = true
+stage = "active"
+priority = 42
+aliases = [
+  "electrodynamics",
+  "quantum mechanics",
+  "quantum",
+  "dynamics",
+  "field",
+  "chaotic",
+  "computational physics",
+  "physics brain",
+  "physics",
+  "mechanics",
+  "electromagnetism",
+  "electrodynamics notes",
+]
+
+[modules.physics_brain_electricity]
+display_name = "Physics Brain / Electricity"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Physics/Electricity",
+]
+enabled = true
+stage = "active"
+priority = 43
+aliases = [
+  "electrodynamics",
+  "lorentz",
+  "maxwell",
+  "gauss",
+  "lorentz force",
+  "maxwell equations",
+  "electricity",
+  "physics brain",
+  "physics",
+  "mechanics",
+  "electromagnetism",
+  "quantum",
+]
+
+[modules.physics_brain_modern_and_advanced]
+display_name = "Physics Brain / Modern and Advanced"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Physics/Modern and Advanced",
+]
+enabled = true
+stage = "active"
+priority = 44
+aliases = [
+  "copy",
+  "hamiltonian",
+  "derivation hamiltonian",
+  "derivation hamiltonian terms",
+  "hamiltonian becomes",
+  "hamiltonian terms",
+  "modern and advanced",
+  "physics brain",
+  "physics",
+  "mechanics",
+  "electromagnetism",
+  "quantum",
+]
+
+[modules.physics_brain_phy221]
+display_name = "Physics Brain / PHY221"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Physics/PHY221",
+]
+enabled = true
+stage = "active"
+priority = 45
+aliases = [
+  "4th ed walker",
+  "ed walker",
+  "ed walker pearson",
+  "pearson 2010",
+  "physics 4th",
+  "physics 4th ed",
+  "physics brain",
+  "physics",
+  "mechanics",
+  "electromagnetism",
+  "quantum",
+  "4th ed walker notes",
+]
+
+[modules.physics_brain_phy223]
+display_name = "Physics Brain / PHY223"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Physics/PHY223",
+]
+enabled = true
+stage = "active"
+priority = 46
+aliases = [
+  "instantaneous",
+  "acceleration",
+  "exercises problems",
+  "questions exercises",
+  "questions exercises problems",
+  "10 products",
+  "physics brain",
+  "physics",
+  "mechanics",
+  "electromagnetism",
+  "quantum",
+  "instantaneous notes",
+]
+
+[modules.physics_brain_quantum]
+display_name = "Physics Brain / Quantum"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Physics/Quantum",
+]
+enabled = true
+stage = "active"
+priority = 47
+aliases = [
+  "quantum field",
+  "quantum field theory",
+  "zeta",
+  "quantum",
+  "quantum system",
+  "two-state quantum",
+  "physics brain",
+  "physics",
+  "mechanics",
+  "electromagnetism",
+  "quantum field notes",
+  "quantum field study notes",
+]
+
+[modules.engineering_brain]
+display_name = "Engineering Brain"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Engineering Brain",
+]
+enabled = true
+stage = "active"
+priority = 48
+aliases = [
+  "control systems",
+  "viscosity",
+  "balances",
+  "acoustics",
+  "feedback control systems",
+  "process control",
+  "engineering brain",
+  "engineering",
+  "design",
+  "control",
+  "thermofluids",
+  "control systems notes",
+]
+
+[modules.engineering_brain_biomedical_engineering]
+display_name = "Engineering Brain / Biomedical Engineering"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Engineering Brain/Biomedical Engineering",
+]
+enabled = true
+stage = "active"
+priority = 58
+aliases = [
+  "signals systems",
+  "control signals",
+  "control signals tiny",
+  "cortical control signals",
+  "filtering system control",
+  "identification physiologic systems",
+  "biomedical engineering",
+  "engineering brain",
+  "engineering",
+  "design",
+  "control",
+  "thermofluids",
+]
+
+[modules.engineering_brain_chemical_engineering]
+display_name = "Engineering Brain / Chemical Engineering"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Engineering Brain/Chemical Engineering",
+]
+enabled = true
+stage = "active"
+priority = 59
+aliases = [
+  "control systems",
+  "viscosity",
+  "feedback control systems",
+  "balances",
+  "design control systems",
+  "process control",
+  "chemical engineering",
+  "engineering brain",
+  "engineering",
+  "design",
+  "control",
+  "thermofluids",
+]
+
+[modules.engineering_brain_cross_engineering]
+display_name = "Engineering Brain / Cross Engineering"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Engineering Brain/Cross Engineering",
+]
+enabled = true
+stage = "active"
+priority = 60
+aliases = [
+  "sound",
+  "acoustical",
+  "all copy",
+  "acoustics",
+  "sound waves",
+  "spherical sound",
+  "cross engineering",
+  "engineering brain",
+  "engineering",
+  "design",
+  "control",
+  "thermofluids",
+]
+
+[modules.engineering_brain_electrical_engineering]
+display_name = "Engineering Brain / Electrical Engineering"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Engineering Brain/Electrical Engineering",
+]
+enabled = true
+stage = "active"
+priority = 61
+aliases = [
+  "time-invariant systems",
+  "linear time-invariant systems",
+  "lti systems",
+  "continuous-time",
+  "time-invariant",
+  "discrete-time signals",
+  "electrical engineering",
+  "engineering brain",
+  "engineering",
+  "design",
+  "control",
+  "thermofluids",
+]
+
+[modules.engineering_brain_mechanical_engineering]
+display_name = "Engineering Brain / Mechanical Engineering"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Engineering Brain/Mechanical Engineering",
+]
+enabled = true
+stage = "active"
+priority = 62
+aliases = [
+  "hydrostatic",
+  "curvilinear motion",
+  "hydrostatic forces",
+  "tensor",
+  "cartesian coordinate systems",
+  "dynamics particles",
+  "mechanical engineering",
+  "engineering brain",
+  "engineering",
+  "design",
+  "control",
+  "thermofluids",
+]
+
+[modules.science_brain]
+display_name = "Science Brain"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain",
+]
+enabled = true
+stage = "active"
+priority = 63
+aliases = [
+  "sedimentary",
+  "dinosaur",
+  "question transcriptomics regulation",
+  "transcriptomics regulation",
+  "curvelet",
+  "transcriptomics",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "life science",
+]
+
+[modules.science_brain_bioinformatics]
+display_name = "Science Brain / Bioinformatics"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Bioinformatics",
+]
+enabled = true
+stage = "active"
+priority = 73
+aliases = [
+  "bioinformatics",
+  "encode",
+  "metabolomics",
+  "genotype",
+  "question transcriptomics regulation",
+  "transcriptomics regulation",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "bioinformatics notes",
+]
+
+[modules.science_brain_bioinformatics_bioinf606]
+display_name = "Science Brain / Bioinformatics / BIOINF606"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Bioinformatics/BIOINF606",
+]
+enabled = true
+stage = "active"
+priority = 74
+aliases = [
+  "matplotlib",
+  "pydata",
+  "pandas",
+  "umich",
+  "arc-ts",
+  "gbase",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "matplotlib notes",
+]
+
+[modules.science_brain_bioinformatics_bioinf606_day_1_unix]
+display_name = "Science Brain / Bioinformatics / BIOINF606 / Day 1 (Unix)"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Bioinformatics/BIOINF606/Day 1 (Unix)",
+]
+enabled = true
+stage = "active"
+priority = 75
+aliases = [
+  "binlist",
+  "binlist txt",
+  "bioboot",
+  "stdout",
+  "unix",
+  "usr bin",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "binlist notes",
+]
+
+[modules.science_brain_bioinformatics_bioinf606_day_2_python]
+display_name = "Science Brain / Bioinformatics / BIOINF606 / Day 2 (Python)"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Bioinformatics/BIOINF606/Day 2 (Python)",
+]
+enabled = true
+stage = "active"
+priority = 76
+aliases = [
+  "matplotlib",
+  "pydata",
+  "pandas",
+  "matplotlib org",
+  "org api",
+  "pandas pydata",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "matplotlib notes",
+]
+
+[modules.science_brain_bioinformatics_bioinf606_day_3_r]
+display_name = "Science Brain / Bioinformatics / BIOINF606 / Day 3 (R)"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Bioinformatics/BIOINF606/Day 3 (R)",
+]
+enabled = true
+stage = "active"
+priority = 77
+aliases = [
+  "gbase",
+  "mydata",
+  "reshape2",
+  "delim",
+  "geom",
+  "reshape2 head",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "gbase notes",
+]
+
+[modules.science_brain_bioinformatics_bioinf606_day_4_git_and_cluster_computing]
+display_name = "Science Brain / Bioinformatics / BIOINF606 / Day 4 (GIT and cluster computing)"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Bioinformatics/BIOINF606/Day 4 (GIT and cluster computing)",
+]
+enabled = true
+stage = "active"
+priority = 78
+aliases = [
+  "umich",
+  "arc-ts",
+  "arc-ts umich",
+  "umich edu",
+  "git status",
+  "readme",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "umich notes",
+]
+
+[modules.science_brain_bioinformatics_slides]
+display_name = "Science Brain / Bioinformatics / Slides"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Bioinformatics/Slides",
+]
+enabled = true
+stage = "active"
+priority = 79
+aliases = [
+  "bioinformatics",
+  "question transcriptomics regulation",
+  "transcriptomics regulation",
+  "encode",
+  "metabolomics",
+  "genotype",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "bioinformatics notes",
+]
+
+[modules.science_brain_bioinformatics_slides_additional_materials]
+display_name = "Science Brain / Bioinformatics / Slides / Additional Materials"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Bioinformatics/Slides/Additional Materials",
+]
+enabled = true
+stage = "active"
+priority = 80
+aliases = [
+  "dna library",
+  "library",
+  "hiseq",
+  "miseq",
+  "nextera",
+  "nextseq",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "dna library notes",
+]
+
+[modules.science_brain_bioinformatics_slides_article]
+display_name = "Science Brain / Bioinformatics / Slides / Article"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Bioinformatics/Slides/Article",
+]
+enabled = true
+stage = "active"
+priority = 81
+aliases = [
+  "genotype",
+  "genomics",
+  "chain genomics",
+  "chain genomics 2016",
+  "extensively genetics genomics",
+  "genetics genomics",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "genotype notes",
+]
+
+[modules.science_brain_bioinformatics_slides_article_dna_and_rna_sequencing_technology]
+display_name = "Science Brain / Bioinformatics / Slides / Article / DNA and RNA Sequencing Technology"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Bioinformatics/Slides/Article/DNA and RNA Sequencing Technology",
+]
+enabled = true
+stage = "active"
+priority = 82
+aliases = [
+  "chain genomics",
+  "chain genomics 2016",
+  "genomics 2016",
+  "heather chain genomics",
+  "genomics",
+  "alternative genomic",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "chain genomics notes",
+]
+
+[modules.science_brain_bioinformatics_slides_article_epigenetics]
+display_name = "Science Brain / Bioinformatics / Slides / Article / Epigenetics"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Bioinformatics/Slides/Article/Epigenetics",
+]
+enabled = true
+stage = "active"
+priority = 83
+aliases = [
+  "encode",
+  "additional mechanisms",
+  "additional mechanisms deployed",
+  "connect these epigenetically",
+  "developed mechanisms",
+  "developed mechanisms control",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "encode notes",
+]
+
+[modules.science_brain_bioinformatics_slides_article_eukaryotic_genomics]
+display_name = "Science Brain / Bioinformatics / Slides / Article / Eukaryotic Genomics"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Bioinformatics/Slides/Article/Eukaryotic Genomics",
+]
+enabled = true
+stage = "active"
+priority = 84
+aliases = [
+  "among vast genomic",
+  "genomic graveyard",
+  "genomic graveyard dead",
+  "vast genomic",
+  "vast genomic graveyard",
+  "genomic",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "among vast genomic notes",
+]
+
+[modules.science_brain_bioinformatics_slides_article_genome_variation]
+display_name = "Science Brain / Bioinformatics / Slides / Article / Genome Variation"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Bioinformatics/Slides/Article/Genome Variation",
+]
+enabled = true
+stage = "active"
+priority = 85
+aliases = [
+  "extensively genetics genomics",
+  "genetics genomics",
+  "genetics genomics studies",
+  "genomics studies",
+  "genomics studies relies",
+  "genomics",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "extensively genetics genomics notes",
+]
+
+[modules.science_brain_bioinformatics_slides_article_history_and_scope_of_bioinformatics]
+display_name = "Science Brain / Bioinformatics / Slides / Article / History and Scope of Bioinformatics"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Bioinformatics/Slides/Article/History and Scope of Bioinformatics",
+]
+enabled = true
+stage = "active"
+priority = 86
+aliases = [
+  "acad",
+  "acad sci",
+  "nucleic",
+  "nucleic acids",
+  "genome project",
+  "sci usa",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "acad notes",
+]
+
+[modules.science_brain_bioinformatics_slides_article_prokaryotic_genomics]
+display_name = "Science Brain / Bioinformatics / Slides / Article / Prokaryotic Genomics"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Bioinformatics/Slides/Article/Prokaryotic Genomics",
+]
+enabled = true
+stage = "active"
+priority = 87
+aliases = [
+  "sciencemag",
+  "association causality",
+  "microbiome",
+  "causality",
+  "associations",
+  "www sciencemag",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "sciencemag notes",
+]
+
+[modules.science_brain_bioinformatics_slides_article_transcriptomics]
+display_name = "Science Brain / Bioinformatics / Slides / Article / Transcriptomics"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Bioinformatics/Slides/Article/Transcriptomics",
+]
+enabled = true
+stage = "active"
+priority = 88
+aliases = [
+  "proteomics metabolomics",
+  "proteomics",
+  "metabolomics",
+  "integrating dna",
+  "integrating dna rna",
+  "rna sequencing rna-seq",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "proteomics metabolomics notes",
+]
+
+[modules.science_brain_bioinformatics_slides_slides]
+display_name = "Science Brain / Bioinformatics / Slides / Slides"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Bioinformatics/Slides/Slides",
+]
+enabled = true
+stage = "active"
+priority = 89
+aliases = [
+  "bioinformatics",
+  "question transcriptomics regulation",
+  "transcriptomics regulation",
+  "metabolomics",
+  "genomics",
+  "proteomics",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "bioinformatics notes",
+]
+
+[modules.science_brain_biology]
+display_name = "Science Brain / Biology"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Biology",
+]
+enabled = true
+stage = "active"
+priority = 90
+aliases = [
+  "frameshift",
+  "ape2",
+  "3d colocalization genomic",
+  "colocalization genomic",
+  "colocalization genomic elements",
+  "genomic elements",
+  "biology",
+  "science brain",
+  "chemistry",
+  "geology",
+  "environment",
+  "frameshift notes",
+]
+
+[modules.science_brain_biology_dna_repair_papers]
+display_name = "Science Brain / Biology / DNA Repair Papers"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Biology/DNA Repair Papers",
+]
+enabled = true
+stage = "active"
+priority = 91
+aliases = [
+  "frameshift",
+  "ape2",
+  "3d colocalization genomic",
+  "colocalization genomic",
+  "colocalization genomic elements",
+  "genomic elements",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "frameshift notes",
+]
+
+[modules.science_brain_biology_dna_repair_papers_referenced_sources]
+display_name = "Science Brain / Biology / DNA Repair Papers / Referenced Sources"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Biology/DNA Repair Papers/Referenced Sources",
+]
+enabled = true
+stage = "active"
+priority = 92
+aliases = [
+  "exo1d",
+  "novo telomere",
+  "sgs1d",
+  "telomere formation",
+  "telomere",
+  "2010 defective",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "exo1d notes",
+]
+
+[modules.science_brain_biology_ecology]
+display_name = "Science Brain / Biology / Ecology"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Biology/Ecology",
+]
+enabled = true
+stage = "active"
+priority = 93
+aliases = [
+  "ecological systems",
+  "ecological systems form",
+  "systems form",
+  "systems form hierarchy",
+  "ecology",
+  "ecological",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "ecological systems notes",
+]
+
+[modules.science_brain_biology_genetics]
+display_name = "Science Brain / Biology / Genetics"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Biology/Genetics",
+]
+enabled = true
+stage = "active"
+priority = 94
+aliases = [
+  "excision",
+  "variation chromosome",
+  "epigenetic inheritance",
+  "epigenetic",
+  "analysis principles",
+  "bacteriophages",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "excision notes",
+]
+
+[modules.science_brain_biology_genetics_and_sequencing_papers]
+display_name = "Science Brain / Biology / Genetics and Sequencing Papers"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Biology/Genetics and Sequencing Papers",
+]
+enabled = true
+stage = "active"
+priority = 95
+aliases = [
+  "dna extraction",
+  "biotechnology",
+  "banding",
+  "isotopes",
+  "stable isotopes",
+  "epigenomics",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "dna extraction notes",
+]
+
+[modules.science_brain_biology_mathematical_biology]
+display_name = "Science Brain / Biology / Mathematical Biology"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Biology/Mathematical Biology",
+]
+enabled = true
+stage = "active"
+priority = 96
+aliases = [
+  "age-structured",
+  "predator",
+  "age-structured populations",
+  "delay models",
+  "lotka-volterra",
+  "population model",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "age-structured notes",
+]
+
+[modules.science_brain_biology_mcdb614]
+display_name = "Science Brain / Biology / MCDB614"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Biology/MCDB614",
+]
+enabled = true
+stage = "active"
+priority = 97
+aliases = [
+  "head-on",
+  "r-loop",
+  "pyrenoid",
+  "rnase",
+  "filaments",
+  "mushroom",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "head-on notes",
+]
+
+[modules.science_brain_biology_mcdb614_dna_replication]
+display_name = "Science Brain / Biology / MCDB614 / DNA Replication"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Biology/MCDB614/DNA Replication",
+]
+enabled = true
+stage = "active"
+priority = 98
+aliases = [
+  "head-on",
+  "r-loop",
+  "rnase",
+  "r-loop formation",
+  "genomic dna isolation",
+  "quantitative pcrs",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "head-on notes",
+]
+
+[modules.science_brain_biology_mcdb614_microbes]
+display_name = "Science Brain / Biology / MCDB614 / Microbes"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Biology/MCDB614/Microbes",
+]
+enabled = true
+stage = "active"
+priority = 99
+aliases = [
+  "pyrenoid",
+  "filaments",
+  "cell cycle regulation",
+  "cycle regulation",
+  "cycle regulation two",
+  "quantitative immunoblot",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "pyrenoid notes",
+]
+
+[modules.science_brain_biology_mcdb614_olfaction]
+display_name = "Science Brain / Biology / MCDB614 / Olfaction"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Biology/MCDB614/Olfaction",
+]
+enabled = true
+stage = "active"
+priority = 100
+aliases = [
+  "mushroom",
+  "vertebrate nervous systems",
+  "nervous systems",
+  "systems",
+  "olfactory",
+  "coding mushroom",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "mushroom notes",
+]
+
+[modules.science_brain_biology_medicine_and_physiology]
+display_name = "Science Brain / Biology / Medicine and Physiology"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Biology/Medicine and Physiology",
+]
+enabled = true
+stage = "active"
+priority = 101
+aliases = [
+  "infections",
+  "immunogenomics",
+  "immunogenomics human",
+  "immunogenomics human disease",
+  "fungal",
+  "medical microbiology",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "infections notes",
+]
+
+[modules.science_brain_biology_medicine_and_physiology_hematology]
+display_name = "Science Brain / Biology / Medicine and Physiology / Hematology"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Biology/Medicine and Physiology/Hematology",
+]
+enabled = true
+stage = "active"
+priority = 102
+aliases = [
+  "essential hematology",
+  "hematology",
+  "essential",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "essential hematology notes",
+  "essential hematology guide",
+  "essential hematology overview",
+  "essential hematology concepts",
+]
+
+[modules.science_brain_biology_medicine_and_physiology_medical_microbiology]
+display_name = "Science Brain / Biology / Medicine and Physiology / Medical Microbiology"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Biology/Medicine and Physiology/Medical Microbiology",
+]
+enabled = true
+stage = "active"
+priority = 103
+aliases = [
+  "infections",
+  "fungal",
+  "medical microbiology",
+  "monday",
+  "microbiology",
+  "infectious",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "infections notes",
+]
+
+[modules.science_brain_biology_medicine_and_physiology_silverthorn_human_physiology_integrated_approach_5th_txtbk]
+display_name = "Science Brain / Biology / Medicine and Physiology / Silverthorn Human Physiology Integrated Approach 5th txtbk"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Biology/Medicine and Physiology/Silverthorn Human Physiology Integrated Approach 5th txtbk",
+]
+enabled = true
+stage = "active"
+priority = 104
+aliases = [
+  "approach 5th",
+  "human physiology",
+  "human physiology integrated",
+  "integrated approach",
+  "integrated approach 5th",
+  "physiology integrated",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "approach 5th notes",
+]
+
+[modules.science_brain_biology_medicine_and_physiology_virology]
+display_name = "Science Brain / Biology / Medicine and Physiology / Virology"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Biology/Medicine and Physiology/Virology",
+]
+enabled = true
+stage = "active"
+priority = 105
+aliases = [
+  "virus",
+  "infections",
+  "viruses",
+  "emerging virus",
+  "emerging virus infections",
+  "virus infections",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "virus notes",
+]
+
+[modules.science_brain_biology_microbiology]
+display_name = "Science Brain / Biology / Microbiology"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Biology/Microbiology",
+]
+enabled = true
+stage = "active"
+priority = 106
+aliases = [
+  "microbial ecology",
+  "eucaryotic",
+  "procaryotic",
+  "microorganisms",
+  "chemolithotrophic",
+  "chemolithotrophic microorganisms",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "microbial ecology notes",
+]
+
+[modules.science_brain_biology_neuroscience]
+display_name = "Science Brain / Biology / Neuroscience"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Biology/Neuroscience",
+]
+enabled = true
+stage = "active"
+priority = 107
+aliases = [
+  "genomic instability",
+  "neuroscience",
+  "instability",
+  "ion channels",
+  "cameras",
+  "electrical signals",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "genomic instability notes",
+]
+
+[modules.science_brain_biology_yeast_biology]
+display_name = "Science Brain / Biology / Yeast Biology"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Biology/Yeast Biology",
+]
+enabled = true
+stage = "active"
+priority = 108
+aliases = [
+  "quantitative proteomics",
+  "quantitative proteomics biological",
+  "wilm quantitative proteomics",
+  "10 strategies",
+  "10 strategies based",
+  "strategies based",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "quantitative proteomics notes",
+]
+
+[modules.science_brain_chemistry]
+display_name = "Science Brain / Chemistry"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Chemistry",
+]
+enabled = true
+stage = "active"
+priority = 109
+aliases = [
+  "libretexts",
+  "libretexts org",
+  "physical chemistry",
+  "theory project",
+  "toxicology",
+  "chemistry",
+  "science brain",
+  "biology",
+  "geology",
+  "environment",
+  "libretexts notes",
+  "libretexts guide",
+]
+
+[modules.science_brain_chemistry_analytical_and_physical_chemistry]
+display_name = "Science Brain / Chemistry / Analytical and Physical Chemistry"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Chemistry/Analytical and Physical Chemistry",
+]
+enabled = true
+stage = "active"
+priority = 110
+aliases = [
+  "libretexts",
+  "physical chemistry",
+  "theory project",
+  "chemistry",
+  "libretexts org",
+  "haghi",
+  "science brain",
+  "biology",
+  "geology",
+  "environment",
+  "libretexts notes",
+  "libretexts guide",
+]
+
+[modules.science_brain_chemistry_environmental_chemistry]
+display_name = "Science Brain / Chemistry / Environmental Chemistry"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Chemistry/Environmental Chemistry",
+]
+enabled = true
+stage = "active"
+priority = 111
+aliases = [
+  "libretexts",
+  "toxicology",
+  "libretexts org",
+  "environmental toxicology",
+  "green chemistry",
+  "injury",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "libretexts notes",
+]
+
+[modules.science_brain_chemistry_inorgainc_chemistry]
+display_name = "Science Brain / Chemistry / Inorgainc Chemistry"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Chemistry/Inorgainc Chemistry",
+]
+enabled = true
+stage = "active"
+priority = 112
+aliases = [
+  "libretexts",
+  "ligand",
+  "ligands",
+  "libretexts org",
+  "orbital",
+  "above",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "libretexts notes",
+]
+
+[modules.science_brain_chemistry_organic_and_biochemistry]
+display_name = "Science Brain / Chemistry / Organic and Biochemistry"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Chemistry/Organic and Biochemistry",
+]
+enabled = true
+stage = "active"
+priority = 113
+aliases = [
+  "libretexts",
+  "compounds",
+  "bonding",
+  "organic chemistry",
+  "libretexts org",
+  "acids bases",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "libretexts notes",
+]
+
+[modules.science_brain_geology]
+display_name = "Science Brain / Geology"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Geology",
+]
+enabled = true
+stage = "active"
+priority = 114
+aliases = [
+  "sedimentary",
+  "dinosaur",
+  "pathways quantitative",
+  "pathways quantitative analysis",
+  "dinosaurs",
+  "geology",
+  "science brain",
+  "biology",
+  "chemistry",
+  "environment",
+  "sedimentary notes",
+  "sedimentary guide",
+]
+
+[modules.science_brain_imaging]
+display_name = "Science Brain / Imaging"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Imaging",
+]
+enabled = true
+stage = "active"
+priority = 115
+aliases = [
+  "vesicle",
+  "curvelet",
+  "image correlation",
+  "application biological systems",
+  "biological systems",
+  "er-rao",
+  "imaging",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+]
+
+[modules.science_brain_imaging_general_useful_physics]
+display_name = "Science Brain / Imaging / General Useful Physics"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Imaging/General Useful Physics",
+]
+enabled = true
+stage = "active"
+priority = 116
+aliases = [
+  "odinger",
+  "systems su(2",
+  "two-state systems",
+  "two-state systems su(2",
+  "er-rao",
+  "odinger equation",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "odinger notes",
+]
+
+[modules.science_brain_imaging_general_useful_physics_general_physics]
+display_name = "Science Brain / Imaging / General Useful Physics / General Physics"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Imaging/General Useful Physics/General Physics",
+]
+enabled = true
+stage = "active"
+priority = 117
+aliases = [
+  "electric eld",
+  "electromagnetism",
+  "magnetic eld",
+  "magnetic",
+  "electric",
+  "maxwell",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "electric eld notes",
+]
+
+[modules.science_brain_imaging_general_useful_physics_qm]
+display_name = "Science Brain / Imaging / General Useful Physics / QM"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Imaging/General Useful Physics/QM",
+]
+enabled = true
+stage = "active"
+priority = 118
+aliases = [
+  "systems su(2",
+  "two-state systems",
+  "two-state systems su(2",
+  "systems",
+  "lattice",
+  "two-state",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "systems su(2 notes",
+]
+
+[modules.science_brain_imaging_general_useful_physics_quantum_chemistry]
+display_name = "Science Brain / Imaging / General Useful Physics / Quantum Chemistry"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Imaging/General Useful Physics/Quantum Chemistry",
+]
+enabled = true
+stage = "active"
+priority = 119
+aliases = [
+  "odinger",
+  "odinger equation",
+  "rydberg",
+  "quantum harmonic",
+  "wavefunction",
+  "harmonic",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "odinger notes",
+]
+
+[modules.science_brain_imaging_image_analysis_for_the_biological_sciences]
+display_name = "Science Brain / Imaging / Image Analysis For the Biological Sciences"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Imaging/Image Analysis For the Biological Sciences",
+]
+enabled = true
+stage = "active"
+priority = 120
+aliases = [
+  "log sigma",
+  "sigma",
+  "thresholding log",
+  "pixel",
+  "pixel values",
+  "pixels",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "log sigma notes",
+]
+
+[modules.science_brain_imaging_microscopy_physics]
+display_name = "Science Brain / Imaging / Microscopy Physics"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Imaging/Microscopy Physics",
+]
+enabled = true
+stage = "active"
+priority = 121
+aliases = [
+  "data figure",
+  "extended data",
+  "extended data figure",
+  "accuracy precision quantitative",
+  "bayesian inference",
+  "full bayesian inference",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "data figure notes",
+]
+
+[modules.science_brain_imaging_microscopy_physics_lscm]
+display_name = "Science Brain / Imaging / Microscopy Physics / LSCM"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Imaging/Microscopy Physics/LSCM",
+]
+enabled = true
+stage = "active"
+priority = 122
+aliases = [
+  "quantitative surface",
+  "quantitative surface characterisation",
+  "quantitative",
+  "1554-1554",
+  "1559-1559",
+  "mean pixel",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "quantitative surface notes",
+]
+
+[modules.science_brain_imaging_microscopy_physics_methods]
+display_name = "Science Brain / Imaging / Microscopy Physics / Methods"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Imaging/Microscopy Physics/Methods",
+]
+enabled = true
+stage = "active"
+priority = 123
+aliases = [
+  "stochastic optical",
+  "stochastic optical reconstruction",
+  "stochastic",
+  "deconvolution",
+  "super-resolution",
+  "acad",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "stochastic optical notes",
+]
+
+[modules.science_brain_imaging_microscopy_physics_quantification]
+display_name = "Science Brain / Imaging / Microscopy Physics / Quantification"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Imaging/Microscopy Physics/Quantification",
+]
+enabled = true
+stage = "active"
+priority = 124
+aliases = [
+  "accuracy precision quantitative",
+  "bayesian inference",
+  "full bayesian inference",
+  "precision quantitative",
+  "precision quantitative fluorescence",
+  "quantitative fluorescence",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "accuracy precision quantitative notes",
+]
+
+[modules.science_brain_imaging_wavelet_fourier_filters]
+display_name = "Science Brain / Imaging / Wavelet-Fourier Filters"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Imaging/Wavelet-Fourier Filters",
+]
+enabled = true
+stage = "active"
+priority = 125
+aliases = [
+  "wavelets",
+  "wavelet",
+  "beta function",
+  "beta wavelets",
+  "c12 c12",
+  "compression",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "wavelets notes",
+]
+
+[modules.science_brain_microscopy]
+display_name = "Science Brain / Microscopy"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Microscopy",
+]
+enabled = true
+stage = "active"
+priority = 126
+aliases = [
+  "optical quality",
+  "qpi methods",
+  "fluorescence",
+  "anisotropy",
+  "lifetime",
+  "phase microscopy",
+  "microscopy",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+]
+
+[modules.science_brain_physics]
+display_name = "Science Brain / Physics"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Physics",
+]
+enabled = true
+stage = "active"
+priority = 127
+aliases = [
+  "living systems",
+  "do living systems",
+  "bio-systems",
+  "living systems navigate",
+  "living systems represent",
+  "systems navigate",
+  "physics",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+]
+
+[modules.science_brain_physics_biophysics]
+display_name = "Science Brain / Physics / Biophysics"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Physics/Biophysics",
+]
+enabled = true
+stage = "active"
+priority = 128
+aliases = [
+  "living systems",
+  "do living systems",
+  "bio-systems",
+  "living systems navigate",
+  "living systems represent",
+  "systems navigate",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "living systems notes",
+]
+
+[modules.science_brain_physics_computational_physics]
+display_name = "Science Brain / Physics / Computational Physics"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Physics/Computational Physics",
+]
+enabled = true
+stage = "active"
+priority = 129
+aliases = [
+  "systems",
+  "chaotic",
+  "mathematica",
+  "mathematical operations",
+  "penning",
+  "9781009413121",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "systems notes",
+]
+
+[modules.science_brain_physics_electricity]
+display_name = "Science Brain / Physics / Electricity"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Physics/Electricity",
+]
+enabled = true
+stage = "active"
+priority = 130
+aliases = [
+  "electrodynamics",
+  "lorentz",
+  "maxwell",
+  "gauss",
+  "lorentz force",
+  "maxwell equations",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "electrodynamics notes",
+]
+
+[modules.science_brain_physics_modern_and_advanced]
+display_name = "Science Brain / Physics / Modern and Advanced"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Physics/Modern and Advanced",
+]
+enabled = true
+stage = "active"
+priority = 131
+aliases = [
+  "generators",
+  "group generators",
+  "unitary",
+  "hamiltonian",
+  "unitary group",
+  "unitary group generators",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "generators notes",
+]
+
+[modules.science_brain_physics_phy221]
+display_name = "Science Brain / Physics / PHY221"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Physics/PHY221",
+]
+enabled = true
+stage = "active"
+priority = 132
+aliases = [
+  "4th ed walker",
+  "ed walker",
+  "ed walker pearson",
+  "pearson 2010",
+  "physics 4th",
+  "physics 4th ed",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "4th ed walker notes",
+]
+
+[modules.science_brain_physics_phy223]
+display_name = "Science Brain / Physics / PHY223"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Physics/PHY223",
+]
+enabled = true
+stage = "active"
+priority = 133
+aliases = [
+  "instantaneous",
+  "acceleration",
+  "exercises problems",
+  "questions exercises",
+  "questions exercises problems",
+  "10 products",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "instantaneous notes",
+]
+
+[modules.science_brain_physics_quantum]
+display_name = "Science Brain / Physics / Quantum"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Physics/Quantum",
+]
+enabled = true
+stage = "active"
+priority = 134
+aliases = [
+  "zeta",
+  "systems su(2",
+  "two-state systems",
+  "two-state systems su(2",
+  "systems",
+  "two-state",
+  "science brain",
+  "biology",
+  "chemistry",
+  "geology",
+  "environment",
+  "zeta notes",
+]
+
+[modules.business_brain]
+display_name = "Business Brain"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Business Brain",
+]
+enabled = true
+stage = "active"
+priority = 135
+aliases = [
+  "accounting",
+  "demand",
+  "management accounting",
+  "self-study",
+  "managerial",
+  "marketing",
+  "business brain",
+  "business",
+  "finance",
+  "economics",
+  "econometrics",
+  "accounting notes",
+]
+
+[modules.business_brain_accounting_and_general_business]
+display_name = "Business Brain / Accounting and General Business"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Business Brain/Accounting and General Business",
+]
+enabled = true
+stage = "active"
+priority = 145
+aliases = [
+  "accounting",
+  "management accounting",
+  "self-study",
+  "managerial",
+  "marketing",
+  "managerial accounting",
+  "accounting and general business",
+  "business brain",
+  "business",
+  "finance",
+  "economics",
+  "accounting notes",
+]
+
+[modules.business_brain_economics]
+display_name = "Business Brain / Economics"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Business Brain/Economics",
+]
+enabled = true
+stage = "active"
+priority = 146
+aliases = [
+  "demand",
+  "echelon",
+  "row echelon",
+  "supply",
+  "13 risky",
+  "13 risky assets",
+  "economics",
+  "business brain",
+  "business",
+  "finance",
+  "accounting",
+  "demand notes",
+]
+
+[modules.business_brain_econonometrics]
+display_name = "Business Brain / Econonometrics"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Business Brain/Econonometrics",
+]
+enabled = true
+stage = "active"
+priority = 147
+aliases = [
+  "2sls",
+  "econometrics",
+  "forecasting using",
+  "returns",
+  "ols estimators",
+  "regression analysis",
+  "econonometrics",
+  "business brain",
+  "business",
+  "finance",
+  "economics",
+  "accounting",
+]
+
+[modules.business_brain_finance]
+display_name = "Business Brain / Finance"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Business Brain/Finance",
+]
+enabled = true
+stage = "active"
+priority = 148
+aliases = [
+  "abnormal",
+  "asset pricing",
+  "policies",
+  "practice questions",
+  "problem sets",
+  "questions further",
+  "finance",
+  "business brain",
+  "business",
+  "economics",
+  "accounting",
+  "abnormal notes",
+]
+
+[modules.business_brain_fintech]
+display_name = "Business Brain / Fintech"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Business Brain/Fintech",
+]
+enabled = true
+stage = "active"
+priority = 149
+aliases = [
+  "bitcoin",
+  "blockchain",
+  "brief-170115-fintech",
+  "institute research",
+  "tapscott",
+  "trust",
+  "fintech",
+  "business brain",
+  "business",
+  "finance",
+  "economics",
+  "accounting",
+]
+
+[modules.business_brain_machine_learning]
+display_name = "Business Brain / Machine Learning"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Business Brain/Machine Learning",
+]
+enabled = true
+stage = "active"
+priority = 150
+aliases = [
+  "tensorflow",
+  "able",
+  "able causal",
+  "partially",
+  "causal",
+  "causal effects",
+  "machine learning",
+  "business brain",
+  "business",
+  "finance",
+  "economics",
+  "accounting",
+]
+
+[modules.business_brain_technical_analysis]
+display_name = "Business Brain / Technical Analysis"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Business Brain/Technical Analysis",
+]
+enabled = true
+stage = "active"
+priority = 151
+aliases = [
+  "trading",
+  "amazon forecast",
+  "amazon",
+  "forecast",
+  "getting started",
+  "market making",
+  "technical analysis",
+  "business brain",
+  "business",
+  "finance",
+  "economics",
+  "accounting",
+]
+
+[modules.cs_brain]
+display_name = "Computer Science Brain"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Computer Science Brain",
+]
+enabled = true
+stage = "active"
+priority = 152
+aliases = [
+  "cipher",
+  "ciphers",
+  "stream",
+  "11 thread",
+  "agents",
+  "stream ciphers",
+  "computer science brain",
+  "computer science",
+  "algorithms",
+  "ml",
+  "deep learning",
+  "systems",
+]
+
+[modules.humanities_brain]
+display_name = "Humanities Brain"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Humanities Brain",
+]
+enabled = true
+stage = "active"
+priority = 162
+aliases = [
+  "greek",
+  "aeschylus",
+  "tragedy",
+  "companion",
+  "rhetoric",
+  "greek rhetoric",
+  "humanities brain",
+  "humanities",
+  "philosophy",
+  "history",
+  "literature",
+  "linguistics",
+]
+
+[modules.humanities_brain_art_music_and_culture]
+display_name = "Humanities Brain / Art, Music, and Culture"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Humanities Brain/Art, Music, and Culture",
+]
+enabled = true
+stage = "active"
+priority = 172
+aliases = [
+  "lost",
+  "jazz",
+  "michelangelo",
+  "charney",
+  "february",
+  "lost art",
+  "art, music, and culture",
+  "humanities brain",
+  "humanities",
+  "philosophy",
+  "history",
+  "literature",
+]
+
+[modules.humanities_brain_classics]
+display_name = "Humanities Brain / Classics"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Humanities Brain/Classics",
+]
+enabled = true
+stage = "active"
+priority = 173
+aliases = [
+  "greek",
+  "companion",
+  "aeschylus",
+  "rhetoric",
+  "tragedy",
+  "roman rhetoric",
+  "classics",
+  "humanities brain",
+  "humanities",
+  "philosophy",
+  "history",
+  "literature",
+]
+
+[modules.humanities_brain_communication_writing_professional_development]
+display_name = "Humanities Brain / Communication, Writing, Professional Development"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Humanities Brain/Communication, Writing, Professional Development",
+]
+enabled = true
+stage = "active"
+priority = 174
+aliases = [
+  "about race",
+  "talking",
+  "race",
+  "attending",
+  "creative",
+  "middle way",
+  "communication, writing, professional development",
+  "humanities brain",
+  "humanities",
+  "philosophy",
+  "history",
+  "literature",
+]
+
+[modules.humanities_brain_economics_law_and_politics]
+display_name = "Humanities Brain / Economics, Law and Politics"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Humanities Brain/Economics, Law and Politics",
+]
+enabled = true
+stage = "active"
+priority = 175
+aliases = [
+  "persuasion",
+  "courts",
+  "federalism",
+  "persuading",
+  "prisoner",
+  "questions consider",
+  "economics, law and politics",
+  "humanities brain",
+  "humanities",
+  "philosophy",
+  "history",
+  "literature",
+]
+
+[modules.humanities_brain_general_science_for_general_knowledge]
+display_name = "Humanities Brain / General Science for General Knowledge"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Humanities Brain/General Science for General Knowledge",
+]
+enabled = true
+stage = "active"
+priority = 176
+aliases = [
+  "worlds",
+  "ethics under",
+  "ethics under many-worlds",
+  "happens ethics",
+  "happens ethics under",
+  "what happens ethics",
+  "general science for general knowledge",
+  "humanities brain",
+  "humanities",
+  "philosophy",
+  "history",
+  "literature",
+]
+
+[modules.humanities_brain_general_science_for_general_knowledge_anthropology]
+display_name = "Humanities Brain / General Science for General Knowledge / Anthropology"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Humanities Brain/General Science for General Knowledge/Anthropology",
+]
+enabled = true
+stage = "active"
+priority = 177
+aliases = [
+  "ancestry",
+  "genogram",
+  "your ancestry",
+  "identity",
+  "genetic testing",
+  "narrative",
+  "humanities brain",
+  "humanities",
+  "philosophy",
+  "history",
+  "literature",
+  "ancestry notes",
+]
+
+[modules.humanities_brain_general_science_for_general_knowledge_astronomy]
+display_name = "Humanities Brain / General Science for General Knowledge / Astronomy"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Humanities Brain/General Science for General Knowledge/Astronomy",
+]
+enabled = true
+stage = "active"
+priority = 178
+aliases = [
+  "000083",
+  "001040",
+  "bk tcco 000083",
+  "bk tcco 001040",
+  "ether",
+  "stars",
+  "humanities brain",
+  "humanities",
+  "philosophy",
+  "history",
+  "literature",
+  "000083 notes",
+]
+
+[modules.humanities_brain_general_science_for_general_knowledge_general_life_science]
+display_name = "Humanities Brain / General Science for General Knowledge / General Life Science"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Humanities Brain/General Science for General Knowledge/General Life Science",
+]
+enabled = true
+stage = "active"
+priority = 179
+aliases = [
+  "suffixes",
+  "medical terminology",
+  "plant science",
+  "001105",
+  "10 neurology",
+  "10 neurology psychiatry",
+  "humanities brain",
+  "humanities",
+  "philosophy",
+  "history",
+  "literature",
+  "suffixes notes",
+]
+
+[modules.humanities_brain_general_science_for_general_knowledge_general_physical_science]
+display_name = "Humanities Brain / General Science for General Knowledge / General Physical Science"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Humanities Brain/General Science for General Knowledge/General Physical Science",
+]
+enabled = true
+stage = "active"
+priority = 180
+aliases = [
+  "ethics under",
+  "ethics under many-worlds",
+  "happens ethics",
+  "happens ethics under",
+  "what happens ethics",
+  "worlds",
+  "humanities brain",
+  "humanities",
+  "philosophy",
+  "history",
+  "literature",
+  "ethics under notes",
+]
+
+[modules.humanities_brain_general_science_for_general_knowledge_psychology]
+display_name = "Humanities Brain / General Science for General Knowledge / Psychology"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Humanities Brain/General Science for General Knowledge/Psychology",
+]
+enabled = true
+stage = "active"
+priority = 181
+aliases = [
+  "cognitive science",
+  "decision-making",
+  "behaviors",
+  "confirmation",
+  "confirmation bias",
+  "cult",
+  "humanities brain",
+  "humanities",
+  "philosophy",
+  "history",
+  "literature",
+  "cognitive science notes",
+]
+
+[modules.humanities_brain_history]
+display_name = "Humanities Brain / History"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Humanities Brain/History",
+]
+enabled = true
+stage = "active"
+priority = 182
+aliases = [
+  "benjamin",
+  "celtic",
+  "chianti",
+  "classico",
+  "scrolls",
+  "african",
+  "history",
+  "humanities brain",
+  "humanities",
+  "philosophy",
+  "literature",
+  "benjamin notes",
+]
+
+[modules.humanities_brain_literature]
+display_name = "Humanities Brain / Literature"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Humanities Brain/Literature",
+]
+enabled = true
+stage = "active"
+priority = 183
+aliases = [
+  "orwell",
+  "aurelius",
+  "lecture orwell",
+  "meditations",
+  "creation stories",
+  "marcus aurelius",
+  "literature",
+  "humanities brain",
+  "humanities",
+  "philosophy",
+  "history",
+  "orwell notes",
+]
+
+[modules.humanities_brain_music_theory]
+display_name = "Humanities Brain / Music Theory"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Humanities Brain/Music Theory",
+]
+enabled = true
+stage = "active"
+priority = 184
+aliases = [
+  "chords",
+  "chord",
+  "practice exercises",
+  "intervals",
+  "cornerstone",
+  "key signatures",
+  "music theory",
+  "humanities brain",
+  "humanities",
+  "philosophy",
+  "history",
+  "literature",
+]
+
+[modules.humanities_brain_philosophy]
+display_name = "Humanities Brain / Philosophy"
+paths = [
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Humanities Brain/Philosophy",
+]
+enabled = true
+stage = "active"
+priority = 185
+aliases = [
+  "logics",
+  "logic",
+  "democracy",
+  "completeness",
+  "sequent",
+  "athenian democracy",
+  "philosophy",
+  "humanities brain",
+  "humanities",
+  "history",
+  "literature",
+  "logics notes",
+]
