@@ -1,0 +1,14 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "regen-master-brain-once",
+			"type": "shell",
+			"command": "c:/Users/dunnm/Downloads/Master-Brain-API/.venv/Scripts/python.exe",
+			"args": [
+				"scripts/regenerate_registry_once.py"
+			],
+			"isBackground": false
+		}
+	]
+}

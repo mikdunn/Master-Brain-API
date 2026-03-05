@@ -9,18 +9,18 @@ enabled = true
 stage = "active"
 priority = 10
 aliases = [
+  "motor",
   "spectral domain",
-  "face",
   "filter bank",
   "adjacency",
   "adjacency matrix",
-  "motor",
+  "library wiley",
   "math brain",
   "math",
   "proof",
   "calculus",
   "linear algebra",
-  "spectral domain notes",
+  "motor notes",
 ]
 
 [modules.math_brain_applied_math_papers]
@@ -32,9 +32,9 @@ enabled = true
 stage = "active"
 priority = 20
 aliases = [
+  "motor",
   "spectral domain",
   "convex optimization",
-  "face",
   "filter bank",
   "adjacency",
   "adjacency matrix",
@@ -56,9 +56,9 @@ stage = "active"
 priority = 21
 aliases = [
   "extbf",
-  "games",
   "extbf lecture",
   "rationalizability",
+  "games",
   "inequalities",
   "dominance",
   "math",
@@ -82,8 +82,8 @@ aliases = [
   "subgroups",
   "computer exercises",
   "equivalence relations",
-  "integers",
   "7th ed",
+  "7th ed intro",
   "math brain",
   "math",
   "proof",
@@ -129,7 +129,7 @@ aliases = [
   "anton ela10 ssm",
   "ela10",
   "ela10 ssm",
-  "elementary linear",
+  "echelon",
   "math brain",
   "math",
   "proof",
@@ -150,9 +150,9 @@ aliases = [
   "mechanic",
   "topological field theory",
   "quantum mechanic",
-  "standard model",
-  "supersymmetric",
   "topological field",
+  "gravity",
+  "3-d lattice",
   "math brain",
   "math",
   "proof",
@@ -174,8 +174,8 @@ aliases = [
   "number system",
   "representation real",
   "representation real numbers",
-  "intervals",
   "absolute value",
+  "absolute value real",
   "math brain",
   "math",
   "proof",
@@ -263,9 +263,9 @@ stage = "active"
 priority = 30
 aliases = [
   "centrality",
-  "golub",
   "netflix",
   "netflix prize",
+  "golub",
   "singular value",
   "actor",
   "svd stuffs",
@@ -290,7 +290,7 @@ aliases = [
   "statistical physics",
   "hamiltonian",
   "quantum",
-  "fields physics",
+  "electric field",
   "physics brain",
   "physics",
   "mechanics",
@@ -309,11 +309,11 @@ stage = "active"
 priority = 41
 aliases = [
   "statistical physics",
+  "electric field",
   "fields physics",
   "hydrodynamics",
   "magnetic field",
   "other fields physics",
-  "quantum coherence",
   "biophysics",
   "physics brain",
   "physics",
@@ -332,8 +332,8 @@ stage = "active"
 priority = 42
 aliases = [
   "electrodynamics",
-  "quantum mechanics",
   "quantum",
+  "quantum mechanics",
   "dynamics",
   "field",
   "chaotic",
@@ -355,10 +355,10 @@ stage = "active"
 priority = 43
 aliases = [
   "electrodynamics",
-  "lorentz",
+  "field",
   "maxwell",
-  "gauss",
-  "lorentz force",
+  "elementary charge",
+  "lorentz",
   "maxwell equations",
   "electricity",
   "physics brain",
@@ -379,10 +379,10 @@ priority = 44
 aliases = [
   "copy",
   "hamiltonian",
+  "renormalization",
   "derivation hamiltonian",
   "derivation hamiltonian terms",
   "hamiltonian becomes",
-  "hamiltonian terms",
   "modern and advanced",
   "physics brain",
   "physics",
@@ -423,18 +423,18 @@ enabled = true
 stage = "active"
 priority = 46
 aliases = [
-  "instantaneous",
   "acceleration",
+  "instantaneous",
+  "vectors",
   "exercises problems",
   "questions exercises",
   "questions exercises problems",
-  "10 products",
   "physics brain",
   "physics",
   "mechanics",
   "electromagnetism",
   "quantum",
-  "instantaneous notes",
+  "acceleration notes",
 ]
 
 [modules.physics_brain_quantum]
@@ -447,11 +447,11 @@ stage = "active"
 priority = 47
 aliases = [
   "quantum field",
+  "motives quantum field",
   "quantum field theory",
-  "zeta",
   "quantum",
-  "quantum system",
-  "two-state quantum",
+  "field theory",
+  "quantum systems",
   "physics brain",
   "physics",
   "mechanics",
@@ -471,10 +471,10 @@ priority = 48
 aliases = [
   "control systems",
   "viscosity",
+  "sound",
+  "acoustical",
   "balances",
   "acoustics",
-  "feedback control systems",
-  "process control",
   "engineering brain",
   "engineering",
   "design",
@@ -542,7 +542,7 @@ aliases = [
   "acoustical",
   "all copy",
   "acoustics",
-  "sound waves",
+  "sound wave",
   "spherical sound",
   "cross engineering",
   "engineering brain",
@@ -587,9 +587,9 @@ aliases = [
   "hydrostatic",
   "curvilinear motion",
   "hydrostatic forces",
+  "problems design",
   "tensor",
   "cartesian coordinate systems",
-  "dynamics particles",
   "mechanical engineering",
   "engineering brain",
   "engineering",
@@ -611,8 +611,8 @@ aliases = [
   "dinosaur",
   "question transcriptomics regulation",
   "transcriptomics regulation",
-  "curvelet",
   "transcriptomics",
+  "curvelet",
   "science brain",
   "biology",
   "chemistry",
@@ -723,11 +723,11 @@ stage = "active"
 priority = 77
 aliases = [
   "gbase",
-  "mydata",
-  "reshape2",
+  "ggplot2",
+  "data frame",
   "delim",
   "geom",
-  "reshape2 head",
+  "mydata",
   "science brain",
   "biology",
   "chemistry",
@@ -745,10 +745,10 @@ enabled = true
 stage = "active"
 priority = 78
 aliases = [
-  "umich",
   "arc-ts",
+  "umich",
   "arc-ts umich",
-  "umich edu",
+  "commit",
   "git status",
   "readme",
   "science brain",
@@ -756,7 +756,7 @@ aliases = [
   "chemistry",
   "geology",
   "environment",
-  "umich notes",
+  "arc-ts notes",
 ]
 
 [modules.science_brain_bioinformatics_slides]
@@ -769,9 +769,9 @@ stage = "active"
 priority = 79
 aliases = [
   "bioinformatics",
+  "encode",
   "question transcriptomics regulation",
   "transcriptomics regulation",
-  "encode",
   "metabolomics",
   "genotype",
   "science brain",
@@ -791,18 +791,18 @@ enabled = true
 stage = "active"
 priority = 80
 aliases = [
-  "dna library",
-  "library",
-  "hiseq",
-  "miseq",
+  "mate",
+  "mate pair",
   "nextera",
-  "nextseq",
+  "dna library",
+  "nextera mate",
+  "pair library",
   "science brain",
   "biology",
   "chemistry",
   "geology",
   "environment",
-  "dna library notes",
+  "mate notes",
 ]
 
 [modules.science_brain_bioinformatics_slides_article]
@@ -861,11 +861,11 @@ stage = "active"
 priority = 83
 aliases = [
   "encode",
+  "histone",
   "additional mechanisms",
   "additional mechanisms deployed",
   "connect these epigenetically",
   "developed mechanisms",
-  "developed mechanisms control",
   "science brain",
   "biology",
   "chemistry",
@@ -929,18 +929,18 @@ enabled = true
 stage = "active"
 priority = 86
 aliases = [
-  "acad",
-  "acad sci",
-  "nucleic",
-  "nucleic acids",
   "genome project",
-  "sci usa",
+  "genome",
+  "human genome project",
+  "encyclopedia philosophy",
+  "genome project stanford",
+  "genome research",
   "science brain",
   "biology",
   "chemistry",
   "geology",
   "environment",
-  "acad notes",
+  "genome project notes",
 ]
 
 [modules.science_brain_bioinformatics_slides_article_prokaryotic_genomics]
@@ -952,18 +952,18 @@ enabled = true
 stage = "active"
 priority = 87
 aliases = [
-  "sciencemag",
+  "metagenomic",
   "association causality",
-  "microbiome",
+  "metagenomic shotgun",
+  "metagenomic shotgun sequencing",
   "causality",
-  "associations",
-  "www sciencemag",
+  "microbiome",
   "science brain",
   "biology",
   "chemistry",
   "geology",
   "environment",
-  "sciencemag notes",
+  "metagenomic notes",
 ]
 
 [modules.science_brain_bioinformatics_slides_article_transcriptomics]
@@ -978,9 +978,9 @@ aliases = [
   "proteomics metabolomics",
   "proteomics",
   "metabolomics",
-  "integrating dna",
-  "integrating dna rna",
-  "rna sequencing rna-seq",
+  "genomic",
+  "fusions",
+  "genes per",
   "science brain",
   "biology",
   "chemistry",
@@ -998,10 +998,10 @@ enabled = true
 stage = "active"
 priority = 89
 aliases = [
-  "bioinformatics",
   "question transcriptomics regulation",
   "transcriptomics regulation",
   "metabolomics",
+  "bioinformatics",
   "genomics",
   "proteomics",
   "science brain",
@@ -1009,7 +1009,7 @@ aliases = [
   "chemistry",
   "geology",
   "environment",
-  "bioinformatics notes",
+  "question transcriptomics regulation notes",
 ]
 
 [modules.science_brain_biology]
@@ -1021,18 +1021,18 @@ enabled = true
 stage = "active"
 priority = 90
 aliases = [
+  "his3",
   "frameshift",
+  "leu2",
   "ape2",
-  "3d colocalization genomic",
-  "colocalization genomic",
-  "colocalization genomic elements",
-  "genomic elements",
+  "can1",
+  "can1-100",
   "biology",
   "science brain",
   "chemistry",
   "geology",
   "environment",
-  "frameshift notes",
+  "his3 notes",
 ]
 
 [modules.science_brain_biology_dna_repair_papers]
@@ -1044,18 +1044,18 @@ enabled = true
 stage = "active"
 priority = 91
 aliases = [
+  "his3",
   "frameshift",
+  "leu2",
   "ape2",
-  "3d colocalization genomic",
-  "colocalization genomic",
-  "colocalization genomic elements",
-  "genomic elements",
+  "can1",
+  "can1-100",
   "science brain",
   "biology",
   "chemistry",
   "geology",
   "environment",
-  "frameshift notes",
+  "his3 notes",
 ]
 
 [modules.science_brain_biology_dna_repair_papers_referenced_sources]
@@ -1067,18 +1067,18 @@ enabled = true
 stage = "active"
 priority = 92
 aliases = [
-  "exo1d",
-  "novo telomere",
-  "sgs1d",
-  "telomere formation",
-  "telomere",
   "2010 defective",
+  "2010 defective resection",
+  "breaks leads",
+  "defective",
+  "defective resection",
+  "defective resection dna",
   "science brain",
   "biology",
   "chemistry",
   "geology",
   "environment",
-  "exo1d notes",
+  "2010 defective notes",
 ]
 
 [modules.science_brain_biology_ecology]
@@ -1114,11 +1114,11 @@ stage = "active"
 priority = 94
 aliases = [
   "excision",
+  "nucleotide excision",
   "variation chromosome",
   "epigenetic inheritance",
   "epigenetic",
   "analysis principles",
-  "bacteriophages",
   "science brain",
   "biology",
   "chemistry",
@@ -1160,11 +1160,11 @@ stage = "active"
 priority = 96
 aliases = [
   "age-structured",
+  "reaction-diffusion",
   "predator",
   "age-structured populations",
+  "cambridge org",
   "delay models",
-  "lotka-volterra",
-  "population model",
   "science brain",
   "biology",
   "chemistry",
@@ -1185,9 +1185,9 @@ aliases = [
   "head-on",
   "r-loop",
   "pyrenoid",
-  "rnase",
   "filaments",
   "mushroom",
+  "r-loop formation",
   "science brain",
   "biology",
   "chemistry",
@@ -1207,10 +1207,10 @@ priority = 98
 aliases = [
   "head-on",
   "r-loop",
-  "rnase",
   "r-loop formation",
   "genomic dna isolation",
   "quantitative pcrs",
+  "total genomic",
   "science brain",
   "biology",
   "chemistry",
@@ -1254,9 +1254,9 @@ aliases = [
   "mushroom",
   "vertebrate nervous systems",
   "nervous systems",
-  "systems",
   "olfactory",
-  "coding mushroom",
+  "preprint",
+  "systems",
   "science brain",
   "biology",
   "chemistry",
@@ -1278,8 +1278,8 @@ aliases = [
   "immunogenomics",
   "immunogenomics human",
   "immunogenomics human disease",
-  "fungal",
-  "medical microbiology",
+  "epidemiology",
+  "infectious",
   "science brain",
   "biology",
   "chemistry",
@@ -1321,11 +1321,11 @@ stage = "active"
 priority = 103
 aliases = [
   "infections",
-  "fungal",
-  "medical microbiology",
-  "monday",
-  "microbiology",
+  "epidemiology",
   "infectious",
+  "antimicrobial",
+  "microbiology",
+  "medical microbiology",
   "science brain",
   "biology",
   "chemistry",
@@ -1412,18 +1412,18 @@ enabled = true
 stage = "active"
 priority = 107
 aliases = [
-  "genomic instability",
   "neuroscience",
+  "genomic instability",
   "instability",
   "ion channels",
+  "acacacccacacca",
   "cameras",
-  "electrical signals",
   "science brain",
   "biology",
   "chemistry",
   "geology",
   "environment",
-  "genomic instability notes",
+  "neuroscience notes",
 ]
 
 [modules.science_brain_biology_yeast_biology]
@@ -1460,9 +1460,9 @@ priority = 109
 aliases = [
   "libretexts",
   "libretexts org",
+  "irreducible",
+  "haghi",
   "physical chemistry",
-  "theory project",
-  "toxicology",
   "chemistry",
   "science brain",
   "biology",
@@ -1482,17 +1482,17 @@ stage = "active"
 priority = 110
 aliases = [
   "libretexts",
-  "physical chemistry",
-  "theory project",
-  "chemistry",
-  "libretexts org",
   "haghi",
+  "physical chemistry",
+  "izhevsk",
+  "theory project",
+  "additional resources",
   "science brain",
   "biology",
+  "chemistry",
   "geology",
   "environment",
   "libretexts notes",
-  "libretexts guide",
 ]
 
 [modules.science_brain_chemistry_environmental_chemistry]
@@ -1507,9 +1507,9 @@ aliases = [
   "libretexts",
   "toxicology",
   "libretexts org",
-  "environmental toxicology",
-  "green chemistry",
-  "injury",
+  "exposure",
+  "supplementary references",
+  "cited",
   "science brain",
   "biology",
   "chemistry",
@@ -1527,18 +1527,18 @@ enabled = true
 stage = "active"
 priority = 112
 aliases = [
+  "irreducible",
   "libretexts",
-  "ligand",
-  "ligands",
+  "irreducible representations",
   "libretexts org",
-  "orbital",
-  "above",
+  "character",
+  "representations",
   "science brain",
   "biology",
   "chemistry",
   "geology",
   "environment",
-  "libretexts notes",
+  "irreducible notes",
 ]
 
 [modules.science_brain_chemistry_organic_and_biochemistry]
@@ -1554,8 +1554,8 @@ aliases = [
   "compounds",
   "bonding",
   "organic chemistry",
+  "organic",
   "libretexts org",
-  "acids bases",
   "science brain",
   "biology",
   "chemistry",
@@ -1596,12 +1596,12 @@ enabled = true
 stage = "active"
 priority = 115
 aliases = [
-  "vesicle",
   "curvelet",
   "image correlation",
   "application biological systems",
   "biological systems",
   "er-rao",
+  "citations",
   "imaging",
   "science brain",
   "biology",
@@ -1643,11 +1643,11 @@ stage = "active"
 priority = 117
 aliases = [
   "electric eld",
-  "electromagnetism",
-  "magnetic eld",
-  "magnetic",
-  "electric",
-  "maxwell",
+  "gauss",
+  "gauss law",
+  "point charge",
+  "point charges",
+  "charges",
   "science brain",
   "biology",
   "chemistry",
@@ -1692,8 +1692,8 @@ aliases = [
   "odinger equation",
   "rydberg",
   "quantum harmonic",
-  "wavefunction",
-  "harmonic",
+  "electronic structure theory",
+  "orbital",
   "science brain",
   "biology",
   "chemistry",
@@ -1734,18 +1734,18 @@ enabled = true
 stage = "active"
 priority = 121
 aliases = [
+  "uni03bcs",
   "data figure",
   "extended data",
   "extended data figure",
   "accuracy precision quantitative",
   "bayesian inference",
-  "full bayesian inference",
   "science brain",
   "biology",
   "chemistry",
   "geology",
   "environment",
-  "data figure notes",
+  "uni03bcs notes",
 ]
 
 [modules.science_brain_imaging_microscopy_physics_lscm]
@@ -1784,8 +1784,8 @@ aliases = [
   "stochastic optical reconstruction",
   "stochastic",
   "deconvolution",
-  "super-resolution",
-  "acad",
+  "methods online",
+  "see supplementary",
   "science brain",
   "biology",
   "chemistry",
@@ -1803,18 +1803,18 @@ enabled = true
 stage = "active"
 priority = 124
 aliases = [
+  "uni03bcs",
   "accuracy precision quantitative",
   "bayesian inference",
   "full bayesian inference",
   "precision quantitative",
   "precision quantitative fluorescence",
-  "quantitative fluorescence",
   "science brain",
   "biology",
   "chemistry",
   "geology",
   "environment",
-  "accuracy precision quantitative notes",
+  "uni03bcs notes",
 ]
 
 [modules.science_brain_imaging_wavelet_fourier_filters]
@@ -1826,18 +1826,18 @@ enabled = true
 stage = "active"
 priority = 125
 aliases = [
-  "wavelets",
   "wavelet",
+  "wavelets",
   "beta function",
   "beta wavelets",
   "c12 c12",
-  "compression",
+  "image compression",
   "science brain",
   "biology",
   "chemistry",
   "geology",
   "environment",
-  "wavelets notes",
+  "wavelet notes",
 ]
 
 [modules.science_brain_microscopy]
@@ -1851,9 +1851,9 @@ priority = 126
 aliases = [
   "optical quality",
   "qpi methods",
-  "fluorescence",
   "anisotropy",
   "lifetime",
+  "multiplexing",
   "phase microscopy",
   "microscopy",
   "science brain",
@@ -1920,10 +1920,10 @@ priority = 129
 aliases = [
   "systems",
   "chaotic",
+  "discrete charge",
   "mathematica",
-  "mathematical operations",
-  "penning",
-  "9781009413121",
+  "attractor",
+  "general relativity",
   "science brain",
   "biology",
   "chemistry",
@@ -1941,18 +1941,18 @@ enabled = true
 stage = "active"
 priority = 130
 aliases = [
+  "systems",
   "electrodynamics",
-  "lorentz",
   "maxwell",
-  "gauss",
-  "lorentz force",
+  "elementary charge",
+  "lorentz",
   "maxwell equations",
   "science brain",
   "biology",
   "chemistry",
   "geology",
   "environment",
-  "electrodynamics notes",
+  "systems notes",
 ]
 
 [modules.science_brain_physics_modern_and_advanced]
@@ -1969,7 +1969,7 @@ aliases = [
   "unitary",
   "hamiltonian",
   "unitary group",
-  "unitary group generators",
+  "suggestions",
   "science brain",
   "biology",
   "chemistry",
@@ -2010,18 +2010,18 @@ enabled = true
 stage = "active"
 priority = 133
 aliases = [
-  "instantaneous",
   "acceleration",
+  "instantaneous",
+  "vectors",
   "exercises problems",
   "questions exercises",
   "questions exercises problems",
-  "10 products",
   "science brain",
   "biology",
   "chemistry",
   "geology",
   "environment",
-  "instantaneous notes",
+  "acceleration notes",
 ]
 
 [modules.science_brain_physics_quantum]
@@ -2033,18 +2033,18 @@ enabled = true
 stage = "active"
 priority = 134
 aliases = [
-  "zeta",
+  "quantum systems",
+  "single quantum systems",
   "systems su(2",
   "two-state systems",
   "two-state systems su(2",
   "systems",
-  "two-state",
   "science brain",
   "biology",
   "chemistry",
   "geology",
   "environment",
-  "zeta notes",
+  "quantum systems notes",
 ]
 
 [modules.business_brain]
@@ -2058,8 +2058,8 @@ priority = 135
 aliases = [
   "accounting",
   "demand",
-  "management accounting",
   "self-study",
+  "management accounting",
   "managerial",
   "marketing",
   "business brain",
@@ -2080,11 +2080,11 @@ stage = "active"
 priority = 145
 aliases = [
   "accounting",
-  "management accounting",
   "self-study",
+  "management accounting",
   "managerial",
   "marketing",
-  "managerial accounting",
+  "financial statements",
   "accounting and general business",
   "business brain",
   "business",
@@ -2103,11 +2103,11 @@ stage = "active"
 priority = 146
 aliases = [
   "demand",
-  "echelon",
-  "row echelon",
   "supply",
   "13 risky",
   "13 risky assets",
+  "risk versus",
+  "risk versus return",
   "economics",
   "business brain",
   "business",
@@ -2130,7 +2130,7 @@ aliases = [
   "forecasting using",
   "returns",
   "ols estimators",
-  "regression analysis",
+  "panel data",
   "econonometrics",
   "business brain",
   "business",
@@ -2148,18 +2148,18 @@ enabled = true
 stage = "active"
 priority = 148
 aliases = [
-  "abnormal",
   "asset pricing",
+  "pricing",
+  "summary further",
+  "originally",
   "policies",
   "practice questions",
-  "problem sets",
-  "questions further",
   "finance",
   "business brain",
   "business",
   "economics",
   "accounting",
-  "abnormal notes",
+  "asset pricing notes",
 ]
 
 [modules.business_brain_fintech]
@@ -2174,9 +2174,9 @@ aliases = [
   "bitcoin",
   "blockchain",
   "brief-170115-fintech",
+  "bk-cfa-research",
+  "indb",
   "institute research",
-  "tapscott",
-  "trust",
   "fintech",
   "business brain",
   "business",
@@ -2196,10 +2196,10 @@ priority = 150
 aliases = [
   "tensorflow",
   "able",
-  "able causal",
-  "partially",
+  "causal inference",
   "causal",
-  "causal effects",
+  "able causal",
+  "identi able",
   "machine learning",
   "business brain",
   "business",
@@ -2240,12 +2240,12 @@ enabled = true
 stage = "active"
 priority = 152
 aliases = [
-  "cipher",
   "ciphers",
   "stream",
   "11 thread",
-  "agents",
+  "cipher",
   "stream ciphers",
+  "thread",
   "computer science brain",
   "computer science",
   "algorithms",
@@ -2265,9 +2265,9 @@ priority = 162
 aliases = [
   "greek",
   "aeschylus",
-  "tragedy",
-  "companion",
   "rhetoric",
+  "companion",
+  "onlinelibrary",
   "greek rhetoric",
   "humanities brain",
   "humanities",
@@ -2287,11 +2287,11 @@ stage = "active"
 priority = 172
 aliases = [
   "lost",
-  "jazz",
-  "michelangelo",
   "charney",
-  "february",
-  "lost art",
+  "noah",
+  "charnas",
+  "dilla",
+  "duchamp",
   "art, music, and culture",
   "humanities brain",
   "humanities",
@@ -2310,11 +2310,11 @@ stage = "active"
 priority = 173
 aliases = [
   "greek",
+  "onlinelibrary",
   "companion",
-  "aeschylus",
+  "wiley",
   "rhetoric",
-  "tragedy",
-  "roman rhetoric",
+  "onlinelibrary wiley",
   "classics",
   "humanities brain",
   "humanities",
@@ -2336,7 +2336,7 @@ aliases = [
   "talking",
   "race",
   "attending",
-  "creative",
+  "communicates",
   "middle way",
   "communication, writing, professional development",
   "humanities brain",
@@ -2356,11 +2356,11 @@ stage = "active"
 priority = 175
 aliases = [
   "persuasion",
-  "courts",
+  "civil",
+  "consider",
+  "everyone",
   "federalism",
-  "persuading",
-  "prisoner",
-  "questions consider",
+  "law school",
   "economics, law and politics",
   "humanities brain",
   "humanities",
@@ -2378,12 +2378,12 @@ enabled = true
 stage = "active"
 priority = 176
 aliases = [
+  "episode",
   "worlds",
   "ethics under",
   "ethics under many-worlds",
   "happens ethics",
   "happens ethics under",
-  "what happens ethics",
   "general science for general knowledge",
   "humanities brain",
   "humanities",
@@ -2401,18 +2401,18 @@ enabled = true
 stage = "active"
 priority = 177
 aliases = [
+  "episode",
   "ancestry",
   "genogram",
+  "migrating",
   "your ancestry",
-  "identity",
   "genetic testing",
-  "narrative",
   "humanities brain",
   "humanities",
   "philosophy",
   "history",
   "literature",
-  "ancestry notes",
+  "episode notes",
 ]
 
 [modules.humanities_brain_general_science_for_general_knowledge_astronomy]
@@ -2424,18 +2424,18 @@ enabled = true
 stage = "active"
 priority = 178
 aliases = [
+  "stellar",
+  "life cycle",
+  "stellar life",
+  "universe",
   "000083",
   "001040",
-  "bk tcco 000083",
-  "bk tcco 001040",
-  "ether",
-  "stars",
   "humanities brain",
   "humanities",
   "philosophy",
   "history",
   "literature",
-  "000083 notes",
+  "stellar notes",
 ]
 
 [modules.humanities_brain_general_science_for_general_knowledge_general_life_science]
@@ -2447,18 +2447,18 @@ enabled = true
 stage = "active"
 priority = 179
 aliases = [
-  "suffixes",
+  "anatomical",
+  "medical language",
   "medical terminology",
-  "plant science",
-  "001105",
-  "10 neurology",
-  "10 neurology psychiatry",
+  "suffixes",
+  "vowel",
+  "years ago",
   "humanities brain",
   "humanities",
   "philosophy",
   "history",
   "literature",
-  "suffixes notes",
+  "anatomical notes",
 ]
 
 [modules.humanities_brain_general_science_for_general_knowledge_general_physical_science]
@@ -2493,18 +2493,18 @@ enabled = true
 stage = "active"
 priority = 181
 aliases = [
+  "blind",
   "cognitive science",
+  "cults",
   "decision-making",
-  "behaviors",
-  "confirmation",
-  "confirmation bias",
-  "cult",
+  "anxiety",
+  "feature",
   "humanities brain",
   "humanities",
   "philosophy",
   "history",
   "literature",
-  "cognitive science notes",
+  "blind notes",
 ]
 
 [modules.humanities_brain_history]
@@ -2517,10 +2517,10 @@ stage = "active"
 priority = 182
 aliases = [
   "benjamin",
-  "celtic",
-  "chianti",
-  "classico",
   "scrolls",
+  "conquest",
+  "dead sea",
+  "sea scrolls",
   "african",
   "history",
   "humanities brain",
@@ -2541,9 +2541,9 @@ priority = 183
 aliases = [
   "orwell",
   "aurelius",
+  "emperor",
+  "george",
   "lecture orwell",
-  "meditations",
-  "creation stories",
   "marcus aurelius",
   "literature",
   "humanities brain",
@@ -2562,12 +2562,12 @@ enabled = true
 stage = "active"
 priority = 184
 aliases = [
+  "berklee",
   "chords",
-  "chord",
+  "berklee edu",
   "practice exercises",
-  "intervals",
-  "cornerstone",
-  "key signatures",
+  "staff",
+  "chord",
   "music theory",
   "humanities brain",
   "humanities",
@@ -2586,11 +2586,11 @@ stage = "active"
 priority = 185
 aliases = [
   "logics",
-  "logic",
   "democracy",
   "completeness",
   "sequent",
   "athenian democracy",
+  "natural numbers",
   "philosophy",
   "humanities brain",
   "humanities",

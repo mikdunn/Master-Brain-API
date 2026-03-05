@@ -14,3 +14,11 @@ venv/
 data/*.pkl
 data/*_checkpoint.json
 data/*_quarantine.json
+
+# Logs (generated while running the API/service)
+data/logs/
+
+# Packaging/build outputs
+*.egg-info/
+build/
+dist/
