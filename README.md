@@ -77,6 +77,11 @@ Use this to bridge Master Brain context into Copilot/ChatGPT-style workflows.
   - header (if `BRIDGE_API_KEY` set): `x-api-key: <key>`
 - Copilot context endpoint:
   - `POST http://127.0.0.1:8787/v1/copilot-context`
+- Synthesis endpoint (grounded answer + citations; recommended for sharing):
+  - `POST http://127.0.0.1:8787/v1/synthesize`
+  - body: `{"question":"Explain SVD for denoising","k":6,"project_root":"<your-project>"}`
+  - header (if `BRIDGE_API_KEY` set): `x-api-key: <key>`
+  - requires: `PERPLEXITY_API_KEY`
 - Indexed file listing endpoint:
   - `GET http://127.0.0.1:8787/v1/indexed-files?project_root=<your-project>`
   - optional header alternative: `x-project-root: <your-project>`
@@ -102,6 +107,8 @@ Service behavior:
 Bridge environment variables (`.env`):
 
 - `PERPLEXITY_API_KEY` (optional, for Perplexity-backed features)
+- `PERPLEXITY_BASE_URL` (default `https://api.perplexity.ai`)
+- `PERPLEXITY_MODEL` (default `sonar-pro`)
 - `BRIDGE_API_KEY` (recommended for any non-local use)
 - `BRIDGE_HOST` (default `127.0.0.1`)
 - `BRIDGE_PORT` (default `8787`)
@@ -109,7 +116,25 @@ Bridge environment variables (`.env`):
 - `BRIDGE_WORKSPACE_ROOT` (optional base folder used when resolving relative index paths)
 - `MASTER_BRAIN_ROOT` (optional default root for `init-master-structure`/`build-master-brain`)
 
+Public/shared deployment safety switches:
+
+- `BRIDGE_PUBLIC_MODE=1` enables a hardened mode intended for safe sharing.
+  - ignores caller-provided `project_root` and `index_path` overrides
+  - clamps `k` to `BRIDGE_PUBLIC_MAX_K`
+  - forces `cloud_rerank=false`
+  - disables endpoints that can leak raw chunk text by default
+- `BRIDGE_PUBLIC_MAX_K` (default `10`)
+- `BRIDGE_PUBLIC_ALLOW_ADMIN_ENDPOINTS=1` to allow `/v1/config` and `/v1/indexed-files` in public mode (off by default)
+- `BRIDGE_PUBLIC_RETURN_CONTEXT=1` to allow raw-context endpoints in public mode (off by default; not recommended)
+
+Best-effort rate limiting (in-process):
+
+- `BRIDGE_RATE_LIMIT_RPM` (default `60`)
+- `BRIDGE_RATE_LIMIT_BURST` (default `20`)
+
 If `BRIDGE_API_KEY` is missing/placeholder, the API enforces a built-in fallback key: `master-brain-bridge-local`.
+
+Important: if you enable `BRIDGE_PUBLIC_MODE=1`, you must set a real `BRIDGE_API_KEY` (the server will refuse to run in public mode with the fallback key).
 
 ## Optional OCR support
 

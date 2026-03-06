@@ -23,6 +23,13 @@ class AgentResponse:
     selected_modules: list[str]
 
 
+@dataclass(slots=True)
+class RetrievalResult:
+    mode: str
+    selected_modules: list[str]
+    hits: list[RetrievedChunk]
+
+
 MODULE_ALIASES: dict[str, tuple[str, ...]] = {
     "math_core": (
         "math",
@@ -331,6 +338,48 @@ def _merge_hits(
 
 
 def answer_query(index: IndexStore, query: str, k: int = 6) -> AgentResponse:
+    retrieval = retrieve_hits(index=index, query=query, k=k)
+    mode = retrieval.mode
+    selected_modules = retrieval.selected_modules
+    hits = retrieval.hits
+    blocks = [
+        (
+            f"[{h.score:.3f}] {h.chunk.source} "
+            f"(page {h.chunk.page if h.chunk.page else 'n/a'})\n"
+            f"{h.chunk.text}"
+        )
+        for h in hits
+    ]
+    symbolic = symbolic_from_query(query) if mode == "symbolic" else None
+    answer = _build_answer(mode, query, blocks, symbolic=symbolic)
+    prompt_template = build_prompt_template(
+        mode=mode,
+        query=query,
+        context_blocks=blocks,
+    )
+    confidence = _score_confidence(
+        query=query,
+        mode=mode,
+        hits=hits,
+        symbolic=symbolic,
+    )
+    return AgentResponse(
+        mode=mode,
+        answer=answer,
+        context=blocks,
+        prompt_template=prompt_template,
+        confidence=confidence,
+        confidence_label=_confidence_label(confidence),
+        selected_modules=selected_modules,
+    )
+
+
+def retrieve_hits(*, index: IndexStore, query: str, k: int = 6) -> RetrievalResult:
+    """Retrieve the best-matching chunks for a query.
+
+    This is shared by prompt-building endpoints and synthesis endpoints.
+    """
+
     mode = detect_mode(query)
     selected_modules = route_modules(index, query)
     allowed = set(selected_modules) if selected_modules else None
@@ -380,33 +429,17 @@ def answer_query(index: IndexStore, query: str, k: int = 6) -> AgentResponse:
 
     if not hits:
         hits = index.retriever.search(query, k=k)
-    blocks = [
-        (
-            f"[{h.score:.3f}] {h.chunk.source} "
-            f"(page {h.chunk.page if h.chunk.page else 'n/a'})\n"
-            f"{h.chunk.text}"
-        )
-        for h in hits
-    ]
-    symbolic = symbolic_from_query(query) if mode == "symbolic" else None
-    answer = _build_answer(mode, query, blocks, symbolic=symbolic)
-    prompt_template = build_prompt_template(
+
+    return RetrievalResult(
         mode=mode,
-        query=query,
-        context_blocks=blocks,
-    )
-    confidence = _score_confidence(
-        query=query,
-        mode=mode,
-        hits=hits,
-        symbolic=symbolic,
-    )
-    return AgentResponse(
-        mode=mode,
-        answer=answer,
-        context=blocks,
-        prompt_template=prompt_template,
-        confidence=confidence,
-        confidence_label=_confidence_label(confidence),
         selected_modules=selected_modules,
+        hits=hits,
     )
+
+
+def compute_confidence(*, query: str, mode: str, hits: list[RetrievedChunk], symbolic: SymbolicResult | None = None) -> float:
+    return _score_confidence(query=query, mode=mode, hits=hits, symbolic=symbolic)
+
+
+def label_confidence(score: float) -> str:
+    return _confidence_label(score)
