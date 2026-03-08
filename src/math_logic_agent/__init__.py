@@ -15,6 +15,7 @@ __all__ = [
     "resilience",
     "master_brain",
     "api",
+    "bq_telemetry",
     "symbolic",
     "orchestrator",
 ]

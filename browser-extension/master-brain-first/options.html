@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Master Brain First - Options</title>
+    <style>
+      body { font-family: Arial, sans-serif; margin: 24px; max-width: 760px; }
+      label { display: block; margin-top: 12px; font-weight: 600; }
+      input, select { width: 100%; padding: 8px; margin-top: 6px; box-sizing: border-box; }
+      .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+      button { margin-top: 16px; padding: 10px 14px; }
+      .hint { color: #555; font-size: 12px; margin-top: 6px; }
+      .ok { color: #0b7a24; margin-left: 10px; }
+    </style>
+  </head>
+  <body>
+    <h1>Master Brain First</h1>
+    <p>Intercept submit in ChatGPT/Perplexity, call your local bridge, and replace message with grounded prompt.</p>
+
+    <label for="bridgeUrl">Bridge URL</label>
+    <input id="bridgeUrl" placeholder="http://127.0.0.1:8787" />
+
+    <label for="endpoint">Endpoint</label>
+    <select id="endpoint">
+      <option value="/v1/copilot-context">/v1/copilot-context (recommended)</option>
+      <option value="/v1/query">/v1/query</option>
+      <option value="/v1/synthesize">/v1/synthesize</option>
+    </select>
+
+    <div class="row">
+      <div>
+        <label for="k">k</label>
+        <input id="k" type="number" min="1" max="30" value="6" />
+      </div>
+      <div>
+        <label for="appendOriginalQuestion">Append original question (0/1)</label>
+        <input id="appendOriginalQuestion" type="number" min="0" max="1" value="0" />
+      </div>
+    </div>
+
+    <label for="apiKey">API key</label>
+    <input id="apiKey" placeholder="master-brain-bridge-local" />
+
+    <label for="projectRoot">project_root (optional)</label>
+    <input id="projectRoot" placeholder="C:\\Users\\...\\Master-Brain-API" />
+
+    <label for="indexPath">index_path (optional)</label>
+    <input id="indexPath" placeholder="C:\\path\\to\\master_brain_index.pkl" />
+
+    <button id="save">Save</button><span id="status" class="ok"></span>
+
+    <script src="options.js"></script>
+  </body>
+</html>

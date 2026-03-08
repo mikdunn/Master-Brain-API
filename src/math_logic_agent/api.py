@@ -10,6 +10,7 @@ from typing import Any
 from fastapi import Depends, FastAPI, Header, HTTPException, Request
 from pydantic import BaseModel, Field
 
+from .bq_telemetry import TelemetryEvent, get_telemetry_service
 from .config import HARDCODED_BRIDGE_API_KEY, Settings
 from .indexing import IndexStore
 from .orchestrator import answer_query, compute_confidence, label_confidence, retrieve_hits
@@ -195,6 +196,38 @@ def _load_index(index_path: Path, cloud_rerank: bool) -> IndexStore:
         return store
 
 
+def _emit_query_telemetry(
+    *,
+    endpoint: str,
+    question: str,
+    mode: str,
+    confidence: float,
+    selected_modules: list[str],
+    k: int,
+    latency_ms: int,
+    status_code: int,
+    error: str | None = None,
+) -> None:
+    try:
+        telemetry = get_telemetry_service(_settings)
+        telemetry.emit_query_event(
+            TelemetryEvent(
+                endpoint=endpoint,
+                question=question,
+                mode=mode,
+                confidence=confidence,
+                selected_modules=selected_modules,
+                k=k,
+                latency_ms=latency_ms,
+                status_code=status_code,
+                error=error,
+            )
+        )
+    except Exception:
+        # Telemetry is always fail-open.
+        return
+
+
 @app.get("/health")
 def health() -> dict[str, Any]:
     return {
@@ -204,6 +237,7 @@ def health() -> dict[str, Any]:
         "api_key_required": bool(_settings.bridge_api_key),
         "public_mode": _is_public_mode(),
         "default_index": _settings.bridge_default_index_path,
+        "bq_telemetry_enabled": bool(_settings.bq_telemetry_enabled),
         "cwd": str(Path.cwd()),
     }
 
@@ -215,6 +249,7 @@ def query(
     __: None = Depends(_rate_limit),
     x_project_root: str | None = Header(default=None, alias="x-project-root"),
 ) -> QueryResponse:
+    t0 = time.perf_counter()
     if _is_public_mode() and not _context_return_allowed():
         raise HTTPException(
             status_code=403,
@@ -229,7 +264,7 @@ def query(
     index_path = _resolve_index_path(index_override, project_root)
     store = _load_index(index_path=index_path, cloud_rerank=cloud_rerank)
     response = answer_query(index=store, query=payload.question, k=k)
-    return QueryResponse(
+    out = QueryResponse(
         answer=response.answer,
         mode=response.mode,
         confidence=response.confidence,
@@ -237,6 +272,17 @@ def query(
         selected_modules=response.selected_modules,
         context=response.context,
     )
+    _emit_query_telemetry(
+        endpoint="/v1/query",
+        question=payload.question,
+        mode=out.mode,
+        confidence=out.confidence,
+        selected_modules=out.selected_modules,
+        k=k,
+        latency_ms=int((time.perf_counter() - t0) * 1000),
+        status_code=200,
+    )
+    return out
 
 
 @app.post("/v1/copilot-context")
@@ -276,6 +322,7 @@ def synthesize(
     __: None = Depends(_rate_limit),
     x_project_root: str | None = Header(default=None, alias="x-project-root"),
 ) -> SynthesizeResponse:
+    t0 = time.perf_counter()
     if not _settings.perplexity_api_key:
         raise HTTPException(
             status_code=503,
@@ -338,10 +385,21 @@ def synthesize(
             max_tokens=payload.max_tokens,
         )
     except PerplexityError as exc:
+        _emit_query_telemetry(
+            endpoint="/v1/synthesize",
+            question=payload.question,
+            mode=retrieval.mode,
+            confidence=0.0,
+            selected_modules=retrieval.selected_modules,
+            k=k,
+            latency_ms=int((time.perf_counter() - t0) * 1000),
+            status_code=502,
+            error=str(exc),
+        )
         raise HTTPException(status_code=502, detail=str(exc))
 
     conf = compute_confidence(query=payload.question, mode=retrieval.mode, hits=hits, symbolic=None)
-    return SynthesizeResponse(
+    out = SynthesizeResponse(
         answer=answer,
         mode=retrieval.mode,
         confidence=conf,
@@ -349,6 +407,17 @@ def synthesize(
         selected_modules=retrieval.selected_modules,
         citations=citations,
     )
+    _emit_query_telemetry(
+        endpoint="/v1/synthesize",
+        question=payload.question,
+        mode=out.mode,
+        confidence=out.confidence,
+        selected_modules=out.selected_modules,
+        k=k,
+        latency_ms=int((time.perf_counter() - t0) * 1000),
+        status_code=200,
+    )
+    return out
 
 
 @app.get("/v1/indexed-files", response_model=FilesResponse)

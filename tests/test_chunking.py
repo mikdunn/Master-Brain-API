@@ -38,3 +38,24 @@ def test_chunk_documents_tags_tensor() -> None:
     chunks = chunk_documents(docs)
     assert len(chunks) == 1
     assert "tensor" in chunks[0].tags
+
+
+def test_chunk_documents_infers_humanities_context() -> None:
+    docs = [
+        RawDocument(
+            text=(
+                "In 1789, French political thought in Europe transformed during "
+                "the Enlightenment. This primary source letter discusses rights."
+            ),
+            source="history.txt",
+            page=1,
+        )
+    ]
+    chunks = chunk_documents(docs)
+    assert len(chunks) == 1
+    ctx = chunks[0].metadata.get("context", {})
+    assert ctx.get("period_start") == 1789
+    assert ctx.get("period_end") == 1789
+    assert ctx.get("region") == "europe"
+    assert ctx.get("tradition") == "enlightenment"
+    assert ctx.get("source_type") == "primary"

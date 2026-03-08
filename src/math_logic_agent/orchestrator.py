@@ -4,7 +4,9 @@ import re
 from dataclasses import dataclass
 from pathlib import Path
 
+from .bq_telemetry import RetrievalHitEvent, get_telemetry_service
 from .config import load_module_registry
+from .config import Settings
 from .inheritance import ModuleInheritanceGraph
 from .indexing import IndexStore
 from .models import RetrievedChunk
@@ -94,6 +96,31 @@ ROUTING_MODULE_CONFIG_PATHS: tuple[str, ...] = (
     "config/modules.toml",
 )
 
+INTERDISCIPLINARY_CUES: tuple[str, ...] = (
+    "interdisciplinary",
+    "cross-domain",
+    "cross domain",
+    "across",
+    "between",
+    "connect",
+    "bridge",
+    "integrate",
+    "synthesize",
+    "compare",
+    "contrast",
+    "vs",
+)
+
+FAMILY_HINTS: dict[str, tuple[str, ...]] = {
+    "math": ("math", "algebra", "calculus", "statistics", "proof"),
+    "physics": ("physics", "mechanics", "quantum", "electromagnetism"),
+    "engineering": ("engineering", "control", "systems", "thermofluids"),
+    "science": ("biology", "chemistry", "geology", "science", "lab"),
+    "cs": ("computer science", "algorithm", "programming", "software", "ml"),
+    "business": ("economics", "finance", "policy", "politics", "business"),
+    "humanities": ("history", "philosophy", "literature", "culture", "classics", "communication"),
+}
+
 
 def _normalized_aliases(values: tuple[str, ...] | list[str]) -> set[str]:
     return {v.strip().lower() for v in values if v and v.strip()}
@@ -145,6 +172,148 @@ def _alias_map(available: list[str]) -> dict[str, set[str]]:
     return aliases
 
 
+def _module_family(module_id: str) -> str:
+    m = module_id.lower()
+    checks: list[tuple[str, tuple[str, ...]]] = [
+        ("humanities", ("humanities", "philosophy", "literature", "classics", "culture", "communication", "history")),
+        ("business", ("business", "econom", "politic", "finance")),
+        ("engineering", ("engineering",)),
+        ("science", ("science", "biology", "chemistry", "geology", "microscopy", "imaging", "bioinformatics")),
+        ("physics", ("physics",)),
+        ("math", ("math",)),
+        ("cs", ("cs", "computer_science", "computer science", "algorithm", "software")),
+    ]
+    for family, needles in checks:
+        if any(n in m for n in needles):
+            return family
+    return "other"
+
+
+def _query_families(query: str) -> set[str]:
+    q = query.lower()
+    out: set[str] = set()
+    for family, hints in FAMILY_HINTS.items():
+        if any(h in q for h in hints):
+            out.add(family)
+    return out
+
+
+def _is_interdisciplinary_query(query: str, ranked: list[tuple[str, int]]) -> bool:
+    q = query.lower()
+    has_cue = any(c in q for c in INTERDISCIPLINARY_CUES)
+    mentioned_families = _query_families(q)
+    scored_positive = [m for m, s in ranked if s > 0]
+    families_from_scores = {_module_family(m) for m in scored_positive}
+
+    if has_cue and (len(mentioned_families) >= 2 or len(families_from_scores) >= 2):
+        return True
+    if len(mentioned_families) >= 3:
+        return True
+    return False
+
+
+def _widen_for_interdisciplinary(ranked: list[tuple[str, int]], limit: int = 5) -> list[str]:
+    selected: list[str] = []
+    used_families: set[str] = set()
+
+    # First pass: prioritize family diversity among positively scored modules.
+    for module_id, score in ranked:
+        if score <= 0:
+            continue
+        fam = _module_family(module_id)
+        if fam not in used_families:
+            selected.append(module_id)
+            used_families.add(fam)
+        if len(selected) >= limit:
+            return selected
+
+    # Second pass: fill by next best positive modules.
+    for module_id, score in ranked:
+        if score <= 0 or module_id in selected:
+            continue
+        selected.append(module_id)
+        if len(selected) >= limit:
+            return selected
+    return selected
+
+
+def _is_interdisciplinary_selection(query: str, selected_modules: list[str]) -> bool:
+    if len(selected_modules) < 2:
+        return False
+    families = {_module_family(m) for m in selected_modules}
+    if len(families) < 2:
+        return False
+
+    q = query.lower()
+    has_cue = any(c in q for c in INTERDISCIPLINARY_CUES)
+    mentioned = _query_families(query)
+
+    if has_cue:
+        return True
+    if len(mentioned) >= 2 and len(families.intersection(mentioned)) >= 2:
+        return True
+    if len(mentioned) >= 3:
+        return True
+    return False
+
+
+def _fuse_interdisciplinary_hits(
+    *,
+    index: IndexStore,
+    query: str,
+    selected_modules: list[str],
+    hits: list[RetrievedChunk],
+    k: int,
+    min_per_brain: int = 1,
+    seed_score_ratio: float = 0.70,
+) -> list[RetrievedChunk]:
+    if not hits or len(selected_modules) < 2:
+        return hits[:k]
+
+    per_brain = max(1, int(min_per_brain))
+    score_ratio = min(1.0, max(0.0, float(seed_score_ratio)))
+    max_score = max((h.score for h in hits), default=0.0)
+    # Only seed cross-module hits when scores are reasonably close.
+    min_seed_score = max_score * score_ratio if max_score > 0 else 0.0
+
+    seeds: list[RetrievedChunk] = []
+    for module_id in selected_modules:
+        module_hits = index.retriever.search(
+            query,
+            k=max(per_brain, 1),
+            allowed_modules={module_id},
+        )
+        if not module_hits:
+            continue
+        accepted = 0
+        for h in module_hits:
+            if h.score >= min_seed_score:
+                seeds.append(h)
+                accepted += 1
+            if accepted >= per_brain:
+                break
+
+    seen: set[str] = set()
+    out: list[RetrievedChunk] = []
+
+    def _add(h: RetrievedChunk) -> None:
+        cid = h.chunk.chunk_id
+        if cid in seen:
+            return
+        seen.add(cid)
+        out.append(h)
+
+    for h in seeds:
+        _add(h)
+        if len(out) >= k:
+            return out
+    for h in hits:
+        _add(h)
+        if len(out) >= k:
+            return out
+    return out
+
+
 def route_modules(index: IndexStore, query: str) -> list[str]:
     available = sorted({c.module_id for c in index.chunks if c.module_id})
     if not available:
@@ -164,7 +333,12 @@ def route_modules(index: IndexStore, query: str) -> list[str]:
 
     ranked.sort(key=lambda x: x[1], reverse=True)
     if ranked and ranked[0][1] > 0:
-        return [m for m, s in ranked[:3] if s > 0]
+        narrow = [m for m, s in ranked[:3] if s > 0]
+        if _is_interdisciplinary_query(query, ranked):
+            widened = _widen_for_interdisciplinary(ranked, limit=5)
+            if widened:
+                return widened
+        return narrow
 
     # fallback: prefer broad modules most likely to answer unknown queries
     if any(m.endswith("_brain") for m in available):
@@ -383,6 +557,7 @@ def retrieve_hits(*, index: IndexStore, query: str, k: int = 6) -> RetrievalResu
     mode = detect_mode(query)
     selected_modules = route_modules(index, query)
     allowed = set(selected_modules) if selected_modules else None
+    used_inheritance_expansion = False
 
     hits = index.retriever.search(query, k=k, allowed_modules=allowed)
 
@@ -426,9 +601,41 @@ def retrieve_hits(*, index: IndexStore, query: str, k: int = 6) -> RetrievalResu
                 )
                 selected_modules = expanded_modules
                 allowed = expanded_allowed
+                used_inheritance_expansion = True
 
     if not hits:
         hits = index.retriever.search(query, k=k)
+
+    runtime_settings = Settings.from_env()
+    if _is_interdisciplinary_selection(query, selected_modules):
+        hits = _fuse_interdisciplinary_hits(
+            index=index,
+            query=query,
+            selected_modules=selected_modules,
+            hits=hits,
+            k=k,
+            min_per_brain=runtime_settings.interdisciplinary_min_per_brain,
+            seed_score_ratio=runtime_settings.interdisciplinary_seed_score_ratio,
+        )
+
+    try:
+        telemetry = get_telemetry_service(runtime_settings)
+        telemetry.emit_retrieval_hits(
+            [
+                RetrievalHitEvent(
+                    query=query,
+                    endpoint="retrieval",
+                    mode=mode,
+                    rank=i,
+                    hit=h,
+                    used_inheritance_expansion=used_inheritance_expansion,
+                )
+                for i, h in enumerate(hits)
+            ]
+        )
+    except Exception:
+        # Telemetry must be fail-open.
+        pass
 
     return RetrievalResult(
         mode=mode,

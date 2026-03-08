@@ -31,6 +31,16 @@ def _env_int(name: str, default: int) -> int:
         return default
 
 
+def _env_float(name: str, default: float) -> float:
+    raw = (os.getenv(name) or "").strip()
+    if not raw:
+        return default
+    try:
+        return float(raw)
+    except ValueError:
+        return default
+
+
 @dataclass(frozen=True, slots=True)
 class Settings:
     openai_api_key: str | None
@@ -55,6 +65,26 @@ class Settings:
     # Perplexity synthesis defaults.
     perplexity_base_url: str = "https://api.perplexity.ai"
     perplexity_default_model: str = "sonar-pro"
+
+    # BigQuery telemetry (fail-open, non-blocking analytics plane).
+    bq_telemetry_enabled: bool = False
+    bq_project_id: str | None = None
+    bq_dataset_id: str = "master_brain_analytics"
+    bq_query_table: str = "query_telemetry"
+    bq_retrieval_hits_table: str = "retrieval_hits"
+    bq_build_runs_table: str = "build_runs"
+    bq_file_inventory_table: str = "file_inventory_snapshot"
+    bq_chunk_metadata_table: str = "chunk_metadata_catalog"
+    bq_timeline_events_table: str = "timeline_events"
+    bq_insert_timeout_seconds: int = 1
+    bq_flush_batch_size: int = 50
+    bq_flush_interval_seconds: int = 2
+    bq_queue_maxsize: int = 2000
+    bq_include_question_text: bool = False
+
+    # Interdisciplinary fusion controls.
+    interdisciplinary_min_per_brain: int = 1
+    interdisciplinary_seed_score_ratio: float = 0.70
 
     @classmethod
     def from_env(cls) -> "Settings":
@@ -99,6 +129,34 @@ class Settings:
         perplexity_base_url = (os.getenv("PERPLEXITY_BASE_URL") or "https://api.perplexity.ai").strip() or "https://api.perplexity.ai"
         perplexity_default_model = (os.getenv("PERPLEXITY_MODEL") or "sonar-pro").strip() or "sonar-pro"
 
+        bq_enabled = _env_bool("BQ_TELEMETRY_ENABLED", default=False)
+        bq_project_id = (os.getenv("BQ_PROJECT_ID") or "").strip() or None
+        bq_dataset_id = (os.getenv("BQ_DATASET_ID") or "master_brain_analytics").strip() or "master_brain_analytics"
+        bq_query_table = (os.getenv("BQ_QUERY_TABLE") or "query_telemetry").strip() or "query_telemetry"
+        bq_retrieval_hits_table = (os.getenv("BQ_RETRIEVAL_HITS_TABLE") or "retrieval_hits").strip() or "retrieval_hits"
+        bq_build_runs_table = (os.getenv("BQ_BUILD_RUNS_TABLE") or "build_runs").strip() or "build_runs"
+        bq_file_inventory_table = (os.getenv("BQ_FILE_INVENTORY_TABLE") or "file_inventory_snapshot").strip() or "file_inventory_snapshot"
+        bq_chunk_metadata_table = (os.getenv("BQ_CHUNK_METADATA_TABLE") or "chunk_metadata_catalog").strip() or "chunk_metadata_catalog"
+        bq_timeline_events_table = (os.getenv("BQ_TIMELINE_EVENTS_TABLE") or "timeline_events").strip() or "timeline_events"
+        bq_insert_timeout = max(1, _env_int("BQ_INSERT_TIMEOUT_SECONDS", default=1))
+        bq_flush_batch_size = max(1, _env_int("BQ_FLUSH_BATCH_SIZE", default=50))
+        bq_flush_interval = max(1, _env_int("BQ_FLUSH_INTERVAL_SECONDS", default=2))
+        bq_queue_maxsize = max(100, _env_int("BQ_QUEUE_MAXSIZE", default=2000))
+        bq_include_question_text = _env_bool("BQ_INCLUDE_QUESTION_TEXT", default=False)
+
+        interdisciplinary_min_per_brain = max(
+            1,
+            _env_int("INTERDISCIPLINARY_MIN_PER_BRAIN", default=1),
+        )
+        interdisciplinary_seed_score_ratio = _env_float(
+            "INTERDISCIPLINARY_SEED_SCORE_RATIO",
+            default=0.70,
+        )
+        interdisciplinary_seed_score_ratio = min(
+            1.0,
+            max(0.0, interdisciplinary_seed_score_ratio),
+        )
+
         return cls(
             openai_api_key=api_key,
             perplexity_api_key=perplexity_key,
@@ -119,6 +177,24 @@ class Settings:
 
             perplexity_base_url=perplexity_base_url,
             perplexity_default_model=perplexity_default_model,
+
+            bq_telemetry_enabled=bq_enabled,
+            bq_project_id=bq_project_id,
+            bq_dataset_id=bq_dataset_id,
+            bq_query_table=bq_query_table,
+            bq_retrieval_hits_table=bq_retrieval_hits_table,
+            bq_build_runs_table=bq_build_runs_table,
+            bq_file_inventory_table=bq_file_inventory_table,
+            bq_chunk_metadata_table=bq_chunk_metadata_table,
+            bq_timeline_events_table=bq_timeline_events_table,
+            bq_insert_timeout_seconds=bq_insert_timeout,
+            bq_flush_batch_size=bq_flush_batch_size,
+            bq_flush_interval_seconds=bq_flush_interval,
+            bq_queue_maxsize=bq_queue_maxsize,
+            bq_include_question_text=bq_include_question_text,
+
+            interdisciplinary_min_per_brain=interdisciplinary_min_per_brain,
+            interdisciplinary_seed_score_ratio=interdisciplinary_seed_score_ratio,
         )
 
 

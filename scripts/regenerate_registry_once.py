@@ -6,7 +6,7 @@ OUT = Path("config/master_brain.toml")
 
 
 def main() -> None:
-    sys.path.insert(0, r"c:/Users/dunnm/Downloads/Master-Brain-API/src")
+    sys.path.insert(0, r"c:/Users/dunnm/Dropbox/Apps/Master-Brain-API/src")
     import math_logic_agent.master_brain as master_brain
 
     rendered = master_brain.render_master_module_registry_toml(ROOT)

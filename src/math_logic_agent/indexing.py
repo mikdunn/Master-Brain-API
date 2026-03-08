@@ -5,7 +5,9 @@ from collections.abc import Callable
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
+from uuid import uuid4
 
+from .bq_telemetry import BuildRunEvent, ChunkMetadataEvent, FileInventoryEvent, get_telemetry_service
 from .chunking import chunk_documents
 from .config import ModuleRegistry, Settings, load_module_registry
 from .embeddings import OpenAIEmbedder
@@ -117,6 +119,7 @@ class IndexStore:
     def _ingest_changed_paths(
         cls,
         *,
+        build_id: str,
         module_id: str,
         changed_paths: list[Path],
         enable_ocr_fallback: bool,
@@ -131,10 +134,21 @@ class IndexStore:
         failed = 0
         quarantined = 0
         chunks: list[DocumentChunk] = []
+        settings = Settings.from_env()
+        telemetry = get_telemetry_service(settings)
         for p in changed_paths:
             key = cls._manifest_key(module_id, p)
             if respect_quarantine and quarantine.is_quarantined(key):
                 quarantined += 1
+                telemetry.emit_file_inventory(
+                    FileInventoryEvent(
+                        build_id=build_id,
+                        module_id=module_id,
+                        file_path=str(p),
+                        action="quarantined",
+                        file_signature=file_signature(p),
+                    )
+                )
                 if progress_callback is not None:
                     progress_callback(
                         {
@@ -159,6 +173,16 @@ class IndexStore:
                     module_id=module_id,
                     reason=err,
                 )
+                telemetry.emit_file_inventory(
+                    FileInventoryEvent(
+                        build_id=build_id,
+                        module_id=module_id,
+                        file_path=str(p),
+                        action="failed",
+                        file_signature=file_signature(p),
+                        error=err,
+                    )
+                )
                 if progress_callback is not None:
                     progress_callback(
                         {
@@ -170,14 +194,31 @@ class IndexStore:
                     )
                 continue
             docs_total += len(docs)
+            created_chunks = 0
             if docs:
-                chunks.extend(
-                    chunk_documents(
-                        docs,
-                        max_chars=max_chars,
-                        overlap=overlap,
-                    )
+                file_chunks = chunk_documents(
+                    docs,
+                    max_chars=max_chars,
+                    overlap=overlap,
                 )
+                created_chunks = len(file_chunks)
+                chunks.extend(file_chunks)
+                telemetry.emit_chunk_metadata(
+                    [
+                        ChunkMetadataEvent(build_id=build_id, chunk=c)
+                        for c in file_chunks
+                    ]
+                )
+            telemetry.emit_file_inventory(
+                FileInventoryEvent(
+                    build_id=build_id,
+                    module_id=module_id,
+                    file_path=str(p),
+                    action="processed",
+                    file_signature=file_signature(p),
+                    chunk_count=created_chunks,
+                )
+            )
             if progress_callback is not None:
                 progress_callback(
                     {
@@ -205,6 +246,7 @@ class IndexStore:
         no_progress_timeout_seconds: int = 0,
         progress_callback: Callable[[dict[str, Any]], None] | None = None,
     ) -> tuple["IndexStore", BuildSummary]:
+        build_id = str(uuid4())
         input_root = Path(input_dir)
         existing: IndexStore | None = None
         index_file = Path(index_path)
@@ -256,6 +298,7 @@ class IndexStore:
             failed_files,
             quarantined_files,
         ) = cls._ingest_changed_paths(
+            build_id=build_id,
             module_id=module_id,
             changed_paths=changed_paths,
             enable_ocr_fallback=ocr_fallback,
@@ -270,6 +313,19 @@ class IndexStore:
         kept_chunks: list[DocumentChunk] = []
         for p in reused_paths:
             kept_chunks.extend(old_by_source[str(p)])
+
+        telemetry = get_telemetry_service(Settings.from_env())
+        for p in reused_paths:
+            telemetry.emit_file_inventory(
+                FileInventoryEvent(
+                    build_id=build_id,
+                    module_id=module_id,
+                    file_path=str(p),
+                    action="unchanged",
+                    file_signature=current_manifest.get(cls._manifest_key(module_id, p)),
+                    chunk_count=len(old_by_source.get(str(p), [])),
+                )
+            )
 
         chunks = kept_chunks + new_chunks
         store = cls(
@@ -323,6 +379,23 @@ class IndexStore:
                     "quarantined_files": quarantined_files,
                 }
             )
+        telemetry.emit_build_run(
+            BuildRunEvent(
+                build_id=build_id,
+                build_type="single-module",
+                status="complete",
+                total_files=summary.total_files,
+                changed_files=summary.changed_files,
+                reused_files=summary.reused_files,
+                documents_ingested=summary.documents_ingested,
+                chunks_created=summary.chunks_created,
+                modules_built=summary.modules_built,
+                failed_files=summary.failed_files,
+                quarantined_files=summary.quarantined_files,
+                checkpoint_writes=summary.checkpoint_writes,
+                index_path=str(index_path),
+            )
+        )
         return store, summary
 
     @classmethod
@@ -343,6 +416,7 @@ class IndexStore:
         no_progress_timeout_seconds: int = 0,
         progress_callback: Callable[[dict[str, Any]], None] | None = None,
     ) -> tuple["IndexStore", BuildSummary]:
+        build_id = str(uuid4())
         registry: ModuleRegistry = load_module_registry(module_config_path)
 
         # Persist these into the index so query-time routing can use
@@ -437,6 +511,7 @@ class IndexStore:
                     failed_count,
                     quarantined_count,
                 ) = cls._ingest_changed_paths(
+                    build_id=build_id,
                     module_id=module.module_id,
                     changed_paths=changed_paths,
                     enable_ocr_fallback=ocr_fallback,
@@ -455,6 +530,19 @@ class IndexStore:
 
                 for p in reused_paths:
                     all_kept_chunks.extend(old_by_source[str(p)])
+
+                telemetry = get_telemetry_service(Settings.from_env())
+                for p in reused_paths:
+                    telemetry.emit_file_inventory(
+                        FileInventoryEvent(
+                            build_id=build_id,
+                            module_id=module.module_id,
+                            file_path=str(p),
+                            action="unchanged",
+                            file_signature=current_manifest.get(cls._manifest_key(module.module_id, p)),
+                            chunk_count=len(old_by_source.get(str(p), [])),
+                        )
+                    )
 
                 if (
                     checkpoint_path is not None
@@ -550,4 +638,22 @@ class IndexStore:
                     "quarantined_files": quarantined_files,
                 }
             )
+        telemetry = get_telemetry_service(Settings.from_env())
+        telemetry.emit_build_run(
+            BuildRunEvent(
+                build_id=build_id,
+                build_type="multi-module",
+                status="complete",
+                total_files=summary.total_files,
+                changed_files=summary.changed_files,
+                reused_files=summary.reused_files,
+                documents_ingested=summary.documents_ingested,
+                chunks_created=summary.chunks_created,
+                modules_built=summary.modules_built,
+                failed_files=summary.failed_files,
+                quarantined_files=summary.quarantined_files,
+                checkpoint_writes=summary.checkpoint_writes,
+                index_path=str(index_path),
+            )
+        )
         return store, summary

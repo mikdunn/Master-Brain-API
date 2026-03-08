@@ -116,6 +116,85 @@ Bridge environment variables (`.env`):
 - `BRIDGE_WORKSPACE_ROOT` (optional base folder used when resolving relative index paths)
 - `MASTER_BRAIN_ROOT` (optional default root for `init-master-structure`/`build-master-brain`)
 
+### Master Brain-first prompt workflow (VS Code + browser chats)
+
+This repo now includes local prompt-preprocessing infrastructure so your chat prompt is grounded by Master Brain **before** submission.
+
+#### 1) Local preprocessor script
+
+- File: `scripts/master_brain_preprocess.py`
+- Purpose: calls Bridge API and emits a grounded prompt suitable for VS Code/Copilot/ChatGPT/Perplexity input.
+
+Examples:
+
+- Print grounded prompt from question:
+  - `python scripts/master_brain_preprocess.py --question "Explain SVD denoising" --project-root "<your-project>"`
+- Read question from stdin:
+  - `echo Explain SVD denoising | python scripts/master_brain_preprocess.py --stdin --project-root "<your-project>"`
+- Raw JSON output:
+  - `python scripts/master_brain_preprocess.py --question "Explain SVD denoising" --output json`
+
+Environment variables supported by the preprocessor:
+
+- `MASTER_BRAIN_BRIDGE_URL` (default `http://127.0.0.1:8787`)
+- `MASTER_BRAIN_BRIDGE_ENDPOINT` (default `/v1/copilot-context`)
+- `MASTER_BRAIN_PROJECT_ROOT` (default current directory)
+- `MASTER_BRAIN_INDEX_PATH` (optional)
+- `MASTER_BRAIN_K` (default `6`)
+- `MASTER_BRAIN_TIMEOUT_SECONDS` (default `30`)
+- `MASTER_BRAIN_APPEND_ORIGINAL_QUESTION` (`1`/`0`)
+
+#### 2) VS Code one-hotkey flow
+
+Workspace files:
+
+- `.vscode/tasks.json`
+  - `master-brain: prompt->clipboard` (asks for question, grounds it, copies result to clipboard)
+  - `master-brain: prompt->terminal` (same, but prints in terminal)
+- `.vscode/keybindings.json`
+  - `Ctrl+Alt+M` runs `master-brain: prompt->clipboard`
+
+Usage:
+
+1. Press `Ctrl+Alt+M`
+2. Enter your question in the prompt box
+3. Paste grounded prompt into your chat/composer
+
+#### 3) Browser submit interception (extension/userscript)
+
+- Extension (recommended): `browser-extension/master-brain-first/`
+  - Intercepts Enter/click submit in ChatGPT/Perplexity
+  - Calls local bridge
+  - Rewrites composer text with grounded prompt
+  - Re-submits
+- Userscript alternative: `scripts/userscripts/master_brain_first.user.js`
+
+For extension setup, see:
+
+- `browser-extension/master-brain-first/README.md`
+
+BigQuery telemetry environment variables:
+
+- `BQ_TELEMETRY_ENABLED` (default `0`)
+- `BQ_PROJECT_ID` (required when telemetry enabled)
+- `BQ_DATASET_ID` (default `master_brain_analytics`)
+- `BQ_QUERY_TABLE` (default `query_telemetry`)
+- `BQ_RETRIEVAL_HITS_TABLE` (default `retrieval_hits`)
+- `BQ_BUILD_RUNS_TABLE` (default `build_runs`)
+- `BQ_FILE_INVENTORY_TABLE` (default `file_inventory_snapshot`)
+- `BQ_CHUNK_METADATA_TABLE` (default `chunk_metadata_catalog`)
+- `BQ_TIMELINE_EVENTS_TABLE` (default `timeline_events`)
+- `BQ_INSERT_TIMEOUT_SECONDS` (default `1`)
+- `BQ_FLUSH_BATCH_SIZE` (default `50`)
+- `BQ_FLUSH_INTERVAL_SECONDS` (default `2`)
+- `BQ_QUEUE_MAXSIZE` (default `2000`)
+- `BQ_INCLUDE_QUESTION_TEXT` (default `0`; keep disabled for safer logging)
+
+Interdisciplinary retrieval tuning:
+
+- `INTERDISCIPLINARY_MIN_PER_BRAIN` (default `1`; minimum seed hits attempted per selected brain during fusion)
+- `INTERDISCIPLINARY_SEED_SCORE_RATIO` (default `0.70`; per-brain seed must score at least this fraction of top score)
+
 Public/shared deployment safety switches:
 
 - `BRIDGE_PUBLIC_MODE=1` enables a hardened mode intended for safe sharing.
@@ -135,6 +214,27 @@ Best-effort rate limiting (in-process):
 If `BRIDGE_API_KEY` is missing/placeholder, the API enforces a built-in fallback key: `master-brain-bridge-local`.
 
 Important: if you enable `BRIDGE_PUBLIC_MODE=1`, you must set a real `BRIDGE_API_KEY` (the server will refuse to run in public mode with the fallback key).
+
+## BigQuery schema bootstrap (Phase 2.5)
+
+Telemetry emits to multiple BigQuery tables. Bootstrap them once before enabling telemetry:
+
+1. Edit defaults at the top of `scripts/bigquery_schema.sql` (`project_id`, `dataset_id`, and `dataset_location`).
+
+1. Run the schema script: `bq query --use_legacy_sql=false < scripts/bigquery_schema.sql`.
+
+1. Set matching values in `.env`: `BQ_TELEMETRY_ENABLED=1`, `BQ_PROJECT_ID=<your-project-id>`, and `BQ_DATASET_ID=<your-dataset>`.
+
+1. Restart the API process/service.
+
+The schema script creates these tables if they do not already exist:
+
+- `query_telemetry`
+- `retrieval_hits`
+- `build_runs`
+- `file_inventory_snapshot`
+- `timeline_events`
+- `chunk_metadata_catalog` (reserved for chunk catalog emission in next phases)
 
 ## Optional OCR support
 
