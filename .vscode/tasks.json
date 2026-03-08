@@ -1,5 +1,6 @@
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
   "version": "2.0.0",
   "tasks": [
     {
@@ -80,6 +81,8 @@
   ]
 }
 =======
+=======
+>>>>>>> a4d0660f0cf3ab765b38228594d0bdca1aa13246
 	"version": "2.0.0",
 	"tasks": [
 		{
@@ -172,5 +175,9 @@
 			"description": "Question to ground with Master Brain"
 		}
 	]
+<<<<<<< HEAD
+}
+>>>>>>> a4d0660f0cf3ab765b38228594d0bdca1aa13246
+=======
 }
 >>>>>>> a4d0660f0cf3ab765b38228594d0bdca1aa13246

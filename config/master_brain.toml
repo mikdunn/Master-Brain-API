@@ -4,7 +4,10 @@ schema_version = 1
 display_name = "Math Brain"
 paths = [
 <<<<<<< HEAD
+<<<<<<< HEAD
   "C:/Users/dunnm/Dropbox/Apps/Master Brain/0_Math_Brain",
+=======
+>>>>>>> a4d0660f0cf3ab765b38228594d0bdca1aa13246
 =======
 >>>>>>> a4d0660f0cf3ab765b38228594d0bdca1aa13246
   "C:/Users/dunnm/Dropbox/Apps/Master Brain/Math Brain",
@@ -31,9 +34,13 @@ aliases = [
 display_name = "Math Brain / Applied Math Papers"
 paths = [
 <<<<<<< HEAD
+<<<<<<< HEAD
   "C:/Users/dunnm/Dropbox/Apps/Master Brain/1_Physics_Brain",
   "C:/Users/dunnm/Dropbox/Apps/Master Brain/Physics Brain",
   "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Physics",
+=======
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Math Brain/Applied Math Papers",
+>>>>>>> a4d0660f0cf3ab765b38228594d0bdca1aa13246
 =======
   "C:/Users/dunnm/Dropbox/Apps/Master Brain/Math Brain/Applied Math Papers",
 >>>>>>> a4d0660f0cf3ab765b38228594d0bdca1aa13246
@@ -60,9 +67,12 @@ aliases = [
 display_name = "Math Brain / Math"
 paths = [
 <<<<<<< HEAD
+<<<<<<< HEAD
   "C:/Users/dunnm/Dropbox/Apps/Master Brain/2_Engineering_Brain",
   "C:/Users/dunnm/Dropbox/Apps/Master Brain/Engineering Brain",
 =======
+=======
+>>>>>>> a4d0660f0cf3ab765b38228594d0bdca1aa13246
   "C:/Users/dunnm/Dropbox/Apps/Master Brain/Math Brain/Math",
 ]
 enabled = true
@@ -271,6 +281,9 @@ aliases = [
 display_name = "Math Brain / SVD stuffs"
 paths = [
   "C:/Users/dunnm/Dropbox/Apps/Master Brain/Math Brain/SVD stuffs",
+<<<<<<< HEAD
+>>>>>>> a4d0660f0cf3ab765b38228594d0bdca1aa13246
+=======
 >>>>>>> a4d0660f0cf3ab765b38228594d0bdca1aa13246
 ]
 enabled = true
@@ -295,8 +308,12 @@ aliases = [
 display_name = "Physics Brain"
 paths = [
 <<<<<<< HEAD
+<<<<<<< HEAD
   "C:/Users/dunnm/Dropbox/Apps/Master Brain/3_Science_Brain",
   "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain",
+=======
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Physics",
+>>>>>>> a4d0660f0cf3ab765b38228594d0bdca1aa13246
 =======
   "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Physics",
 >>>>>>> a4d0660f0cf3ab765b38228594d0bdca1aa13246
@@ -323,8 +340,12 @@ aliases = [
 display_name = "Physics Brain / Biophysics"
 paths = [
 <<<<<<< HEAD
+<<<<<<< HEAD
   "C:/Users/dunnm/Dropbox/Apps/Master Brain/4_Business_Brain",
   "C:/Users/dunnm/Dropbox/Apps/Master Brain/Business Brain",
+=======
+  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Physics/Biophysics",
+>>>>>>> a4d0660f0cf3ab765b38228594d0bdca1aa13246
 =======
   "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Physics/Biophysics",
 >>>>>>> a4d0660f0cf3ab765b38228594d0bdca1aa13246
@@ -351,9 +372,12 @@ aliases = [
 display_name = "Physics Brain / Computational Physics"
 paths = [
 <<<<<<< HEAD
+<<<<<<< HEAD
   "C:/Users/dunnm/Dropbox/Apps/Master Brain/5_Computer_Science_Brain",
   "C:/Users/dunnm/Dropbox/Apps/Master Brain/Computer Science Brain",
 =======
+=======
+>>>>>>> a4d0660f0cf3ab765b38228594d0bdca1aa13246
   "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Physics/Computational Physics",
 ]
 enabled = true
@@ -562,14 +586,20 @@ aliases = [
 display_name = "Engineering Brain / Cross Engineering"
 paths = [
   "C:/Users/dunnm/Dropbox/Apps/Master Brain/Engineering Brain/Cross Engineering",
+<<<<<<< HEAD
+>>>>>>> a4d0660f0cf3ab765b38228594d0bdca1aa13246
+=======
 >>>>>>> a4d0660f0cf3ab765b38228594d0bdca1aa13246
 ]
 enabled = true
 stage = "active"
 priority = 60
 <<<<<<< HEAD
+<<<<<<< HEAD
 aliases = ["computer science", "algorithms", "ml", "deep learning", "systems"]
 =======
+=======
+>>>>>>> a4d0660f0cf3ab765b38228594d0bdca1aa13246
 aliases = [
   "sound",
   "acoustical",
@@ -2286,13 +2316,19 @@ aliases = [
   "deep learning",
   "systems",
 ]
+<<<<<<< HEAD
+>>>>>>> a4d0660f0cf3ab765b38228594d0bdca1aa13246
+=======
 >>>>>>> a4d0660f0cf3ab765b38228594d0bdca1aa13246
 
 [modules.humanities_brain]
 display_name = "Humanities Brain"
 paths = [
 <<<<<<< HEAD
+<<<<<<< HEAD
   "C:/Users/dunnm/Dropbox/Apps/Master Brain/6_Humanities_Brain",
+=======
+>>>>>>> a4d0660f0cf3ab765b38228594d0bdca1aa13246
 =======
 >>>>>>> a4d0660f0cf3ab765b38228594d0bdca1aa13246
   "C:/Users/dunnm/Dropbox/Apps/Master Brain/Humanities Brain",
@@ -2300,9 +2336,12 @@ paths = [
 enabled = true
 stage = "active"
 <<<<<<< HEAD
+<<<<<<< HEAD
 priority = 70
 aliases = [
 =======
+=======
+>>>>>>> a4d0660f0cf3ab765b38228594d0bdca1aa13246
 priority = 162
 aliases = [
   "greek",
@@ -2312,6 +2351,9 @@ aliases = [
   "rhetoric",
   "greek rhetoric",
   "humanities brain",
+<<<<<<< HEAD
+>>>>>>> a4d0660f0cf3ab765b38228594d0bdca1aa13246
+=======
 >>>>>>> a4d0660f0cf3ab765b38228594d0bdca1aa13246
   "humanities",
   "philosophy",
@@ -2319,9 +2361,12 @@ aliases = [
   "literature",
   "linguistics",
 <<<<<<< HEAD
+<<<<<<< HEAD
   "arts",
   "religion",
 =======
+=======
+>>>>>>> a4d0660f0cf3ab765b38228594d0bdca1aa13246
 ]
 
 [modules.humanities_brain_art_music_and_culture]
@@ -2644,5 +2689,8 @@ aliases = [
   "history",
   "literature",
   "logics notes",
+<<<<<<< HEAD
+>>>>>>> a4d0660f0cf3ab765b38228594d0bdca1aa13246
+=======
 >>>>>>> a4d0660f0cf3ab765b38228594d0bdca1aa13246
 ]

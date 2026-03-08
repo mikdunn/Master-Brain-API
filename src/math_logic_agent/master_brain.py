@@ -1202,6 +1202,7 @@ def render_master_module_registry_toml(
             )
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 [modules.science_brain]
 display_name = "Science Brain"
 paths = [
@@ -1254,6 +1255,11 @@ aliases = [
   "religion",
 ]
 """
+=======
+        return "\n".join(chunks).rstrip() + "\n"
+    finally:
+        _active_noise_tokens = prev_noise
+>>>>>>> a4d0660f0cf3ab765b38228594d0bdca1aa13246
 =======
         return "\n".join(chunks).rstrip() + "\n"
     finally:

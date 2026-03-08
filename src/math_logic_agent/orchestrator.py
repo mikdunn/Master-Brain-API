@@ -5,7 +5,13 @@ from dataclasses import dataclass
 from pathlib import Path
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 from .config import load_module_registry
+=======
+from .bq_telemetry import RetrievalHitEvent, get_telemetry_service
+from .config import load_module_registry
+from .config import Settings
+>>>>>>> a4d0660f0cf3ab765b38228594d0bdca1aa13246
 =======
 from .bq_telemetry import RetrievalHitEvent, get_telemetry_service
 from .config import load_module_registry
@@ -101,7 +107,10 @@ ROUTING_MODULE_CONFIG_PATHS: tuple[str, ...] = (
 )
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> a4d0660f0cf3ab765b38228594d0bdca1aa13246
 INTERDISCIPLINARY_CUES: tuple[str, ...] = (
     "interdisciplinary",
     "cross-domain",
@@ -127,6 +136,9 @@ FAMILY_HINTS: dict[str, tuple[str, ...]] = {
     "humanities": ("history", "philosophy", "literature", "culture", "classics", "communication"),
 }
 
+<<<<<<< HEAD
+>>>>>>> a4d0660f0cf3ab765b38228594d0bdca1aa13246
+=======
 >>>>>>> a4d0660f0cf3ab765b38228594d0bdca1aa13246
 
 def _normalized_aliases(values: tuple[str, ...] | list[str]) -> set[str]:
@@ -179,7 +191,10 @@ def _alias_map(available: list[str]) -> dict[str, set[str]]:
     return aliases
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> a4d0660f0cf3ab765b38228594d0bdca1aa13246
 
 def _module_family(module_id: str) -> str:
     m = module_id.lower()
@@ -322,6 +337,9 @@ def _fuse_interdisciplinary_hits(
             return out
     return out
 
+<<<<<<< HEAD
+>>>>>>> a4d0660f0cf3ab765b38228594d0bdca1aa13246
+=======
 >>>>>>> a4d0660f0cf3ab765b38228594d0bdca1aa13246
 
 def route_modules(index: IndexStore, query: str) -> list[str]:
@@ -332,6 +350,7 @@ def route_modules(index: IndexStore, query: str) -> list[str]:
     q = query.lower()
     aliases = _alias_map(available)
 <<<<<<< HEAD
+<<<<<<< HEAD
     ranked: list[tuple[str, int]] = []
     for module_id in available:
         hints = aliases.get(module_id, set())
@@ -339,10 +358,18 @@ def route_modules(index: IndexStore, query: str) -> list[str]:
     runtime_aliases = getattr(index, "module_aliases", {})
     ranked: list[tuple[str, int]] = []
     for module_id in available:
+=======
+    runtime_aliases = getattr(index, "module_aliases", {})
+    ranked: list[tuple[str, int]] = []
+    for module_id in available:
+>>>>>>> a4d0660f0cf3ab765b38228594d0bdca1aa13246
         hints = set(aliases.get(module_id, set()))
         hints.update(
             _normalized_aliases(list(runtime_aliases.get(module_id, ())))
         )
+<<<<<<< HEAD
+>>>>>>> a4d0660f0cf3ab765b38228594d0bdca1aa13246
+=======
 >>>>>>> a4d0660f0cf3ab765b38228594d0bdca1aa13246
         score = sum(1 for h in hints if h in q)
         ranked.append((module_id, score))
