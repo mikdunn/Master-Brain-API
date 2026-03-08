@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [
   {
     "key": "ctrl+alt+m",
@@ -12,3 +13,19 @@
     "when": "editorTextFocus"
   }
 ]
+=======
+[
+  {
+    "key": "ctrl+alt+m",
+    "command": "workbench.action.tasks.runTask",
+	    "args": "master-brain: enrich-clipboard-query",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+alt+shift+m",
+    "command": "workbench.action.tasks.runTask",
+    "args": "master-brain: verify-bridge-and-sample",
+    "when": "editorTextFocus"
+  }
+]
+>>>>>>> a4d0660f0cf3ab765b38228594d0bdca1aa13246

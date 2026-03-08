@@ -3,10 +3,6 @@ schema_version = 1
 [modules.math_brain]
 display_name = "Math Brain"
 paths = [
-<<<<<<< HEAD
-  "C:/Users/dunnm/Dropbox/Apps/Master Brain/0_Math_Brain",
-=======
->>>>>>> a4d0660f0cf3ab765b38228594d0bdca1aa13246
   "C:/Users/dunnm/Dropbox/Apps/Master Brain/Math Brain",
 ]
 enabled = true
@@ -30,13 +26,7 @@ aliases = [
 [modules.math_brain_applied_math_papers]
 display_name = "Math Brain / Applied Math Papers"
 paths = [
-<<<<<<< HEAD
-  "C:/Users/dunnm/Dropbox/Apps/Master Brain/1_Physics_Brain",
-  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Physics Brain",
-  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Physics",
-=======
   "C:/Users/dunnm/Dropbox/Apps/Master Brain/Math Brain/Applied Math Papers",
->>>>>>> a4d0660f0cf3ab765b38228594d0bdca1aa13246
 ]
 enabled = true
 stage = "active"
@@ -59,10 +49,6 @@ aliases = [
 [modules.math_brain_math]
 display_name = "Math Brain / Math"
 paths = [
-<<<<<<< HEAD
-  "C:/Users/dunnm/Dropbox/Apps/Master Brain/2_Engineering_Brain",
-  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Engineering Brain",
-=======
   "C:/Users/dunnm/Dropbox/Apps/Master Brain/Math Brain/Math",
 ]
 enabled = true
@@ -271,7 +257,6 @@ aliases = [
 display_name = "Math Brain / SVD stuffs"
 paths = [
   "C:/Users/dunnm/Dropbox/Apps/Master Brain/Math Brain/SVD stuffs",
->>>>>>> a4d0660f0cf3ab765b38228594d0bdca1aa13246
 ]
 enabled = true
 stage = "active"
@@ -294,12 +279,7 @@ aliases = [
 [modules.physics_brain]
 display_name = "Physics Brain"
 paths = [
-<<<<<<< HEAD
-  "C:/Users/dunnm/Dropbox/Apps/Master Brain/3_Science_Brain",
-  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain",
-=======
   "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Physics",
->>>>>>> a4d0660f0cf3ab765b38228594d0bdca1aa13246
 ]
 enabled = true
 stage = "active"
@@ -322,12 +302,7 @@ aliases = [
 [modules.physics_brain_biophysics]
 display_name = "Physics Brain / Biophysics"
 paths = [
-<<<<<<< HEAD
-  "C:/Users/dunnm/Dropbox/Apps/Master Brain/4_Business_Brain",
-  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Business Brain",
-=======
   "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Physics/Biophysics",
->>>>>>> a4d0660f0cf3ab765b38228594d0bdca1aa13246
 ]
 enabled = true
 stage = "active"
@@ -350,10 +325,6 @@ aliases = [
 [modules.physics_brain_computational_physics]
 display_name = "Physics Brain / Computational Physics"
 paths = [
-<<<<<<< HEAD
-  "C:/Users/dunnm/Dropbox/Apps/Master Brain/5_Computer_Science_Brain",
-  "C:/Users/dunnm/Dropbox/Apps/Master Brain/Computer Science Brain",
-=======
   "C:/Users/dunnm/Dropbox/Apps/Master Brain/Science Brain/Physics/Computational Physics",
 ]
 enabled = true
@@ -562,14 +533,10 @@ aliases = [
 display_name = "Engineering Brain / Cross Engineering"
 paths = [
   "C:/Users/dunnm/Dropbox/Apps/Master Brain/Engineering Brain/Cross Engineering",
->>>>>>> a4d0660f0cf3ab765b38228594d0bdca1aa13246
 ]
 enabled = true
 stage = "active"
 priority = 60
-<<<<<<< HEAD
-aliases = ["computer science", "algorithms", "ml", "deep learning", "systems"]
-=======
 aliases = [
   "sound",
   "acoustical",
@@ -2286,23 +2253,14 @@ aliases = [
   "deep learning",
   "systems",
 ]
->>>>>>> a4d0660f0cf3ab765b38228594d0bdca1aa13246
 
 [modules.humanities_brain]
 display_name = "Humanities Brain"
 paths = [
-<<<<<<< HEAD
-  "C:/Users/dunnm/Dropbox/Apps/Master Brain/6_Humanities_Brain",
-=======
->>>>>>> a4d0660f0cf3ab765b38228594d0bdca1aa13246
   "C:/Users/dunnm/Dropbox/Apps/Master Brain/Humanities Brain",
 ]
 enabled = true
 stage = "active"
-<<<<<<< HEAD
-priority = 70
-aliases = [
-=======
 priority = 162
 aliases = [
   "greek",
@@ -2312,16 +2270,11 @@ aliases = [
   "rhetoric",
   "greek rhetoric",
   "humanities brain",
->>>>>>> a4d0660f0cf3ab765b38228594d0bdca1aa13246
   "humanities",
   "philosophy",
   "history",
   "literature",
   "linguistics",
-<<<<<<< HEAD
-  "arts",
-  "religion",
-=======
 ]
 
 [modules.humanities_brain_art_music_and_culture]
@@ -2644,5 +2597,4 @@ aliases = [
   "history",
   "literature",
   "logics notes",
->>>>>>> a4d0660f0cf3ab765b38228594d0bdca1aa13246
 ]

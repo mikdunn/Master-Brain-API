@@ -55,3 +55,14 @@ INFO:     Started server process [14556]
 INFO:     Waiting for application startup.
 INFO:     Application startup complete.
 INFO:     Uvicorn running on http://127.0.0.1:8787 (Press CTRL+C to quit)
+<<<<<<< HEAD
+=======
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [14556]
+INFO:     Started server process [5328]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8787 (Press CTRL+C to quit)
+>>>>>>> a4d0660f0cf3ab765b38228594d0bdca1aa13246

@@ -21,6 +21,56 @@ QUERY_ALIASES: dict[str, str] = {
 }
 
 
+REGION_HINTS: dict[str, tuple[str, ...]] = {
+    "europe": (
+        "europe",
+        "european",
+        "france",
+        "germany",
+        "italy",
+        "britain",
+        "england",
+        "rome",
+        "greek",
+    ),
+    "middle_east": (
+        "middle east",
+        "arab",
+        "persia",
+        "ottoman",
+        "mesopotamia",
+    ),
+    "east_asia": ("east asia", "china", "japan", "korea"),
+    "south_asia": ("south asia", "india", "indian"),
+    "africa": ("africa", "african", "ethiopia", "egypt"),
+    "americas": (
+        "america",
+        "american",
+        "united states",
+        "latin america",
+        "canada",
+        "mexico",
+    ),
+}
+
+TRADITION_HINTS: dict[str, tuple[str, ...]] = {
+    "classical": ("classical", "antiquity", "greco-roman"),
+    "enlightenment": ("enlightenment",),
+    "romanticism": ("romantic", "romanticism"),
+    "modernism": ("modernism", "modernist"),
+    "postmodernism": ("postmodern", "post-structural"),
+    "marxism": ("marx", "marxist", "historical materialism"),
+    "liberalism": ("liberal", "liberalism"),
+}
+
+SOURCE_TYPE_HINTS: dict[str, tuple[str, ...]] = {
+    "primary": ("primary source", "letter", "diary", "speech", "manuscript", "treatise"),
+    "scholarly": ("article", "journal", "paper", "peer-reviewed"),
+    "historical": ("historical", "chronicle", "timeline", "archive"),
+    "literary": ("poem", "novel", "play", "narrative", "stanza"),
+}
+
+
 def expand_query_aliases(query: str) -> str:
     q = query
     lower = query.lower()
@@ -79,6 +129,82 @@ def _tag_boost(features: set[str], chunk: DocumentChunk) -> float:
     if not overlap:
         return 0.0
     return 0.10 + 0.08 * min(len(overlap), 3)
+
+
+def _query_context_hints(query: str) -> dict[str, set[str] | list[int]]:
+    q = query.lower()
+    years = sorted(
+        {
+            int(y)
+            for y in re.findall(r"\b(1[0-9]{3}|20[0-9]{2}|[5-9][0-9]{2})\b", q)
+        }
+    )
+
+    regions: set[str] = set()
+    for tag, hints in REGION_HINTS.items():
+        if any(h in q for h in hints):
+            regions.add(tag)
+
+    traditions: set[str] = set()
+    for tag, hints in TRADITION_HINTS.items():
+        if any(h in q for h in hints):
+            traditions.add(tag)
+
+    source_types: set[str] = set()
+    for tag, hints in SOURCE_TYPE_HINTS.items():
+        if any(h in q for h in hints):
+            source_types.add(tag)
+
+    return {
+        "years": years,
+        "regions": regions,
+        "traditions": traditions,
+        "source_types": source_types,
+    }
+
+
+def _context_boost(hints: dict[str, set[str] | list[int]], chunk: DocumentChunk) -> float:
+    meta = chunk.metadata if isinstance(chunk.metadata, dict) else {}
+    ctx = meta.get("context", {})
+    if not isinstance(ctx, dict):
+        return 0.0
+
+    score = 0.0
+
+    years_obj = hints.get("years", [])
+    years = years_obj if isinstance(years_obj, list) else []
+    if years:
+        start = ctx.get("period_start")
+        end = ctx.get("period_end")
+        if isinstance(start, int) and isinstance(end, int):
+            if any(start <= y <= end for y in years):
+                score += 0.12
+        elif isinstance(start, int):
+            if any(y >= start for y in years):
+                score += 0.08
+        elif isinstance(end, int):
+            if any(y <= end for y in years):
+                score += 0.08
+
+    regions_obj = hints.get("regions", set())
+    regions = regions_obj if isinstance(regions_obj, set) else set()
+    region = ctx.get("region")
+    if regions and isinstance(region, str) and region in regions:
+        score += 0.08
+
+    traditions_obj = hints.get("traditions", set())
+    traditions = traditions_obj if isinstance(traditions_obj, set) else set()
+    tradition = ctx.get("tradition")
+    if traditions and isinstance(tradition, str) and tradition in traditions:
+        score += 0.08
+
+    source_types_obj = hints.get("source_types", set())
+    source_types = source_types_obj if isinstance(source_types_obj, set) else set()
+    source_type = ctx.get("source_type")
+    if source_types and isinstance(source_type, str) and source_type in source_types:
+        score += 0.08
+
+    return min(score, 0.25)
 
 
 class HybridRetriever:
@@ -142,6 +268,7 @@ class HybridRetriever:
 
         query = expand_query_aliases(query)
         features = _query_features(query)
+        context_hints = _query_context_hints(query)
 
         lq = self.lexical.transform([query])
         sq = self.semantic.transform([query])
@@ -161,6 +288,17 @@ class HybridRetriever:
                 dtype=float,
             )
             combo = np.clip(combo + boosts, 0.0, 1.5)
+
+        has_context_hints = any(
+            bool(context_hints.get(k))
+            for k in ("years", "regions", "traditions", "source_types")
+        )
+        if has_context_hints:
+            ctx_boosts = np.asarray(
+                [_context_boost(context_hints, c) for c in self.chunks],
+                dtype=float,
+            )
+            combo = np.clip(combo + ctx_boosts, 0.0, 1.8)
 
         if allowed_modules:
             mask = np.asarray(

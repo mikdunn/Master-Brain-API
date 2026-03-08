@@ -6,7 +6,9 @@ paths = ["C:/Users/dunnm/Dropbox/Apps/Master Brain/Math"]
 enabled = true
 stage = "active"
 priority = 10
-aliases = ["math", "algebra", "calculus", "linear algebra", "statistics", "svd"]
+aliases = ["math", "algebra", "calculus", "linear algebra", "statistics", "svd", "stochastic"
+              "geometry", "number theory", "probability", "integration", "differential equations", "matrix", "vector", "proof", "optimization", "arithmetic", "tensor"
+]
 
 [modules.physics_core]
 display_name = "Physics"
@@ -14,7 +16,9 @@ paths = ["C:/Users/dunnm/Dropbox/Apps/Master Brain/Physics"]
 enabled = true
 stage = "active"
 priority = 20
-aliases = ["physics", "mechanics", "electromagnetism", "thermodynamics", "quantum"]
+aliases = ["physics", "mechanics", "molecular", "electromagnetism", "thermodynamics", "quantum", "biophysics"
+            "optics", "relativity", "astrophysics", "nuclear", "particle physics", "waves", "acoustics", "fluid dynamics", "plasma", "solid state", "force", "energy", "motion", "astronomy"
+]
 
 [modules.imaging_core]
 display_name = "Imaging"
@@ -22,7 +26,9 @@ paths = ["C:/Users/dunnm/Dropbox/Apps/Master Brain/Imaging"]
 enabled = true
 stage = "active"
 priority = 30
-aliases = ["imaging", "image analysis", "computer vision", "segmentation", "wavelet"]
+aliases = ["imaging", "image analysis", "computer vision", "segmentation", "wavelet","compression"
+              "pattern recognition", "object detection", "image processing", "feature extraction", "denoising", "registration", "reconstruction"
+]
 
 [modules.cs_core]
 display_name = "Computer Science"
@@ -30,7 +36,9 @@ paths = ["C:/Users/dunnm/Dropbox/Apps/Master Brain/Computer Science"]
 enabled = true
 stage = "active"
 priority = 40
-aliases = ["computer science", "algorithm", "data structure", "operating systems", "networking"]
+aliases = ["computer science", "","algorithm", "data structure", "operating systems", "networking", "compression"
+              "programming", "software engineering", "AI", "machine learning", "deep learning", "neural networks", "database", "SQL", "python", "java", "C++", "web development", "cloud", "cybersecurity"
+]
 
 [modules.biology_core]
 display_name = "Biology"
@@ -38,7 +46,9 @@ paths = ["C:/Users/dunnm/Dropbox/Apps/Master Brain/Biology"]
 enabled = true
 stage = "active"
 priority = 50
-aliases = ["biology", "microbiology", "virology", "cell", "genetics"]
+aliases = ["biology", "microbiology", "virology", "cell", "genetics", "molecular", "protein", "DNA"
+              "RNA", "enzyme", "metabolism", "evolution", "ecology", "immunology", "biochemistry", "organism", "genome"
+]
 
 [modules.bioinformatics_core]
 display_name = "Bioinformatics"
@@ -46,7 +56,9 @@ paths = ["C:/Users/dunnm/Dropbox/Apps/Master Brain/Bioinformatics"]
 enabled = true
 stage = "active"
 priority = 60
-aliases = ["bioinformatics", "genomics", "sequence", "alignment", "omics"]
+aliases = ["bioinformatics", "genomics", "sequence", "alignment", "omics"
+              "proteomics", "transcriptomics", "metagenomics", "BLAST", "gene prediction", "phylogenetics", "variant calling", "annotation"
+]
 
 [modules.chemistry_core]
 display_name = "Chemistry"
@@ -54,7 +66,9 @@ paths = ["C:/Users/dunnm/Dropbox/Apps/Master Brain/Chemistry"]
 enabled = true
 stage = "active"
 priority = 70
-aliases = ["chemistry", "organic", "inorganic", "analytical", "reaction"]
+aliases = ["chemistry", "organic", "inorganic", "analytical", "reaction"
+  "physical chemistry", "biochemistry", "molecule", "molecular", "synthesis", "spectroscopy", "chromatography", "thermodynamics", "stoichiometry"
+]
 
 [modules.microscopy_core]
 display_name = "Microscopy"
@@ -62,4 +76,5 @@ paths = ["C:/Users/dunnm/Dropbox/Apps/Master Brain/Microscopy"]
 enabled = true
 stage = "active"
 priority = 80
-aliases = ["microscopy", "microscope", "fluorescence", "confocal"]
+aliases = ["microscopy", "microscope", "fluorescence", "confocal", "electron microscopy", "light microscopy", "super-resolution", "phase contrast", "scanning", "imaging", "sample preparation", "live cell imaging"
+]
