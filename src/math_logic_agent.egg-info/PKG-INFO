@@ -16,6 +16,7 @@ Requires-Dist: rich>=13.9.4
 Requires-Dist: openai>=1.59.7
 Requires-Dist: fastapi>=0.115.0
 Requires-Dist: uvicorn>=0.30.6
+Requires-Dist: google-cloud-bigquery>=3.35.1
 Provides-Extra: dev
 Requires-Dist: pytest>=8.3.4; extra == "dev"
 Provides-Extra: ocr
@@ -85,6 +86,12 @@ By default, module mappings live in `config/modules.toml`, where each module ID 
 - `mla init-master-structure --master-root "<your-project>/Master Brain" --module-config config/master_brain.toml`
 - `mla build-master-brain --master-root "<your-project>/Master Brain" --module-config config/master_brain.toml --index-path data/master_brain_index.pkl --incremental --quarantine-path data/master_brain_quarantine.json --checkpoint-path data/master_brain_checkpoint.json --checkpoint-every 200 --respect-quarantine`
 - `mla ask "Connect optimization, control theory, and econometrics" --index-path data/master_brain_index.pkl`
+
+`build-master-brain` now runs without the live progress UI by default to reduce terminal popup noise. Add `--show-progress` when you explicitly want the live progress view.
+
+The default Master Brain template now includes a Humanities group (`6_Humanities_Brain`) with Philosophy, History, Literature, Linguistics, Arts, and Religion subfolders.
+
+Module routing now reads aliases from module config (for example, `config/master_brain.toml`) so cross-disciplinary queries can match configured brain aliases directly.
 
 ## Bridge API + Windows background service
 

@@ -1,0 +1,80 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "master-brain: enrich-clipboard-query",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-Command",
+        "$q = Get-Clipboard -Raw; if ([string]::IsNullOrWhiteSpace($q)) { throw 'Clipboard is empty. Copy your query first.' }; $out = $q | & 'C:/Users/dunnm/Dropbox/Apps/Master-Brain-API/.venv/Scripts/python.exe' 'C:/Users/dunnm/Dropbox/Apps/Master-Brain-API/scripts/master_brain_preprocess.py' --stdin --project-root 'C:/Users/dunnm/Dropbox/Apps/Master-Brain-API' --index-path 'C:/Users/dunnm/Dropbox/Apps/Master-Brain-API/data/master_brain_index.pkl' --endpoint '/v1/copilot-context'; if ([string]::IsNullOrWhiteSpace($out)) { throw 'Master Brain returned empty output.' }; Set-Clipboard -Value $out; Write-Host 'Master Brain prompt copied to clipboard.'"
+      ],
+      "isBackground": false,
+      "presentation": {
+        "reveal": "never",
+        "panel": "shared",
+        "clear": true,
+        "focus": false
+      }
+    },
+    {
+      "label": "master-brain: verify-bridge-and-sample",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-Command",
+        "Write-Host '=== Master Brain /health ==='; $h = @{ 'x-api-key'='master-brain-bridge-local' }; Invoke-RestMethod -Method Get -Uri 'http://127.0.0.1:8787/health' -Headers $h | ConvertTo-Json -Depth 6; Write-Host '=== Sample grounded prompt (first 1200 chars) ==='; $out = & 'C:/Users/dunnm/Dropbox/Apps/Master-Brain-API/.venv/Scripts/python.exe' 'C:/Users/dunnm/Dropbox/Apps/Master-Brain-API/scripts/master_brain_preprocess.py' --question 'Explain SVD denoising in plain language' --project-root 'C:/Users/dunnm/Dropbox/Apps/Master-Brain-API' --index-path 'C:/Users/dunnm/Dropbox/Apps/Master-Brain-API/data/master_brain_index.pkl'; if ($out.Length -gt 1200) { $out.Substring(0,1200) } else { $out }"
+      ],
+      "isBackground": false,
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      }
+    },
+    {
+      "label": "master-brain: monitor-rebuild (live)",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "C:/Users/dunnm/Dropbox/Apps/Master-Brain-API/scripts/monitor-masterbrain-rebuild.ps1"
+      ],
+      "isBackground": false,
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true,
+        "focus": true
+      }
+    },
+    {
+      "label": "master-brain: monitor-rebuild (snapshot)",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "C:/Users/dunnm/Dropbox/Apps/Master-Brain-API/scripts/monitor-masterbrain-rebuild.ps1",
+        "-Once"
+      ],
+      "isBackground": false,
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      }
+    }
+  ]
+}

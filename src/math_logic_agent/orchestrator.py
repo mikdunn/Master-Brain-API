@@ -4,11 +4,8 @@ import re
 from dataclasses import dataclass
 from pathlib import Path
 
-<<<<<<< HEAD
 from .config import load_module_registry
-=======
 from .inheritance import ModuleInheritanceGraph
->>>>>>> 095f87c0772a817a07f38757ca244f029f738620
 from .indexing import IndexStore
 from .models import RetrievedChunk
 from .prompt_templates import build_prompt_template
@@ -150,13 +147,7 @@ def route_modules(index: IndexStore, query: str) -> list[str]:
     aliases = _alias_map(available)
     ranked: list[tuple[str, int]] = []
     for module_id in available:
-<<<<<<< HEAD
         hints = aliases.get(module_id, set())
-=======
-        hints: tuple[str, ...] = tuple(index.module_aliases.get(module_id, ()))
-        if not hints:
-            hints = MODULE_ALIASES.get(module_id, ())
->>>>>>> 095f87c0772a817a07f38757ca244f029f738620
         score = sum(1 for h in hints if h in q)
         ranked.append((module_id, score))
 
@@ -165,21 +156,6 @@ def route_modules(index: IndexStore, query: str) -> list[str]:
         return [m for m, s in ranked[:3] if s > 0]
 
     # fallback: prefer broad modules most likely to answer unknown queries
-<<<<<<< HEAD
-    priority = [
-        "math_core",
-        "cs_core",
-        "physics_core",
-        "imaging_core",
-        "math_brain",
-        "cs_brain",
-        "physics_brain",
-        "science_brain",
-        "engineering_brain",
-        "business_brain",
-        "humanities_brain",
-    ]
-=======
     if any(m.endswith("_brain") for m in available):
         priority = [
             "math_brain",
@@ -188,10 +164,10 @@ def route_modules(index: IndexStore, query: str) -> list[str]:
             "engineering_brain",
             "science_brain",
             "business_brain",
+            "humanities_brain",
         ]
     else:
         priority = ["math_core", "cs_core", "physics_core", "imaging_core"]
->>>>>>> 095f87c0772a817a07f38757ca244f029f738620
     fallback = [m for m in priority if m in available]
     if fallback:
         return fallback[:2]
